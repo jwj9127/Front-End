@@ -1,0 +1,8 @@
+.music .bar {
+  width: 550px;
+  height: 70px;
+  position: fixed;
+  left: 32%;
+  bottom: 60px;
+  background-color: gray;
+}

@@ -1,0 +1,47 @@
+.box4 {
+  position: fixed;
+  top: 100px;
+  left: 410px;
+}
+
+.pencil {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 50px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+button {
+  margin: 5px;
+}
+.saveName {
+  position: fixed;
+  width: 220px;
+  height: 20px;
+  top: 70px;
+  left: 220px;
+  margin: 0;
+  padding-left: 15px;
+  padding-top: 15px;
+  /* margin-top: 15px;
+  margin-left: 15px; */
+}

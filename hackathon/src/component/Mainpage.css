@@ -1,0 +1,46 @@
+.mypage {
+  height: 250px;
+}
+
+.mypage .box1 {
+  width: 430px;
+  height: 160px;
+}
+.mypage .box1 .profile {
+  margin: 50px;
+  position: fixed;
+  width: 430px;
+  height: 160px;
+  top: 0;
+  left: 0;
+  background-color: #d9d9d9;
+}
+.mypage .box2 {
+  width: 120px;
+  height: 120px;
+}
+
+.mypage .box2 .photo {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  top: 70px;
+  left: 70px;
+  background-color: #b7b7b7;
+  border-radius: 60px;
+}
+
+.mypage .box3 {
+  width: 220px;
+  height: 50px;
+}
+
+.mypage .box3 .nickname {
+  position: fixed;
+  width: 220px;
+  height: 50px;
+  top: 70px;
+  left: 220px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
