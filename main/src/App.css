@@ -1,0 +1,78 @@
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.myPage {
+  width: 100px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.whiteSound_popup {
+  border: 1px solid black;
+  width: 400px;
+  height: 600px;
+  text-align: right;
+}
+
+.background_popup {
+  border: 1px solid black;
+  width: 400px;
+  height: 600px;
+  text-align: right;
+}
+.friends_popup {
+  border: 1px solid black;
+  width: 400px;
+  height: 600px;
+  text-align: right;
+}
+.callender_popup {
+  border: 1px solid black;
+  width: 400px;
+  height: 600px;
+  text-align: right;
+}
+.todolist_popup {
+  border: 1px solid black;
+  width: 400px;
+  height: 600px;
+  text-align: right;
+}
+.DG {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.LD {
+  margin-right: auto;
+}
+
+.MD {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.RD {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.MD audio {
+  margin-left: 377px;
+}
+
+.exit {
+  width: 30px;
+  height: 30px;
+}
