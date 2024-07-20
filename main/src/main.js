@@ -62,18 +62,18 @@ export function Mainpage() {
   });
 
   document
-    .querySelector(".callender_popup .exit")
+    .querySelector(".calender_popup .exit")
     ?.addEventListener("click", function () {
-      console.log("Closing callender_popup");
-      document.querySelector(".callender_popup").style.display = "none";
+      console.log("Closing calender_popup");
+      document.querySelector(".calender_popup").style.display = "none";
     });
 
-  document.querySelector("#callender")?.addEventListener("click", function () {
-    console.log("Opening callender_popup");
+  document.querySelector("#calender")?.addEventListener("click", function () {
+    console.log("Opening calender_popup");
     Allpopups();
-    const callender_popup = document.querySelector(".callender_popup");
-    if (callender_popup) {
-      callender_popup.style.display = "block";
+    const calender_popup = document.querySelector(".calender_popup");
+    if (calender_popup) {
+      calender_popup.style.display = "block";
     }
   });
 
