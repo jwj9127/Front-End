@@ -1,0 +1,13 @@
+/* 좌측 메뉴 위치 */
+.munu_left {
+  position: fixed;
+  bottom: 65px;
+  left: 65px;
+}
+
+/* 좌측 메뉴 버튼 사이즈및 스타일 */
+#move_mainpage_btn {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
