@@ -1,0 +1,10 @@
+/* 음악 플레이 바 */
+
+.music .bar {
+  width: 550px;
+  height: 70px;
+  position: fixed;
+  left: 35.5%;
+  bottom: 65px;
+  background-color: gray;
+}
