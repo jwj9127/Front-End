@@ -1,5 +1,3 @@
-// src/main.js
-
 export function Mainpage() {
   console.log("Mainpage function called");
 
@@ -10,6 +8,8 @@ export function Mainpage() {
       popup.style.display = "none";
     });
   }
+
+  Allpopups();
 
   document
     .querySelector(".whiteSound_popup .exit")
@@ -91,5 +91,21 @@ export function Mainpage() {
     if (todolist_popup) {
       todolist_popup.style.display = "block";
     }
+  });
+
+  const friendsListItems = document.querySelectorAll(".friends li.you");
+  friendsListItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const friendsInfo = item.querySelector(".friendsinfo");
+      if (friendsInfo) {
+        friendsInfo.style.display = "block";
+      }
+    });
+    item.addEventListener("mouseleave", () => {
+      const friendsInfo = item.querySelector(".friendsinfo");
+      if (friendsInfo) {
+        friendsInfo.style.display = "none";
+      }
+    });
   });
 }

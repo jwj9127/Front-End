@@ -8,7 +8,14 @@ export const BackgroundPopup = () => {
   return (
     <div className="popup background_popup">
       <button className="exit"></button>
-      배경이미지
+      <div className="popup_content">
+        <div className="backGroundBox"></div>
+        <div className="backGroundBox"></div>
+        <div className="backGroundBox"></div>
+        <div className="backGroundBox"></div>
+        <div className="backGroundBox"></div>
+        <div className="backGroundBox"></div>
+      </div>
     </div>
   );
 };

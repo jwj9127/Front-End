@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import "./Mainpage.css"; // CSS 파일을 가져옴
-import { Mainpage } from "../main"; // main.js에서 Mainpage 함수를 가져옴
+import "./Mainpage.css";
+import { Mainpage } from "../main";
 import Calendar from "react-calendar";
-import WhiteSound from "../component/Whitesound"; // WhiteSound 컴포넌트를 가져옴
+import WhiteSound from "../component/Whitesound";
 import Background from "../component/background";
 import Friends from "../component/friends";
 import Todolist from "../component/todolist";
 import Calender1 from "../component/calender";
-
+import Clock from "../component/clock";
+import MypageBar from "../component/mypage";
 const MainPageComponent = () => {
   useEffect(() => {
     Mainpage();
@@ -15,10 +16,11 @@ const MainPageComponent = () => {
 
   return (
     <div className="mainPage">
-      <div className="expBar">
-        <button className="myPage">My Page</button>
+      <div className="backgroundImage"></div>
+      <MypageBar />
+      <div>
+        <Clock />
       </div>
-      <div className="clock"></div>
       <WhiteSound.WhiteSoundPopup />
       <Background.BackgroundPopup />
       <Friends.FriendsPopup />
@@ -26,7 +28,7 @@ const MainPageComponent = () => {
         <button className="exit"></button>
         <Calendar />
       </div>
-      <Todolist.TodolistPopup></Todolist.TodolistPopup>
+      <Todolist.TodolistPopup />
       <div className="DG">
         <div className="LD">
           <button>인터페이스 끄기</button>
@@ -41,8 +43,8 @@ const MainPageComponent = () => {
           </div>
           <div className="RD1">
             <Friends.FriendsButton />
-            <Calender1.calenderButton></Calender1.calenderButton>
-            <Todolist.TodolistButoon></Todolist.TodolistButoon>
+            <Calender1.calenderButton />
+            <Todolist.TodolistButoon />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MainPageComponent /> // MainPageComponent 렌더링
+    <MainPageComponent />
   </React.StrictMode>,
   document.getElementById("root")
 );

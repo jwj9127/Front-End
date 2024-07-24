@@ -1,4 +1,27 @@
-/* src/Mainpage/Mainpage.css */
+.backgroundImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../background/기본배경.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.clock {
+  position: absolute;
+  top: 65px;
+  right: 65px;
+}
+
+.clockCustom {
+  font-size: 75px;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
 
 .mainPage {
   display: flex;
@@ -15,100 +38,198 @@
   height: 75px;
   border-radius: 50px;
   border: 2px solid black;
+  display: flex;
+  align-items: center;
+  padding: 10px;
   position: absolute;
   top: 65px;
   left: 65px;
 }
 
 .myPage {
-  top: 50px;
-  left: 50px;
   width: 75px;
   height: 75px;
   border-radius: 50px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-right: auto;
 }
 
-.whiteSound_popup {
+.popup {
   border: 1px solid black;
   width: 500px;
   height: 800px;
   text-align: right;
   display: none;
   position: absolute;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.whiteSound_popup .whiteSoundBox {
-  width: 200px;
-  height: 300px;
-  border: 1px solid black;
+.popup_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
+/* Background Popup */
 .background_popup {
-  border: 1px solid black;
-  width: 500px;
-  height: 800px;
-  text-align: right;
   display: none;
-  position: absolute;
+  flex-direction: column;
+  align-items: center;
 }
 
+.backGroundBox {
+  width: 200px;
+  height: 150px;
+  border: 1px solid black;
+  margin: 15px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Friends Popup */
 .friends_popup {
-  border: 1px solid black;
-  width: 500px;
-  height: 800px;
-  text-align: right;
   display: none;
-  position: absolute;
 }
 
+.friends_popup .friends {
+  width: 100%;
+  padding: 10px;
+}
+
+.friends_popup .friends li {
+  list-style: none;
+  border: 1px solid black;
+  height: 100px;
+  width: 430px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.friends_popup .friends li .friendsinfo {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200px;
+  height: 100px;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 10;
+}
+
+.friends_popup .friends li .friendsinfo.grow {
+  display: block;
+}
+
+.friends_popup .inforow {
+  display: flex;
+}
+
+#me {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.profileinfo span {
+  display: block;
+}
+
+.profileimg {
+  height: 90px;
+  width: 90px;
+  border: 1px dashed;
+}
+
+/* Calendar Popup */
 .calender_popup {
-  border: 1px solid black;
-  width: 500px;
-  height: 800px;
-  text-align: right;
   display: none;
-  position: absolute;
 }
 
+/* Todolist Popup */
 .todolist_popup {
+  display: none;
   border: 1px solid black;
   width: 500px;
   height: 800px;
   text-align: right;
-  display: none;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .todolist_popup > .todoList {
-  width: 400px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   padding: 30px;
+  box-sizing: border-box;
 }
 
 .todolist_popup > .todoList > ul {
-  height: 40px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .todolist_popup > .todoList > ul > li {
-  height: 40px;
-  list-style: none;
-  margin-bottom: 50px;
   display: flex;
-  justify-content: left;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px;
+  margin-bottom: 10px;
 }
 
-.todolist_popup > .todoList .text {
+.todolist_popup .text {
   height: 50px;
   width: 350px;
   box-sizing: border-box;
 }
 
-.todolist_popup > .todoList .check {
+.todolist_popup .check {
   height: 50px;
   width: 50px;
   margin-right: 10px;
 }
 
+/* WhiteSound Popup */
+.whiteSound_popup {
+  display: none;
+}
+
+.whiteSound_popup .popup_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.whiteSoundBox {
+  width: 200px;
+  height: 150px;
+  border: 1px solid black;
+  margin: 15px;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* DG Section */
 .DG {
   display: flex;
   justify-content: space-between;
@@ -118,6 +239,10 @@
   position: absolute;
   bottom: 20px;
   box-sizing: border-box;
+}
+
+.LD {
+  margin-left: 65px;
 }
 
 .LD button {
@@ -132,8 +257,8 @@
   justify-content: center;
 }
 
-.LD {
-  margin-left: 65px;
+.MD audio {
+  margin-left: 377px;
 }
 
 .RD {
@@ -149,17 +274,13 @@
   justify-content: center;
 }
 
-.MD audio {
-  margin-left: 377px;
+.RD .RD1 button {
+  width: 75px;
+  height: 75px;
+  border-radius: 50px;
 }
 
 .exit {
   width: 50px;
   height: 50px;
-}
-
-.RD > .RD1 > button {
-  width: 75px;
-  height: 75px;
-  border-radius: 50px;
 }
