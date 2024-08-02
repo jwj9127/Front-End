@@ -1,20 +1,11 @@
-.TodoList {
-    padding: 0;
-    list-style: none;
-    min-height: 320px;
-    max-height: 513px;
-    overflow-y: auto;
+.main_page_todolist_template {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.TodoTemplate {
-    width: 512px;
-    margin: 6rem auto 0 auto;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.app-title {
-    background: #9c88ff;
+.main_page_todolist_template_title {
+    background: #8EBBFF;
     color: white;
     height: 4rem;
     font-size: 1.5rem;
@@ -23,8 +14,23 @@
     justify-content: center;
 }
 
-.content {
+.main_page_todolist_template_title_out {
+    cursor: pointer;
+    position: fixed;
+    left: 90%;
+}
+
+.main_page_todolist_template_content {
     background: white;
+}
+
+.main_page_todolist_list {
+    padding: 0;
+    list-style: none;
+}
+
+.main_page_todolist_list::-webkit-scrollbar {
+    width: 0px;
 }
 
 .TodoListItem {
