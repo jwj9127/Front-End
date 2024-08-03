@@ -5,27 +5,27 @@
     background-color: #29293E;
     color: #fff;
     border: none;
-    border-radius: 10px;
     line-height: 1.125em;
+    margin-top: 3%;
     padding: 1em;
 }
 
 /* 네비게이션 스타일 */
 .react-calendar__navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #8EBBFF;
 }
 
-.react-calendar__navigation button {
-    background-color: transparent;
+.react-calendar__navigation>button {
     border: none;
     color: #29293E;
     font-size: 1.5em;
 }
 
-.react-calendar__navigation button:hover {
+.react-calendar__navigation button:disabled {
+    background-color: #8EBBFF;
+}
+
+.react-calendar__navigation button:enabled:hover {
     background-color: #b9d5ff;
 }
 
@@ -33,11 +33,17 @@
 .react-calendar__month-view__weekdays {
     text-align: center;
     font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 35%;
 }
 
 .react-calendar__month-view__weekdays__weekday {
-    color: #fff;
+    color: black;
     padding: 0.5em;
+}
+
+.react-calendar__month-view__weekdays__weekday>abbr {
+    text-decoration: none;
 }
 
 .react-calendar__month-view__days__day--weekend {
@@ -49,7 +55,7 @@
     text-align: center;
     padding: 0.75em 0.5em;
     background: none;
-    border-radius: 50%;
+    border-radius: 0;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -57,19 +63,42 @@
 .react-calendar__tile:enabled:focus {
     background-color: #444;
     color: #fff;
-    border-radius: 50%;
 }
 
 .react-calendar__tile--now {
     background: #00aaff;
     color: #fff;
-    border-radius: 50%;
 }
 
 .react-calendar__tile--active {
-    background: #0077cc;
-    color: #fff;
-    border-radius: 50%;
+    background: white;
+    color: black;
+    border-radius: 0;
+}
+
+.react-calendar__viewContainer {
+    background-color: #5096FF;
+    height: 45vh;
+}
+
+.react-calendar__year-view,
+.react-calendar__year-view__months,
+.react-calendar__month-view,
+.react-calendar__month-view__days {
+    height: 100%;
+}
+
+.react-calendar__month-view__days>button {
+    height: 109%;
+}
+
+.react-calendar__month-view>div {
+    margin-top: 7.5%;
+    height: 12%;
+}
+
+.react-calendar__month-view>div>div {
+    height: 150%;
 }
 
 /* 다른 보기에 대한 스타일 */
@@ -82,10 +111,107 @@
 .react-calendar__tile--hasActive {
     background: #0077cc;
     color: #fff;
-    border-radius: 50%;
+    border-radius: 0;
 }
 
 .react-calendar__tile--hasActive:hover,
 .react-calendar__tile--hasActive:focus {
     background-color: #005999;
+}
+
+.react_calendar_plus_schedule {
+    text-align: center;
+    margin: 10px 0px 0px 0px;
+    color: #00aaff;
+    cursor: pointer;
+}
+
+/* 일정 추가 */
+
+.react_calendar_plus_schedule_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    top: 30%;
+    right: 10%;
+    width: 23vw;
+    height: 40vh;
+    background-color: #29293E;
+    border-radius: 10px;
+    color: white;
+    cursor: default;
+}
+
+.react_calendar_plus_schedule_div_top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.react_calendar_plus_schedule_div_top_out {
+    position: absolute;
+    left: 90%;
+    cursor: pointer;
+}
+
+.react_calendar_plus_schedule_div_title {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00aaff;
+    border-radius: 10px;
+}
+
+.react_calendar_plus_schedule_div_title>input {
+    outline: none;
+    border: none;
+    margin-left: 5%;
+    background-color: #00aaff;
+    font-weight: bold;
+}
+
+.react_calendar_plus_schedule_div_date {
+    width: 70%;
+    height: 25%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #00aaff;
+}
+
+.react_calendar_plus_schedule_div_start_date,
+.react_calendar_plus_schedule_div_end_date {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.react_calendar_plus_schedule_div_start_date>p,
+.react_calendar_plus_schedule_div_end_date>p {
+    margin-right: 10%;
+}
+
+.react_calendar_plus_schedule_div_start_date {
+    border-bottom: solid 1px black;
+}
+
+.date_selector {
+    width: 40%;
+    background-color: #00aaff;
+    border: none;
+    outline: none;
+    margin-left: 20%;
+    color: white;
+    cursor: pointer;
+}
+
+.react_calendar_plus_schedule_save {
+    cursor: pointer;
 }
