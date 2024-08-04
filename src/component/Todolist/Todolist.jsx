@@ -37,7 +37,7 @@ export default function Todolist() {
             height: "600px",
             zIndex: 1,
             position: "fixed",
-            top: "50%",
+            top: "40%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             border: 0,
@@ -91,9 +91,16 @@ export default function Todolist() {
             ),
         );
     }, []);
+
+    const [isModalOpen, setIsModalOpen] = useState(true);
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
-        <Modal isOpen={true} style={chatStyles}>
-            <TodoTemplate>
+        <Modal isOpen={isModalOpen} style={chatStyles}>
+            <TodoTemplate closeModal={closeModal}>
                 <ToDoInsert onInsert={onInsert} />
                 <TodoList
                     todos={todos}

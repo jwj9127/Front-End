@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Clock from "react-live-clock";
+import { Link } from 'react-router-dom';
 import "./MainPage.css";
-import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeHigh, faVolumeOff, faImage } from "@fortawesome/free-solid-svg-icons";
 import WhiteNoise from '../../component/WhiteNoise/WhiteNoise.jsx'
-import Friend from '../../component/Friend/Friend.jsx'
+import House from '../../component/House/House.jsx'
 import Calendar from '../../component/Calendar/Calendar.jsx'
 import Todolist from '../../component/Todolist/Todolist.jsx'
 import BackImage from '../../component/BackImage/BackImage.jsx'
-import MusicPlayer from "../../component/MusicPlayer/MusicPlayer.jsx";
-import MusicPlayBar from "../../component/MusciPlayerBar/MusicPlayerBar.jsx";
+
 export default function MainPage() {
     const [whiteNoiseOpen, setWhiteNoiseOpen] = useState(false);
-    const [friendOpen, setFriendOpen] = useState(false);
+    const [houseOpen, setHouseOpen] = useState(false);
     const [calendarOpen, setCalendarOpen] = useState(false);
     const [todolistOpen, setTodolistOpen] = useState(false);
     const [backImageOpen, setBackImageOpen] = useState(false);
@@ -20,13 +20,13 @@ export default function MainPage() {
 
     const whiteNoiseModal = () => {
         setWhiteNoiseOpen(!whiteNoiseOpen);
-        setFriendOpen(false);
+        setHouseOpen(false);
         setCalendarOpen(false);
         setTodolistOpen(false);
         setBackImageOpen(false);
     };
-    const friendModal = () => {
-        setFriendOpen(!friendOpen);
+    const houseModal = () => {
+        setHouseOpen(!houseOpen);
         setWhiteNoiseOpen(false);
         setCalendarOpen(false);
         setTodolistOpen(false);
@@ -35,21 +35,21 @@ export default function MainPage() {
     const calendarModal = () => {
         setCalendarOpen(!calendarOpen);
         setWhiteNoiseOpen(false);
-        setFriendOpen(false);
+        setHouseOpen(false);
         setTodolistOpen(false);
         setBackImageOpen(false);
     };
     const todolistModal = () => {
         setTodolistOpen(!todolistOpen);
         setWhiteNoiseOpen(false);
-        setFriendOpen(false);
+        setHouseOpen(false);
         setCalendarOpen(false);
         setBackImageOpen(false);
     };
     const backImageModal = () => {
         setBackImageOpen(!backImageOpen);
         setWhiteNoiseOpen(false);
-        setFriendOpen(false);
+        setHouseOpen(false);
         setCalendarOpen(false);
         setTodolistOpen(false);
     };
@@ -64,30 +64,15 @@ export default function MainPage() {
             <div className="backgroundImage"></div>
 
             {/* 마이페이지 */}
-            <div className="my_page_bar">
-                <Link to={""} className="my_page_nav"></Link>
-            </div>
+            <div className="my_level_bar"></div>
 
-            {/* 시계 */}
-            <div className="clock">
-                <Clock
-                    className="clock_detail"
-                    format={"HH:mm"}
-                    ticking={true}
-                    timezone={"Asia/Seoul"}
-                />
-            </div>
-
-            {/* UI 키고 끄기 */}
-            <div className="main_page_ui"></div>
+            {/* bgm 키고 끄기 */}
+            <FontAwesomeIcon className="main_page_bgm" icon={faVolumeHigh} size="2x" color="#29293E" />
 
             {/* 모달 네비게이션 */}
             <div className="main_page_nav">
                 <div className="main_page_nav_noise" onClick={whiteNoiseModal} >
                     {whiteNoiseOpen && <div onClick={stopPropagation}> <WhiteNoise /> </div>}
-                </div>
-                <div className="main_page_nav_people" onClick={friendModal}>
-                    {friendOpen && <div onClick={stopPropagation}> <Friend onClick={stopPropagation} /> </div>}
                 </div>
                 <div className="main_page_nav_calendar" onClick={calendarModal}>
                     {calendarOpen && <div onClick={stopPropagation}> <Calendar onClick={stopPropagation} /> </div>}
@@ -98,13 +83,13 @@ export default function MainPage() {
                 <div className="main_page_nav_backimg" onClick={backImageModal}>
                     {backImageOpen && <div onClick={stopPropagation}> <BackImage onClick={stopPropagation} /> </div>}
                 </div>
+                <div className="main_page_nav_house" onClick={houseModal}>
+                    {houseOpen && <div onClick={stopPropagation}> <House onClick={stopPropagation} /> </div>}
+                </div>
             </div>
 
-            {/* 재생 플레이어 */}
-            <div className="main_page_music_bar">
-                <MusicPlayer playing={playing} setPlaying={setPlaying} curr={curr} />
-                <MusicPlayBar playing={playing} setPlaying={setPlaying} curr={curr} />
-            </div>
+            {/* 음악 페이지로 이동 */}
+            <Link to={'/musicpage'} className="main_page_music_bar" />
         </>
     );
 };

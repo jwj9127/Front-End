@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
-import './BackImage.css'
+import './House.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
-export default function BackImage() {
+export default function House() {
+
     const chatStyles = {
         overlay: {
             backgroundColor: "rgba(0, 0, 0, 0)",
@@ -40,7 +41,7 @@ export default function BackImage() {
             <Modal isOpen={isModalOpen} style={chatStyles}>
                 <FontAwesomeIcon icon={faX} className='main_page_change_modal_out' onClick={closeModal} />
                 <div className='main_page_back_img_big_div'>
-                    <div className='main_page_back_img_big_div_title'>배경 이미지</div>
+                    <div className='main_page_back_img_big_div_title'>스티커 추가</div>
                     <div className='main_page_back_img_big_div_main'>
                         <div className='main_page_back_img_big_div_main_back_img'></div>
                         <div className='main_page_back_img_big_div_main_back_img'></div>
@@ -54,3 +55,4 @@ export default function BackImage() {
         </>
     );
 }
+
