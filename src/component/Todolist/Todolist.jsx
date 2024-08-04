@@ -26,25 +26,23 @@ export default function Todolist() {
 
     const chatStyles = {
         overlay: {
-            backgroundColor: "rgba(0, 0, 0, 0)",
+            backgroundColor: "#29293E",
             zIndex: 1,
             position: "static",
             top: 0,
             left: 0,
         },
         content: {
-            width: "400px",
-            height: "500px",
-            zIndex: 150,
+            width: "550px",
+            height: "600px",
+            zIndex: 1,
             position: "fixed",
-            top: "53%",
-            left: "81%",
+            top: "50%",
+            left: "50%",
             transform: "translate(-50%, -50%)",
-            borderRadius: "1rem",
-            boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
-            backgroundColor: "white",
-            overflow: "auto",
-            padding: 0
+            border: 0,
+            borderRadius: "7px",
+            backgroundColor: "#29293E",
         },
     };
 
