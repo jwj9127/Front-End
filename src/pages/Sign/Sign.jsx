@@ -89,8 +89,8 @@ export default function Sign() {
     // 아이디 중복확인
     const idCheck = e => {
         e.preventDefault();
-        let id = document.getElementById("user_id").value.trim();
-        if (id.value === '') {
+        let id = userIdValue;
+        if (id === '') {
             Swal.fire({
                 title: "아이디를 입력해주세요"
             });
@@ -100,7 +100,7 @@ export default function Sign() {
         try {
             axios({
                 method: 'post',
-                url: 'localhost:8080/idCheck',
+                url: '/idCheck',
                 data: { userId: id },
             }).then(result => {
                 if (result.status == 200) {
@@ -118,6 +118,7 @@ export default function Sign() {
                         setIsId(false);
                     });
                 } else {
+                    console.log(error)
                     Swal.fire({
                         title: "사용 불가능한 아이디입니다."
                     }).then(() => {
@@ -281,12 +282,6 @@ export default function Sign() {
                             ref={pwInputRef}
                             onChange={(e) => setPwValue(e.target.value)}
                         />
-                    </div>
-                    <div className='sign_main_div_kakao'>
-                        <FontAwesomeIcon icon={faComment} />
-                        <p>
-                            카카오계정 로그인
-                        </p>
                     </div>
                     <button className='sign_main_div_login_button' onClick={onLogin}>로그인</button>
                     <div className='sign_main_div_signup_div'>
