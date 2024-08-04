@@ -25,6 +25,7 @@
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
     "react-virtualized": "^9.22.5",
+    "react-youtube": "^10.1.0",
     "swal": "^0.1.0",
     "sweetalert2": "^11.12.3",
     "web-vitals": "^2.1.4"
@@ -52,5 +53,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

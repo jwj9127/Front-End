@@ -100,7 +100,7 @@ export default function Sign() {
         try {
             axios({
                 method: 'post',
-                url: 'idCheck',
+                url: 'localhost:8080/idCheck',
                 data: { userId: id },
             }).then(result => {
                 if (result.status == 200) {
