@@ -15,26 +15,28 @@ function ToDoListItem({
   onInsertToggle,
   style
 }) {
-  const { id, text, checked } = todo;
+  const { id, title, checked } = todo;
   return (
     <div className="TodoListItem-virtualized" style={style}>
       <li className="TodoListItem">
         <div
           className={cn('checkbox', { checked: checked })}
-          onClick={() => onToggle(id)}
+          onClick={() => !checked && onToggle(id)}
         >
           {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-          <div className="text">{text}</div>
+          <div className="text">{title}</div>
         </div>
-        <div
-          className="edit"
-          onClick={() => {
-            onChangeSelectedTodo(todo);
-            onInsertToggle();
-          }}
-        >
-          <MdModeEditOutline />
-        </div>
+        {!checked && (
+          <div
+            className="edit"
+            onClick={() => {
+              onChangeSelectedTodo(todo);
+              onInsertToggle();
+            }}
+          >
+            <MdModeEditOutline />
+          </div>
+        )}
         <div className="remove" onClick={() => onRemove(id)}>
           <MdRemoveCircleOutline />
         </div>

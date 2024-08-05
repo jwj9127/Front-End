@@ -258,6 +258,7 @@
     flex-direction: column;
     background-color: #b9d5ff;
     border-radius: 15px;
+    margin-bottom: 15px;
 }
 
 .react_calendar_my_schedule_main {
@@ -266,6 +267,11 @@
     align-items: center;
     width: 100%;
     height: 80%;
+    overflow: auto;
+}
+
+.react_calendar_my_schedule_main::-webkit-scrollbar{
+    display: none;
 }
 
 .react_calendar_my_schedule_main_top {
@@ -275,7 +281,7 @@
 }
 
 .react_calendar_my_schedule_main_date {
-    width: 60%;
+    width: 70%;
     height: 45%;
     display: flex;
     align-items: center;
@@ -286,15 +292,13 @@
     background-color: #29293E;
 }
 
-.react_calendar_my_schedule_main_modify {
-    display: flex;
-    justify-content: space-between;
-    width: 20%;
-}
-
 .react_calendar_my_schedule_main_detail{
     width: 100%;
     text-align: center;
     font-size: xx-large;
     margin: 5px 0px 20px 0px;
+}
+
+.react_calendar_my_schedule_main_delete{
+    cursor: pointer;
 }

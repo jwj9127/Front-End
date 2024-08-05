@@ -178,3 +178,11 @@
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
 }
+
+.main_page_todolist_null_p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 450px;
+}

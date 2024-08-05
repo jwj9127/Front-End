@@ -3,32 +3,16 @@
     z-index: 0;
     height: 100vh;
     background-image: url("../../Img/배경\ 1.png");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.clock {
+
+.my_level_bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
-    height: 8%;
-    border-radius: 1rem;
-    position: fixed;
-    top: 60px;
-    right: 70px;
-    background-color: rgb(0, 0, 0, 0.5);
-}
-
-.clock_detail {
-    font-size: 60px;
-    color: white;
-    text-align: center;
-    padding-bottom: 3%;
-}
-
-
-.my_level_bar {
     width: 75px;
     height: 75px;
     border-radius: 50px;
@@ -36,6 +20,8 @@
     top: 65px;
     left: 90px;
     background-color: #9DC4FF;
+    font-weight: bold;
+    cursor: default;
 }
 
 .main_page_bgm {

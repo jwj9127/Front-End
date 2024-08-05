@@ -37,6 +37,10 @@
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
 }
 
 .main_page_back_img_big_div_main_back_img::before {
@@ -46,20 +50,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../Img/바다.png');
-    background-size: cover;
     background-position: center;
     transition: filter 0.3s ease;
     z-index: -1;
 }
 
-.main_page_back_img_big_div_main_back_img:hover::before {
-    filter: blur(2px);
-}
-
 .main_page_back_img_big_div_main_back_img::after {
-    content: "바다";
-    color: #29293E;
+    content: attr(title);
+    color: tomato;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -68,10 +66,15 @@
     opacity: 1;
 }
 
-.main_page_change_modal_out{
+.main_page_change_modal_out {
     position: fixed;
     top: 30px;
     right: 30px;
     color: white;
     cursor: pointer;
+}
+
+.main_page_back_img_lock{
+    position: fixed;
+    z-index: 0;
 }
