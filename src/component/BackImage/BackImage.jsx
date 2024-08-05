@@ -1,35 +1,42 @@
-import Modal from "react-modal";
+import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import './BackImage.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX, faLock } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export default function BackImage() {
-  const chatStyles = {
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0)",
-      zIndex: 1,
-      position: "static",
-      top: 0,
-      left: 0,
-    },
-    content: {
-      width: "400px",
-      height: "500px",
-      zIndex: 150,
-      position: "fixed",
-      top: "53%",
-      left: "81%",
-      transform: "translate(-50%, -50%)",
-      borderRadius: "1rem",
-      boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
-      backgroundColor: "white",
-      overflow: "auto",
-      padding: 0,
-    },
-  };
+    const chatStyles = {
+        overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            zIndex: 1,
+            position: "static",
+            top: 0,
+            left: 0,
+        },
+        content: {
+            width: "400px",
+            height: "500px",
+            zIndex: 150,
+            position: "fixed",
+            top: "53%",
+            left: "81%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "1rem",
+            boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.25)",
+            backgroundColor: "white",
+            overflow: "auto",
+            padding: 0
+        },
+    };
 
-  return (
-    <>
-      <Modal isOpen={true} style={chatStyles}>
-        <div>BackImage</div>
-      </Modal>
-    </>
-  );
+    return (
+        <>
+            <Modal isOpen={true} style={chatStyles}>
+                <div>BackImage</div>
+            </Modal>
+        </>
+    );
 }

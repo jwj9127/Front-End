@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment } from "@fortawesome/free-solid-svg-icons";
 import Swal from 'sweetalert2';
 import './Sign.css';
 
@@ -89,8 +87,8 @@ export default function Sign() {
     // 아이디 중복확인
     const idCheck = e => {
         e.preventDefault();
-        let id = document.getElementById("user_id").value.trim();
-        if (id.value === '') {
+        let id = userIdValue;
+        if (id === '') {
             Swal.fire({
                 title: "아이디를 입력해주세요"
             });
@@ -100,7 +98,7 @@ export default function Sign() {
         try {
             axios({
                 method: 'post',
-                url: 'idCheck',
+                url: '/idCheck',
                 data: { userId: id },
             }).then(result => {
                 if (result.status == 200) {
@@ -118,6 +116,7 @@ export default function Sign() {
                         setIsId(false);
                     });
                 } else {
+                    console.log(error)
                     Swal.fire({
                         title: "사용 불가능한 아이디입니다."
                     }).then(() => {
@@ -142,8 +141,7 @@ export default function Sign() {
                 title: "아이디를 입력해주세요"
             })
             return false;
-        }
-        if (check_pw === "") {
+        }else if (check_pw === "") {
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             })
@@ -155,7 +153,6 @@ export default function Sign() {
             password: check_pw
         };
 
-
         try {
             axios({
                 method: 'post',
@@ -166,11 +163,14 @@ export default function Sign() {
                     Swal.fire({
                         title: "로그인에 성공했습니다"
                     }).then(() => {
+                        console.log(result.data.data)
+                        window.localStorage.setItem('token', result.data.data.token);
+                        window.localStorage.setItem('userId', result.data.data.userId);
                         navigate('/mainpage');
                     });
                 }
             }).catch(error => {
-                if (error.response && error.response.status === 401) {
+                if (error.response && error.response.status === 400) {
                     Swal.fire({
                         title: "아이디 또는 비밀번호가 일치하지 않습니다"
                     }).then(() => {
@@ -281,12 +281,6 @@ export default function Sign() {
                             ref={pwInputRef}
                             onChange={(e) => setPwValue(e.target.value)}
                         />
-                    </div>
-                    <div className='sign_main_div_kakao'>
-                        <FontAwesomeIcon icon={faComment} />
-                        <p>
-                            카카오계정 로그인
-                        </p>
                     </div>
                     <button className='sign_main_div_login_button' onClick={onLogin}>로그인</button>
                     <div className='sign_main_div_signup_div'>

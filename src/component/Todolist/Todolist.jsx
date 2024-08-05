@@ -1,28 +1,34 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import Modal from 'react-modal';
 import ToDoEdit from './Edit.jsx';
 import ToDoInsert from './Insert.jsx';
 import TodoList from './List.jsx';
 import TodoTemplate from './Template.jsx';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function Todolist() {
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            text: '리액트 기초 알아보기',
-            checked: true,
-        },
-        {
-            id: 2,
-            text: '컴포넌트 스타일링 하기',
-            checked: true,
-        },
-        {
-            id: 3,
-            text: '투두리스트 만들기',
-            checked: false,
-        }
-    ]);
+
+    const token = window.localStorage.getItem('token');
+    const user_id = window.localStorage.getItem('userId');
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `/todo/${user_id}`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(result => {
+            const fetchedTodos = result.data.map(todo => ({
+                ...todo,
+                checked: todo.completed,
+            }));
+            setTodos(fetchedTodos);
+        })
+        console.log(todos)
+    }, [])
 
     const chatStyles = {
         overlay: {
@@ -37,7 +43,7 @@ export default function Todolist() {
             height: "600px",
             zIndex: 1,
             position: "fixed",
-            top: "50%",
+            top: "40%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             border: 0,
@@ -49,51 +55,126 @@ export default function Todolist() {
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [insertToggle, setInsertToggle] = useState(false);
 
-    const nextId = useRef(4);
     const onInsertToggle = useCallback(() => {
         if (selectedTodo) {
-            setSelectedTodo((selectedTodo) => null);
+            setSelectedTodo(null);
         }
         setInsertToggle((prev) => !prev);
     }, [selectedTodo]);
 
     const onChangeSelectedTodo = (todo) => {
-        setSelectedTodo((selectedTodo) => todo);
+        setSelectedTodo(todo);
     };
 
     const onInsert = useCallback((text) => {
         const todo = {
-            id: nextId.current,
-            text,
-            checked: false,
+            title: text,
+            completed: false,
         };
-        setTodos((todos) => todos.concat(todo)); //concat(): 인자로 주어진 배열이나 값들을 기존 배열에 합쳐서 새 배열 반환
-        nextId.current++; //nextId 1씩 더하기
+        axios({
+            method: 'post',
+            url: `/todo/create/${user_id}`,
+            data: todo,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(result => {
+            if (result.status == 200) {
+                Swal.fire({
+                    title: "추가 완료!"
+                });
+            }
+        })
     }, []);
 
     const onRemove = useCallback((id) => {
-        setTodos((todos) => todos.filter((todo) => todo.id !== id));
+        axios({
+            method: 'delete',
+            url: `/todo/delete/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(result => {
+            if (result.status === 204) {
+                Swal.fire({
+                    title: "삭제 완료!"
+                })
+            }
+        }).catch(error => {
+            console.error(error);
+        });
     }, []);
+
     const onUpdate = useCallback(
+
         (id, text) => {
             onInsertToggle();
-
+            axios({
+                method: 'post',
+                url: '/todo/modify',
+                data: {
+                    userId: user_id,
+                    id: id,
+                    title: text,
+                    completed: false
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then(result => {
+                console.log(result)
+                if (result.status === 200) {
+                    Swal.fire({
+                        title: "수정 완료!"
+                    })
+                }
+            }).catch(error => {
+                console.error(error);
+            });
             setTodos((todos) =>
                 todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)),
             );
         },
         [onInsertToggle],
     );
+
     const onToggle = useCallback((id) => {
+        const todo = todos.find(todo => todo.id === id);
+        if (todo.completed) {
+            return;
+        }
+        axios({
+            method: 'post',
+            url: `/todo/toggle/${user_id}/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(result => {
+            console.log(result)
+            if (result.status === 200) {
+                Swal.fire({
+                    title: "목표 완료!"
+                })
+            }
+        }).catch(error => {
+            console.error(error);
+        });
         setTodos((todos) =>
             todos.map((todo) =>
                 todo.id === id ? { ...todo, checked: !todo.checked } : todo,
             ),
         );
-    }, []);
+    }, [todos]);
+
+    const [isModalOpen, setIsModalOpen] = useState(true);
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
-        <Modal isOpen={true} style={chatStyles}>
-            <TodoTemplate>
+        <Modal isOpen={isModalOpen} style={chatStyles}>
+            <TodoTemplate closeModal={closeModal}>
                 <ToDoInsert onInsert={onInsert} />
                 <TodoList
                     todos={todos}

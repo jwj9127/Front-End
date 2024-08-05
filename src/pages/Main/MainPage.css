@@ -3,64 +3,45 @@
     z-index: 0;
     height: 100vh;
     background-image: url("../../Img/배경\ 1.png");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.clock {
+
+.my_level_bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
-    height: 8%;
-    border-radius: 1rem;
-    position: fixed;
-    top: 60px;
-    right: 70px;
-    background-color: rgb(0, 0, 0, 0.5);
-}
-
-.clock_detail {
-    font-size: 60px;
-    color: white;
-    text-align: center;
-    padding-bottom: 3%;
-}
-
-
-.my_page_bar {
-    width: 400px;
-    height: 75px;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
-    position: fixed;
-    top: 65px;
-    left: 90px;
-}
-
-.my_page_nav {
-    display: block;
     width: 75px;
     height: 75px;
     border-radius: 50px;
-    border: none;
+    position: fixed;
+    top: 65px;
+    left: 90px;
     background-color: #9DC4FF;
+    font-weight: bold;
+    cursor: default;
 }
 
-.main_page_ui {
+.main_page_bgm {
     position: fixed;
     bottom: 70px;
     left: 80px;
-    width: 3.5%;
-    height: 7%;
-    display: flex;
+    background-color: #9DC4FF;
     border-radius: 50%;
-    justify-content: space-between;
-    align-items: center;
-    background-image: url('../../Img/_Open-eye.png');
-    background-size: 55px;
-    background-repeat: no-repeat;
-    background-position: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.main_page_bgm_box{
+    position: fixed;
+    bottom: 70px;
+    left: 200px;
+    background-color: #9DC4FF;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
 }
 
 .main_page_nav {
@@ -75,13 +56,13 @@
 }
 
 .main_page_nav_noise,
-.main_page_nav_people,
+.main_page_nav_house,
 .main_page_nav_calendar,
 .main_page_nav_todolist,
 .main_page_nav_backimg {
     width: 55px;
     height: 55px;
-    background-color: white;
+    background-color: #9DC4FF;
     border-radius: 50%;
     background-repeat: no-repeat;
     background-size: 50px;
@@ -93,8 +74,9 @@
     background-image: url('../../Img/백색소음.png');
 }
 
-.main_page_nav_people {
-    background-image: url('../../Img/친구.png');
+.main_page_nav_house {
+    background-size: 30px;
+    background-image: url('../../Img/꾸미기.png');
 }
 
 .main_page_nav_calendar {
@@ -112,12 +94,15 @@
 }
 
 .main_page_music_bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 400px;
+    width: 25%;
+    height: 15%;
     position: fixed;
     left: 38%;
-    bottom: 100px;
+    bottom: 80px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url('../../Img/Logo.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    cursor: pointer;
 }
