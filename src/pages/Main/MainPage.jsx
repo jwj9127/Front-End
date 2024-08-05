@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./MainPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVolumeHigh, faVolumeOff, faImage } from "@fortawesome/free-solid-svg-icons";
+import { faVolumeHigh, faVolumeOff, faMusic } from "@fortawesome/free-solid-svg-icons";
 import WhiteNoise from '../../component/WhiteNoise/WhiteNoise.jsx';
 import House from '../../component/House/House.jsx';
 import Calendar from '../../component/Calendar/Calendar.jsx';
@@ -119,6 +119,7 @@ export default function MainPage() {
 
             {/* bgm 키고 끄기 */}
             <FontAwesomeIcon className="main_page_bgm" icon={faVolumeHigh} size="2x" color="#29293E" />
+            <FontAwesomeIcon className="main_page_bgm_box" icon={faMusic} size="2x" color="#29293E" />
 
             {/* 모달 네비게이션 */}
             <div className="main_page_nav">

@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 import './MusicPlayPage.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function MusicPlayPage(props) {
 
+    const navigate = useNavigate();
     const token = window.localStorage.getItem('token');
     const { playing, setPlaying, curr } = props;
     const [lofi, setLofi] = useState([]);
@@ -37,6 +39,10 @@ export default function MusicPlayPage(props) {
         })
     })
 
+    const outPlayList = () => {
+        navigate('/mainpage')
+    }
+
     return (
         <>
             {/* 배경화면 */}
@@ -46,7 +52,7 @@ export default function MusicPlayPage(props) {
             <div className='music_page_top_20_select_div'>
                 <div className='music_page_top_20_select_div_top'>
                     <div className='music_page_top_20_select_div_title'>Top 20 Music List</div>
-                    <FontAwesomeIcon icon={faX} className='music_page_top_20_select_div_back' />
+                    <FontAwesomeIcon icon={faX} className='music_page_top_20_select_div_back' onClick={() => { outPlayList() }} />
                 </div>
                 <div className='music_page_top_20_select_div_main'>
                     <div className='music_page_top_20_select_div_main_pick_head'>

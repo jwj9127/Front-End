@@ -72,7 +72,6 @@ export default function BackImage() {
     }, [])
 
     const [isModalOpen, setIsModalOpen] = useState(true);
-    const navigate = useNavigate();
 
     const closeModal = () => {
         setIsModalOpen(false);
