@@ -25,6 +25,8 @@
 }
 
 .main_page_bgm {
+    width: 35px;
+    height: 35px;
     position: fixed;
     bottom: 70px;
     left: 80px;

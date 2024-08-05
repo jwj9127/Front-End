@@ -8,6 +8,7 @@ import House from '../../component/House/House.jsx';
 import Calendar from '../../component/Calendar/Calendar.jsx';
 import Todolist from '../../component/Todolist/Todolist.jsx';
 import BackImage from '../../component/BackImage/BackImage.jsx';
+import Bgm from '../../component/Bgm/Bgm.jsx';
 import axios from "axios";
 
 export default function MainPage() {
@@ -20,8 +21,11 @@ export default function MainPage() {
     const [calendarOpen, setCalendarOpen] = useState(false);
     const [todolistOpen, setTodolistOpen] = useState(false);
     const [backImageOpen, setBackImageOpen] = useState(false);
+    const [bgmOpen, setBgmOpen] = useState(false);
     const [audioElement, setAudioElement] = useState(null);
     const [currentAsmr, setCurrentAsmr] = useState(null);
+    const [bgmElement, setBgmElement] = useState(null);
+    const [currentBgm, setCurrentBgm] = useState(null);
 
     useEffect(() => {
         axios({
@@ -63,19 +67,22 @@ export default function MainPage() {
     };
 
     const whiteNoiseModal = () => toggleModal(setWhiteNoiseOpen, {
-        setHouseOpen, setCalendarOpen, setTodolistOpen, setBackImageOpen
+        setHouseOpen, setCalendarOpen, setTodolistOpen, setBackImageOpen, setBgmOpen
     });
     const houseModal = () => toggleModal(setHouseOpen, {
-        setWhiteNoiseOpen, setCalendarOpen, setTodolistOpen, setBackImageOpen
+        setWhiteNoiseOpen, setCalendarOpen, setTodolistOpen, setBackImageOpen, setBgmOpen
     });
     const calendarModal = () => toggleModal(setCalendarOpen, {
-        setWhiteNoiseOpen, setHouseOpen, setTodolistOpen, setBackImageOpen
+        setWhiteNoiseOpen, setHouseOpen, setTodolistOpen, setBackImageOpen, setBgmOpen
     });
     const todolistModal = () => toggleModal(setTodolistOpen, {
-        setWhiteNoiseOpen, setHouseOpen, setCalendarOpen, setBackImageOpen
+        setWhiteNoiseOpen, setHouseOpen, setCalendarOpen, setBackImageOpen, setBgmOpen
     });
     const backImageModal = () => toggleModal(setBackImageOpen, {
-        setWhiteNoiseOpen, setHouseOpen, setCalendarOpen, setTodolistOpen
+        setWhiteNoiseOpen, setHouseOpen, setCalendarOpen, setTodolistOpen, setBgmOpen
+    });
+    const bgmModal = () => toggleModal(setBgmOpen, {
+        setWhiteNoiseOpen, setHouseOpen, setCalendarOpen, setTodolistOpen, setBackImageOpen
     });
 
     const stopPropagation = (e) => {
@@ -88,6 +95,7 @@ export default function MainPage() {
         }
 
         const newAudio = new Audio(src);
+        newAudio.loop = true;
         newAudio.play();
         setAudioElement(newAudio);
         setCurrentAsmr(asmr);
@@ -106,6 +114,12 @@ export default function MainPage() {
         }
     };
 
+    const handleBgmSelection = (bgmList) => {
+        if (bgmList.length > 0) {
+            playAudio(bgmList[0].src); // 첫 번째 BGM 재생
+        }
+    };
+
     return (
         <>
             {/* 배경화면 이미지 */}
@@ -118,8 +132,16 @@ export default function MainPage() {
             <div className="my_level_bar">{level}</div>
 
             {/* bgm 키고 끄기 */}
-            <FontAwesomeIcon className="main_page_bgm" icon={faVolumeHigh} size="2x" color="#29293E" />
-            <FontAwesomeIcon className="main_page_bgm_box" icon={faMusic} size="2x" color="#29293E" />
+            {/* <FontAwesomeIcon className="main_page_bgm" icon={faVolumeHigh} size="2x" color="#29293E" /> */}
+            {/* <FontAwesomeIcon className="main_page_bgm" icon={faVolumeOff} size="2x" color="#29293E" /> */}
+            <FontAwesomeIcon className="main_page_bgm_box" icon={faMusic} size="2x" color="#29293E" onClick={bgmModal} />
+            <div>
+                {bgmOpen && (
+                    <div onClick={stopPropagation}>
+                        <Bgm onClick={stopPropagation} onBgmSelection={handleBgmSelection} />
+                    </div>
+                )}
+            </div>
 
             {/* 모달 네비게이션 */}
             <div className="main_page_nav">

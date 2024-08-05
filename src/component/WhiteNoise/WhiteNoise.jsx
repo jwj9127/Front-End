@@ -97,7 +97,7 @@ export default function WhiteNoise({ playAudio, stopAudio, currentAsmr }) {
                                     className='main_page_back_img_big_div_main_back_img'
                                     style={{ backgroundImage: `url(data:image/jpeg;base64,${asmr.imageBase64})` }}
                                     title={isLocked ? asmr.fileName : ''}
-                                    onClick={() => isLocked && handleAudioPlay(asmr)} // 클릭 시 handleAudioPlay 호출
+                                    onClick={() => handleAudioPlay(asmr)} // 클릭 시 handleAudioPlay 호출
                                 >
                                     {isLocked && (
                                         <FontAwesomeIcon
