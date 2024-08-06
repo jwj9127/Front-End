@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
-import './Bgm.css'
+import './Bgm.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 
-export default function Bgm({ onBgmSelect }) {
+export default function Bgm({ playBgm }) {
     const chatStyles = {
         overlay: {
             backgroundColor: "rgba(0, 0, 0, 0)",
@@ -31,8 +31,6 @@ export default function Bgm({ onBgmSelect }) {
     };
 
     const token = window.localStorage.getItem('token');
-    const [calmBgmList, setCalmBgmList] = useState([]);
-    const [excitingBgmList, setExcitingBgmList] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(true);
 
     const closeModal = () => {
@@ -47,10 +45,10 @@ export default function Bgm({ onBgmSelect }) {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
-            setCalmBgmList(result.data);
-            onBgmSelect(result.data);
-        })
-    }
+            console.log(result.data.data)
+            playBgm(result.data.data);
+        });
+    };
 
     const excitingbgm = () => {
         axios({
@@ -60,10 +58,9 @@ export default function Bgm({ onBgmSelect }) {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
-            setExcitingBgmList(result.data);
-            onBgmSelect(result.data);
-        })
-    }
+            playBgm(result.data.data);
+        });
+    };
 
     return (
         <>
