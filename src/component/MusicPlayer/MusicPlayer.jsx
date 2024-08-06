@@ -25,8 +25,8 @@ export default function MusicPlayer(props) {
                     className='player' // 클래스 이름 지정
                     playing={playing} // 재생 상태
                     controls={true} // 유튜브 재생 컨트롤바 노출 여부
-                    width={1050} // width 설정
-                    height={700} // height 설정
+                    width={1070} // width 설정
+                    height={610} // height 설정
                 />
             )}
             <button onClick={togglePlayer} className='music_player_button'>

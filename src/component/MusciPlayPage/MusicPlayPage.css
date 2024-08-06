@@ -117,7 +117,7 @@
     overflow: auto;
 }
 
-.music_page_top_20_select_div_main_pick_body::-webkit-scrollbar{
+.music_page_top_20_select_div_main_pick_body::-webkit-scrollbar {
     display: none;
 }
 
@@ -130,7 +130,7 @@
     border-bottom: solid 3px #29293E;
 }
 
-.music_page_top_20_select_div_main_pick_select_div_content{
+.music_page_top_20_select_div_main_pick_select_div_content {
     border-bottom: solid 2px #29293E;
     cursor: pointer;
 }
@@ -142,13 +142,13 @@
     cursor: default;
 }
 
-.player{
+.player {
     position: fixed;
-    top: 17%;
-    right: 7%;
+    top: 18.5%;
+    right: 5.8%;
 }
 
-.music_player_button{
+.music_player_button {
     position: fixed;
     top: 12%;
     right: 15%;

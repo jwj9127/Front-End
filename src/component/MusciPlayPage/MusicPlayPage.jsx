@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import './MusicPlayPage.css';

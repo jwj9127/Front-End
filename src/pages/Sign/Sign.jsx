@@ -141,7 +141,7 @@ export default function Sign() {
                 title: "아이디를 입력해주세요"
             })
             return false;
-        }else if (check_pw === "") {
+        } else if (check_pw === "") {
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             })
@@ -170,7 +170,7 @@ export default function Sign() {
                     });
                 }
             }).catch(error => {
-                if (error.response && error.response.status === 400) {
+                if (error.response && error.response.status === 401) {
                     Swal.fire({
                         title: "아이디 또는 비밀번호가 일치하지 않습니다"
                     }).then(() => {

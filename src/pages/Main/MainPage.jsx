@@ -16,8 +16,8 @@ export default function MainPage() {
     const user_id = window.localStorage.getItem('userId');
     const [level, setLevel] = useState(null);
     const [backgroundImage, setBackgroundImage] = useState(null);
-    let userSticker = []
-    let stickerImg = []
+    const [userSticker, setUserSticker] = useState([]);
+    const [stickerImg, setStickerImg] = useState([]);
     const [whiteNoiseOpen, setWhiteNoiseOpen] = useState(false);
     const [houseOpen, setHouseOpen] = useState(false);
     const [calendarOpen, setCalendarOpen] = useState(false);
@@ -56,7 +56,7 @@ export default function MainPage() {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
-            userSticker = (result.data.data);
+            setUserSticker(result.data.data);
         });
         axios({
             method: 'get',
@@ -73,7 +73,7 @@ export default function MainPage() {
                     Authorization: `Bearer ${token}`,
                 },
             }).then((respone) => {
-                stickerImg = (respone.data.data)
+                setStickerImg(respone.data.data)
             })
         })
     }, []);
@@ -135,7 +135,6 @@ export default function MainPage() {
     };
 
     const playBgm = (bgmList) => {
-        console.log(bgmIndex)
         const bgm = bgmList[bgmIndex];
         const newAudio = new Audio(`data:audio/mp3;base64,${bgm.musicBase64}`);
         newAudio.play();
@@ -143,7 +142,6 @@ export default function MainPage() {
 
         // BGM이 끝났을 때 다음 인덱스 재생
         newAudio.onended = () => {
-            console.log('실행 확인');
             if (bgmList.length >= bgmIndex) {
                 bgmIndex = bgmIndex + 1;
                 console.log(bgmIndex)
@@ -184,18 +182,19 @@ export default function MainPage() {
 
             {/* 스티커 이미지 */}
             {userSticker.map((sticker) => {
-                // `stickerImg`에서 현재 `sticker`의 `id`와 일치하는 항목 찾기
-                const matchingSticker = stickerImg.find((img) => img.id === sticker.id);
+                const matchingSticker = stickerImg.find(img => img.id === sticker);
+
                 if (matchingSticker) {
                     return (
                         <div
-                            key={sticker.id}
+                            key={matchingSticker.id} // matchingSticker의 id를 사용
                             className="stickerImg"
                             style={{
-                                position: 'fiexd',
-                                left: `${matchingSticker.x}%`,
-                                top: `${matchingSticker.y}%`,
-                                backgroundImage: `url(data:image/jpeg;base64,${matchingSticker.imageBase64})`
+                                position: 'fixed',
+                                left: `${matchingSticker.pos_left}px`,
+                                top: `${matchingSticker.pos_top}px`,
+                                backgroundImage: `url(data:image/jpeg;base64,${matchingSticker.imageBase64})`,
+                                zIndex: 0 // z-index 값을 1로 변경
                             }}
                         ></div>
                     );
