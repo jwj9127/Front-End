@@ -100,6 +100,9 @@ export default function Sign() {
                 method: 'post',
                 url: '/idCheck',
                 data: { userId: id },
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
             }).then(result => {
                 if (result.status == 200) {
                     Swal.fire({
@@ -157,7 +160,10 @@ export default function Sign() {
             axios({
                 method: 'post',
                 url: '/login',
-                data: userLoginDto
+                data: userLoginDto,
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
             }).then(result => {
                 if (result.status == 200) {
                     Swal.fire({
@@ -223,7 +229,10 @@ export default function Sign() {
             axios({
                 method: 'post',
                 url: '/signup',
-                data: userDTO
+                data: userDTO,
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
             }).then(result => {
                 if (result.status == 200) {
                     Swal.fire({
