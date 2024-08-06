@@ -132,6 +132,7 @@
 
 .music_page_top_20_select_div_main_pick_select_div_content{
     border-bottom: solid 2px #29293E;
+    cursor: pointer;
 }
 
 .music_page_top_20_select_div_main_pick_hits,
@@ -139,4 +140,20 @@
     width: 20%;
     text-align: center;
     cursor: default;
+}
+
+.player{
+    position: fixed;
+    top: 17%;
+    right: 7%;
+}
+
+.music_player_button{
+    position: fixed;
+    top: 12%;
+    right: 15%;
+    background-color: #29293E;
+    color: white;
+    border: none;
+    cursor: pointer;
 }

@@ -33,7 +33,6 @@ export default function BackImage() {
         },
     };
 
-    const navigate = useNavigate();
     const token = window.localStorage.getItem('token');
     const back_id = window.localStorage.getItem('back_id');
     const user_id = window.localStorage.getItem('userId');
@@ -49,8 +48,8 @@ export default function BackImage() {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
-            console.log(result.data)
-            setUserImages(result.data.data);
+            console.log(result.data.data);
+            setBackgroundImages(result.data.data);
         })
         axios({
             method: 'get',
@@ -59,36 +58,13 @@ export default function BackImage() {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
-            if (result.status === 200) {
-            }
+            setUserImages(result.data.data);
         })
     }, [])
 
     const closeModal = () => {
         setIsModalOpen(false);
     };
-
-    const saveBackground = (image_id) => {
-        axios({
-            method: 'post',
-            url: '/user/set-background',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            data: {
-                userId: user_id,
-                backgroundId: image_id
-            }
-        }).then((result) => {
-            if (result.status === 200) {
-                Swal.fire({
-                    title: "배경화면 설정 완료!"
-                }).then(() => {
-                    window.location.reload();
-                });
-            }
-        })
-    }
 
     return (
         <>
@@ -105,9 +81,6 @@ export default function BackImage() {
                                     className='main_page_back_img_big_div_main_back_img'
                                     style={{ backgroundImage: `url(data:image/jpeg;base64,${image.imageBase64})` }}
                                     title={isLocked ? '' : image.name}
-                                    onClick={() => {
-                                        saveBackground(image.id)
-                                    }}
                                 >
                                     {isLocked && <FontAwesomeIcon icon={faLock} className='main_page_back_img_lock' />}
                                 </div>

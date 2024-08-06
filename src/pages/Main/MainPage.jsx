@@ -16,6 +16,8 @@ export default function MainPage() {
     const user_id = window.localStorage.getItem('userId');
     const [level, setLevel] = useState(null);
     const [backgroundImage, setBackgroundImage] = useState(null);
+    let userSticker = []
+    let stickerImg = []
     const [whiteNoiseOpen, setWhiteNoiseOpen] = useState(false);
     const [houseOpen, setHouseOpen] = useState(false);
     const [calendarOpen, setCalendarOpen] = useState(false);
@@ -49,12 +51,30 @@ export default function MainPage() {
         });
         axios({
             method: 'get',
+            url: `/sticker/user/${user_id}`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((result) => {
+            userSticker = (result.data.data);
+        });
+        axios({
+            method: 'get',
             url: `/user/get-background/${user_id}`,
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         }).then((result) => {
             window.localStorage.setItem('back_id', result.data.data.id);
+            axios({
+                method: 'get',
+                url: `/sticker/background/${result.data.data.id}`,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((respone) => {
+                stickerImg = (respone.data.data)
+            })
         })
     }, []);
 
@@ -159,7 +179,29 @@ export default function MainPage() {
             <div
                 className="backgroundImage"
                 style={{ backgroundImage: `url(data:image/jpeg;base64,${backgroundImage})` }}
-            ></div>
+            >
+            </div>
+
+            {/* 스티커 이미지 */}
+            {userSticker.map((sticker) => {
+                // `stickerImg`에서 현재 `sticker`의 `id`와 일치하는 항목 찾기
+                const matchingSticker = stickerImg.find((img) => img.id === sticker.id);
+                if (matchingSticker) {
+                    return (
+                        <div
+                            key={sticker.id}
+                            className="stickerImg"
+                            style={{
+                                position: 'fiexd',
+                                left: `${matchingSticker.x}%`,
+                                top: `${matchingSticker.y}%`,
+                                backgroundImage: `url(data:image/jpeg;base64,${matchingSticker.imageBase64})`
+                            }}
+                        ></div>
+                    );
+                }
+            })}
+
 
             {/* 마이페이지 */}
             <div className="my_level_bar">{level}</div>

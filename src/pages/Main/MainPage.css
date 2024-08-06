@@ -108,3 +108,7 @@
     background-position: 50%;
     cursor: pointer;
 }
+
+.stickerImg{
+    z-index: 1;
+}

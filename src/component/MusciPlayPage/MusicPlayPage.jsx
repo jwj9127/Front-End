@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX, } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import './MusicPlayPage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import MusicPlayer from '../MusicPlayer/MusicPlayer';
 
 export default function MusicPlayPage() {
-
     const navigate = useNavigate();
     const token = window.localStorage.getItem('token');
     const [lofi, setLofi] = useState([]);
@@ -26,12 +25,12 @@ export default function MusicPlayPage() {
             },
         }).then((result) => {
             setLofi(result.data);
-        })
-    }, [])
+        });
+    }, [token]);
 
     const outPlayList = () => {
-        navigate('/mainpage')
-    }
+        navigate('/mainpage');
+    };
 
     const showLoFi = () => {
         axios({
@@ -43,8 +42,8 @@ export default function MusicPlayPage() {
         }).then((result) => {
             setLofi(result.data);
             setIsLofi(true);
-        })
-    }
+        });
+    };
 
     const showPiano = () => {
         axios({
@@ -56,8 +55,8 @@ export default function MusicPlayPage() {
         }).then((result) => {
             setPiano(result.data);
             setIsLofi(false);
-        })
-    }
+        });
+    };
 
     const handleTitleClick = (url) => {
         setCurrentUrl(url);
@@ -67,13 +66,13 @@ export default function MusicPlayPage() {
     return (
         <>
             {/* 배경화면 */}
-            <div className="backgroundImage"></div >
+            <div className="backgroundImage"></div>
             <div className='music_page_lofi_select' onClick={showLoFi}>Lo-fi <br /> TOP 20</div>
             <div className='music_page_piano_select' onClick={showPiano}>Piano <br /> TOP 20</div>
             <div className='music_page_top_20_select_div'>
                 <div className='music_page_top_20_select_div_top'>
                     <div className='music_page_top_20_select_div_title'>Top 20 Music List</div>
-                    <FontAwesomeIcon icon={faX} className='music_page_top_20_select_div_back' onClick={() => { outPlayList() }} />
+                    <FontAwesomeIcon icon={faX} className='music_page_top_20_select_div_back' onClick={outPlayList} />
                 </div>
                 <div className='music_page_top_20_select_div_main'>
                     <div className='music_page_top_20_select_div_main_pick_head'>
@@ -94,6 +93,7 @@ export default function MusicPlayPage() {
             </div>
             {currentUrl && (
                 <MusicPlayer
+                    className='music_player_video'
                     playing={playing}
                     setPlaying={setPlaying}
                     playlist={currentUrl} // URL을 props로 전달
