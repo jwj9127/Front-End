@@ -13,6 +13,7 @@ IT 기술을 활용하여 현대인의 건강 (wellness) 문제를 해결할 수
 # 사용한 기술 (기술 스택)
 
 프론트엔드 - HTML , CSS , JS , REACT
+<br/>
 백엔드 - SPRINGBOOT , SPRINGSECURITY , MYSQL
 
 # 핵심 기능
@@ -22,6 +23,9 @@ IT 기술을 활용하여 현대인의 건강 (wellness) 문제를 해결할 수
 - 캘린더 기능
 - TODOLIST 기능
 - 유튜브 API를 활용한 음악 플레이어
+
+
+
 
 ## ※ 완성은 했으나 더 좋은 프로젝트로 완성시키기 위해 리팩토링 진행
 
