@@ -63,3 +63,4 @@ IT 기술을 활용하여 현대인의 건강 (wellness) 문제를 해결할 수
 - 패키지 구조 나누기
 - REDUX를 활용한 상태 관리
 - TS , Next.js 도입하기
+- Git Convention 도입하기
