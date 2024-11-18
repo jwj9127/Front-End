@@ -2,14 +2,15 @@
 
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { AppDispatch, RootState } from '../../../../store/store';
 import { setIdValue, setPwValue } from '../../../../store/sign/signIn';
-import toggleIsSign from '../../../../store/sign/signSwitch';
+import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signIn.module.css';
+import { signInAPI } from '../../../../store/sign/signAPI';
 
 export default function SignIn() {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const { idValue, pwValue } = useSelector((state: RootState) => state.signIn);
     const [idFocused, setIdFocused] = useState(false);
     const [pwFocused, setPwFocused] = useState(false);
@@ -19,6 +20,17 @@ export default function SignIn() {
 
     const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setIdValue(e.target.value));
     const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setPwValue(e.target.value));
+
+    const signIn = () => {
+        dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
+            .unwrap()
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
     return (
         <>
@@ -64,7 +76,7 @@ export default function SignIn() {
                         onChange={handlePwChange}
                     />
                 </div>
-                <button className={styles.signin_button} >로그인</button>
+                <button className={styles.signin_button} onClick={() => signIn()}>로그인</button>
                 <div className={styles.signup_div}>
                     <p>
                         아이디가 없으신가요?
