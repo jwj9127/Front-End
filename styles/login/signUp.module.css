@@ -29,12 +29,15 @@
 }
 
 .userId_check {
-    position: fixed;
-    top: 350px;
-    left: 1150px;
+    position: absolute;
+    top: 170px;
+    left: 600px;
     cursor: pointer;
     color: black;
     transition: all 0.3s ease;
+    font-size: medium;
+    border: none;
+    background-color: #8EBBFF;
 }
 
 .userId_check:hover {
