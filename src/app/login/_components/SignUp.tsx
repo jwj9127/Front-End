@@ -2,18 +2,19 @@
 
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { AppDispatch, RootState } from '../../../../store/store';
 import {
     setUserIdValue,
     setUserPwValue,
     setUserNameValue
 } from '../../../../store/sign/signUp';
-import toggleIsSign from '../../../../store/sign/signSwitch';
+import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signUp.module.css';
+import { idCheckAPI, signUpAPI } from '../../../../store/sign/signAPI';
 
 export default function SignUp() {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const { userIdValue, userPwValue, userNameValue } = useSelector(
         (state: RootState) => state.signUp
     );
@@ -33,6 +34,28 @@ export default function SignUp() {
     const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setUserPwValue(e.target.value));
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setUserNameValue(e.target.value));
 
+    const idCheck = () => {
+        dispatch(idCheckAPI({ userId: userIdValue }))
+            .unwrap()
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    const signUp = () => {
+        dispatch(signUpAPI({ userId: userIdValue, userPw: userPwValue, userName: userNameValue }))
+            .unwrap()
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     if (isSign.isSign === false) return null;
 
     return React.createElement(
@@ -43,7 +66,13 @@ export default function SignUp() {
             { className: `${styles.title_div}` },
             React.createElement('p', null, '회원가입')
         ),
-        React.createElement('p', { className: `${styles.userId_check}` }, '아이디 중복 확인'),
+        React.createElement(
+            'button',
+            {
+                className: `${styles.userId_check}`,
+                onClick: () => idCheck()
+            },
+            '아이디 중복 확인'),
         React.createElement(
             'div',
             { className: `${styles.userId_div}` },
@@ -115,7 +144,10 @@ export default function SignUp() {
         ),
         React.createElement(
             'button',
-            { className: `${styles.signup_button}` },
+            {
+                className: `${styles.signup_button}`,
+                onClick: () => signUp()
+            },
             '회원가입'
         ),
         React.createElement(
