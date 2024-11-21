@@ -11,9 +11,7 @@ const initialState = {
 const signAPI = createSlice({
     name: 'signAPI',
     initialState,
-    reducers: {
-        // 동기 액션
-    },
+    reducers: {},
     extraReducers: (builder) => {
         // idCheck
         builder
