@@ -3,11 +3,6 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../../store/store';
-import {
-    setUserIdValue,
-    setUserPwValue,
-    setUserNameValue
-} from '../../../../store/sign/signUp';
 import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signUp.module.css';
 import { idCheckAPI, signUpAPI } from '../../../../store/sign/signAPI';
@@ -15,12 +10,13 @@ import { idCheckAPI, signUpAPI } from '../../../../store/sign/signAPI';
 export default function SignUp() {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { userIdValue, userPwValue, userNameValue } = useSelector(
-        (state: RootState) => state.signUp
-    );
     const isSign = useSelector(
         (state: RootState) => state.signSwitch
     );
+
+    const [userIdValue, setUserIdValue] = useState<string>('');
+    const [userPwValue, setUserPwValue] = useState<string>('');
+    const [userNameValue, setUserNameValue] = useState<string>('');
 
     const [idFocused, setIdFocused] = useState(false);
     const [pwFocused, setPwFocused] = useState(false);
@@ -29,10 +25,6 @@ export default function SignUp() {
     const userIdRef = useRef<HTMLInputElement | null>(null);
     const userPwRef = useRef<HTMLInputElement | null>(null);
     const userNameRef = useRef<HTMLInputElement | null>(null);
-
-    const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setUserIdValue(e.target.value));
-    const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setUserPwValue(e.target.value));
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setUserNameValue(e.target.value));
 
     const idCheck = () => {
         dispatch(idCheckAPI({ userId: userIdValue }))
@@ -93,7 +85,7 @@ export default function SignUp() {
                 className: idFocused || userIdValue !== '' ? `${styles.focusedInput_user_id}` : `${styles.normalInput_user_id}`,
                 ref: userIdRef,
                 value: userIdValue,
-                onChange: handleIdChange,
+                onChange: (e) => setUserIdValue(e.target.value),
             })
         ),
         React.createElement(
@@ -116,7 +108,7 @@ export default function SignUp() {
                 className: pwFocused || userPwValue !== '' ? `${styles.focusedInput_user_pw}` : `${styles.normalInput_user_pw}`,
                 ref: userPwRef,
                 value: userPwValue,
-                onChange: handlePwChange,
+                onChange: (e) => setUserPwValue(e.target.value),
             })
         ),
         React.createElement(
@@ -139,7 +131,7 @@ export default function SignUp() {
                 className: nameFocused || userNameValue !== '' ? `${styles.focusedInput_user_name}` : `${styles.normalInput_user_name}`,
                 ref: userNameRef,
                 value: userNameValue,
-                onChange: handleNameChange,
+                onChange: (e) => setUserNameValue(e.target.value),
             })
         ),
         React.createElement(

@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../store/store';
-import { setIdValue, setPwValue } from '../../../../store/sign/signIn';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../store/store';
 import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signIn.module.css';
 import { signInAPI } from '../../../../store/sign/signAPI';
@@ -11,15 +10,14 @@ import { signInAPI } from '../../../../store/sign/signAPI';
 export default function SignIn() {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { idValue, pwValue } = useSelector((state: RootState) => state.signIn);
+    const [idValue, setIdValue] = useState<string>('');
+    const [pwValue, setPwValue] = useState<string>('');
     const [idFocused, setIdFocused] = useState(false);
     const [pwFocused, setPwFocused] = useState(false);
 
     const idInputRef = useRef<HTMLInputElement | null>(null);
     const pwInputRef = useRef<HTMLInputElement | null>(null);
 
-    const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setIdValue(e.target.value));
-    const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(setPwValue(e.target.value));
 
     const signIn = () => {
         dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
@@ -55,7 +53,7 @@ export default function SignIn() {
                         onFocus={() => setIdFocused(true)}
                         className={idFocused || idValue !== '' ? styles.focusedInput_id : styles.normalInput_id}
                         ref={idInputRef}
-                        onChange={handleIdChange}
+                        onChange={(e) => setIdValue(e.target.value)}
                     />
                 </div>
                 <div className={styles.userPw_div}>
@@ -73,7 +71,7 @@ export default function SignIn() {
                         onFocus={() => setPwFocused(true)}
                         className={pwFocused || pwValue !== '' ? styles.focusedInput_pw : styles.normalInput_pw}
                         ref={pwInputRef}
-                        onChange={handlePwChange}
+                        onChange={(e) => setPwValue(e.target.value)}
                     />
                 </div>
                 <button className={styles.signin_button} onClick={() => signIn()}>로그인</button>
