@@ -27,7 +27,7 @@ export default function SignUp() {
     const userNameRef = useRef<HTMLInputElement | null>(null);
 
     const idCheck = () => {
-        dispatch(idCheckAPI({ userId: userIdValue }))
+        dispatch(idCheckAPI(userIdValue))
             .unwrap()
             .then((response) => {
                 console.log(response);
