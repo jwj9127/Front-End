@@ -62,12 +62,8 @@ const signAPI = createSlice({
 
 export const idCheckAPI = createAsyncThunk(
     'sign/idCheckAPI',
-    async (userDTO: { userId: string; }) => {
-        const response = await axios.post('/user/idCheck', userDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+    async (userId: string) => {
+        const response = await axios.post(`/user/idCheck/?userId=${userId}`);
         return response.data;
     }
 );
@@ -78,7 +74,7 @@ export const signUpAPI = createAsyncThunk(
         const response = await axios.post('/user/Signup', userDTO, {
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         });
         return response.data;
     }
@@ -90,7 +86,7 @@ export const signInAPI = createAsyncThunk(
         const response = await axios.post('/login', userDTO, {
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         });
         return response.data;
     }
