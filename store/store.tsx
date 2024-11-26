@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import signSwitch from './sign/signSwitch';
 import signAPI from './sign/signAPI';
+import backgrounAPI from './main/backgrounAPI';
 
 export const store = configureStore({
     reducer: {
         signSwitch: signSwitch,
-        signAPI: signAPI
+        signAPI: signAPI,
+        backgroundAPI: backgrounAPI
     }
 });
 
