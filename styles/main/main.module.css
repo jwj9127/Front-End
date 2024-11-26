@@ -1,0 +1,69 @@
+.backgroundImage {
+    position: relative;
+    z-index: -1;
+    height: 100vh;
+    background-image: url('../../public/imgs/backgrounds/mainBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mypage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    position: fixed;
+    top: 65px;
+    left: 90px;
+    background-color: #9DC4FF;
+    font-weight: bold;
+    cursor: default;
+}
+
+.nav {
+    position: fixed;
+    bottom: 60px;
+    right: 80px;
+    width: 20%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 0;
+}
+
+.asmr,
+.calendar,
+.todolist,
+.background {
+    width: 55px;
+    height: 55px;
+    background-color: #9DC4FF;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.asmr {
+    background-image: url('../../public/imgs/icons/백색소음.png');
+}
+
+.calendar {
+    background-image: url('../../public/imgs/icons/캘린더.png');
+}
+
+.todolist {
+    background-size: 45px;
+    background-image: url('../../public/imgs/icons/투두리스트.png');
+}
+
+.background {
+    background-size: 40px;
+    background-image: url('../../public/imgs/icons/배경화면.png');
+}
