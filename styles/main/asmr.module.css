@@ -89,8 +89,7 @@
     cursor: pointer;
 }
 
-.lock,
-.icon {
+.lock {
     position: fixed;
     z-index: 0;
 }
