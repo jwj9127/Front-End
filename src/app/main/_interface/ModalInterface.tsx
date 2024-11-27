@@ -15,3 +15,9 @@ export interface Asmr {
     url: string;
     contentType: string;
 }
+
+export interface BackGround {
+    id: string;
+    fileName: string;
+    url: string;
+}
