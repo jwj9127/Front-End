@@ -24,6 +24,7 @@ export default function SignIn() {
             .unwrap()
             .then((response) => {
                 console.log(response);
+                window.localStorage.setItem('userId', response.data.userId);
             })
             .catch((error) => {
                 console.log(error);
