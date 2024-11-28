@@ -13,7 +13,7 @@ const asmrAPI = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        // /asmrAllAPI
+        // asmrAllAPI
         builder
             .addCase(asmrAllAPI.pending, (state) => {
                 state.loading = true;
