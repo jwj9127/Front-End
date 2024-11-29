@@ -3,12 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { BackGround, ModalProps } from '../../_interface/ModalInterface';
 import styles from '../../../../styles/main/background.module.css';
-import Headers from './Header';
+import Headers from '../Header';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
-import { backgroundAllAPI, backgroundOwnedAPI, backgroundSetCurrentAPI } from '../../../../../store/main/backgrounAPI';
-import BackgroundImageItem from './backgroundItem';
+import { backgroundSetCurrentAPI } from '../../../../../store/main/backgrounAPI';
 import { useBackgroundData } from './useBackgroundData';
+import ImageItem from '../ImageItem';
 
 const Background: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
@@ -35,16 +35,18 @@ const Background: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                 className={styles.main_div}
                 onClick={(e: any) => e.stopPropagation()}
             >
-                <Headers title="배경화면" onClick={closeModal} />
+                <Headers title="배경화면 선택" onClick={closeModal} />
                 <div className={styles.out_div}>
                     <div className={styles.img_div}>
                         {
                             backgroundImgs.map((background: BackGround) => {
                                 const isLocked = !userBackgroundImgs.some(userBackgroundImg => userBackgroundImg.id === background.id);
                                 return (
-                                    <BackgroundImageItem
+                                    <ImageItem
                                         key={background.id}
-                                        background={background}
+                                        id={background.id}
+                                        fileName={background.fileName}
+                                        imageUrl={background.url}
                                         isLocked={isLocked}
                                         onSave={saveBackground}
                                     />

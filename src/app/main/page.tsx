@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import styles from '../../../styles/main/main.module.css';
-import ASMR from './_components/ASMR';
-import Background from './_components/Background';
+import ASMR from './_components/asmr/ASMR';
+import Background from './_components/background/Background';
 import Calendar from './_components/Calendar';
 import TodoList from './_components/TodoList';
 import { backgroundGetCurrentAPI } from '../../../store/main/backgrounAPI';
