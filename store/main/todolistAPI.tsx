@@ -110,7 +110,7 @@ const todolistAPI = createSlice({
 export const getTodoAPI = createAsyncThunk(
     'getTodoAPI',
     async (userId: string) => {
-        const response = await axios.get(`/${userId}`);
+        const response = await axios.get(`/todo/${userId}`);
         return response.data;
     }
 );
@@ -118,7 +118,7 @@ export const getTodoAPI = createAsyncThunk(
 export const addTodoAPI = createAsyncThunk(
     'addTodoAPI',
     async (todoDTO: { userId: string; title: string; }) => {
-        const response = await axios.post('', todoDTO);
+        const response = await axios.post('/todo', todoDTO);
         return response.data;
     }
 );
@@ -126,7 +126,7 @@ export const addTodoAPI = createAsyncThunk(
 export const stateChangeTodoAPI = createAsyncThunk(
     'stateChangeTodoAPI',
     async (todoDTO: { id: string; completed: boolean; }) => {
-        const response = await axios.post('/status', todoDTO, {
+        const response = await axios.post('/todo/status', todoDTO, {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -138,7 +138,7 @@ export const stateChangeTodoAPI = createAsyncThunk(
 export const putTodoAPI = createAsyncThunk(
     'putTodoAPI',
     async (todoDTO: { id: string; title: string; }) => {
-        const response = await axios.put('', todoDTO, {
+        const response = await axios.put('/todo', todoDTO, {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -150,7 +150,7 @@ export const putTodoAPI = createAsyncThunk(
 export const deleteTodoAPI = createAsyncThunk(
     'deleteTodoAPI',
     async (id: string) => {
-        const response = await axios.delete(`/${id}`);
+        const response = await axios.delete(`/todo/${id}`);
         return response.data;
     }
 );
@@ -158,7 +158,7 @@ export const deleteTodoAPI = createAsyncThunk(
 export const deleteAllTodoAPI = createAsyncThunk(
     'deleteAllTodoAPI',
     async (ids: string[]) => {
-        const response = await axios.delete('del_list', {
+        const response = await axios.delete('/todo/del_list', {
             data: ids
         });
         return response.data;
