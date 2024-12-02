@@ -13,7 +13,7 @@ import ImageItem from '../ImageItem';
 const Background: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { backgroundImgs, userBackgroundImgs } = useBackgroundData();
+    const { backgroundImgs, userBackgroundImgs } = useBackgroundData(isModalOpen);
 
     const saveBackground = (background_id: string) => {
         dispatch(backgroundSetCurrentAPI(background_id))
