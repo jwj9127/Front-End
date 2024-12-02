@@ -95,7 +95,7 @@ const backgroundAPI = createSlice({
 export const backgroundAllAPI = createAsyncThunk(
     '/background/all',
     async () => {
-        const response = await axios.get('/user/idCheck');
+        const response = await axios.get('/background/all');
         return response.data;
     }
 );

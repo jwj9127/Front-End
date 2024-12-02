@@ -9,7 +9,7 @@ import { useBackgroundData } from './useAsmrData';
 
 const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalOpen, closeModal }) => {
 
-    const { asmrAudios, userAsmrAudios } = useBackgroundData();
+    const { asmrAudios, userAsmrAudios } = useBackgroundData(isModalOpen);
 
     const handleAudioPlay = (asmr: Asmr) => {
         // 현재 재생 중인 ASMR과 클릭한 ASMR을 비교
