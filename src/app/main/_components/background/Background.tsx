@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BackGround, ModalProps } from '../../_interface/ModalInterface';
-import styles from '../../../../styles/main/background.module.css';
+import styles from '../../../../../styles/main/background.module.css';
 import Headers from '../Header';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';

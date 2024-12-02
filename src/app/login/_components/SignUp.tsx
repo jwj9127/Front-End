@@ -50,110 +50,78 @@ export default function SignUp() {
 
     if (isSign.isSign === false) return null;
 
-    return React.createElement(
-        'div',
-        { className: `${styles.main_div}` },
-        React.createElement(
-            'div',
-            { className: `${styles.title_div}` },
-            React.createElement('p', null, '회원가입')
-        ),
-        React.createElement(
-            'button',
-            {
-                className: `${styles.userId_check}`,
-                onClick: () => idCheck()
-            },
-            '아이디 중복 확인'),
-        React.createElement(
-            'div',
-            { className: `${styles.userId_div}` },
-            React.createElement(
-                'label',
-                {
-                    onClick: () => userIdRef.current?.focus(),
-                    className: idFocused || userIdValue !== '' ? `${styles.focusedLabel_user_id}` : `${styles.normalLabel_user_id}`,
-                },
-                '아이디'
-            ),
-            React.createElement('input', {
-                type: 'text',
-                name: 'user_id',
-                id: 'user_id',
-                onBlur: () => setIdFocused(false),
-                onFocus: () => setIdFocused(true),
-                className: idFocused || userIdValue !== '' ? `${styles.focusedInput_user_id}` : `${styles.normalInput_user_id}`,
-                ref: userIdRef,
-                value: userIdValue,
-                onChange: (e) => setUserIdValue(e.target.value),
-            })
-        ),
-        React.createElement(
-            'div',
-            { className: `${styles.userPw_div}` },
-            React.createElement(
-                'label',
-                {
-                    onClick: () => userPwRef.current?.focus(),
-                    className: pwFocused || userPwValue !== '' ? `${styles.focusedLabel_user_pw}` : `${styles.normalLabel_user_pw}`,
-                },
-                '비밀번호'
-            ),
-            React.createElement('input', {
-                type: 'password',
-                name: 'user_pw',
-                id: 'user_pw',
-                onBlur: () => setPwFocused(false),
-                onFocus: () => setPwFocused(true),
-                className: pwFocused || userPwValue !== '' ? `${styles.focusedInput_user_pw}` : `${styles.normalInput_user_pw}`,
-                ref: userPwRef,
-                value: userPwValue,
-                onChange: (e) => setUserPwValue(e.target.value),
-            })
-        ),
-        React.createElement(
-            'div',
-            { className: `${styles.userName_div}` },
-            React.createElement(
-                'label',
-                {
-                    onClick: () => userNameRef.current?.focus(),
-                    className: nameFocused || userNameValue !== '' ? `${styles.focusedLabel_user_name}` : `${styles.normalLabel_user_name}`,
-                },
-                '닉네임'
-            ),
-            React.createElement('input', {
-                type: 'text',
-                name: 'user_name',
-                id: 'user_name',
-                onBlur: () => setNameFocused(false),
-                onFocus: () => setNameFocused(true),
-                className: nameFocused || userNameValue !== '' ? `${styles.focusedInput_user_name}` : `${styles.normalInput_user_name}`,
-                ref: userNameRef,
-                value: userNameValue,
-                onChange: (e) => setUserNameValue(e.target.value),
-            })
-        ),
-        React.createElement(
-            'button',
-            {
-                className: `${styles.signup_button}`,
-                onClick: () => signUp()
-            },
-            '회원가입'
-        ),
-        React.createElement(
-            'div',
-            { className: `${styles.signin_div}` },
-            React.createElement('p', null, '아이디가 있으신가요?'),
-            React.createElement(
-                'button',
-                {
-                    className: `${styles.signin_button}`,
-                    onClick: () => dispatch(toggleIsSign()),
-                },
-                '로그인'
-            )
-        )
-    );
+    return (
+        <>
+            <div className={styles.main_div}>
+                <div className={styles.title_div}>
+                    <p>회원가입</p>
+                </div>
+                <button className={styles.userId_check} onClick={() => idCheck()}>아이디 중복 확인</button>
+                <div className={styles.userId_div}>
+                    <label
+                        className={idFocused || userIdValue !== '' ? `${styles.focusedLabel_user_id}` : `${styles.normalLabel_user_id}`}
+                        onClick={() => userIdRef.current?.focus()}
+                    >아이디
+                    </label>
+                    <input
+                        type='tesx'
+                        name='user_id'
+                        id='user_id'
+                        onBlur={() => setIdFocused(false)}
+                        onFocus={() => setIdFocused(true)}
+                        className={idFocused || userIdValue !== '' ? `${styles.focusedInput_user_id}` : `${styles.normalInput_user_id}`}
+                        ref={userIdRef}
+                        value={userIdValue}
+                        onChange={(e) => setUserIdValue(e.target.value)}
+                    ></input>
+                </div>
+                <div className={styles.userPw_div}>
+                    <label
+                        className={pwFocused || userPwValue !== '' ? `${styles.focusedLabel_user_pw}` : `${styles.normalLabel_user_pw}`}
+                        onClick={() => userPwRef.current?.focus()}
+                    >비밀번호
+                    </label>
+                    <input type="password"
+                        name='user_pw'
+                        id='user_pw'
+                        onBlur={() => setPwFocused(false)}
+                        onFocus={() => setPwFocused(true)}
+                        className={pwFocused || userPwValue !== '' ? `${styles.focusedInput_user_pw}` : `${styles.normalInput_user_pw}`}
+                        ref={userPwRef}
+                        value={userPwValue}
+                        onChange={(e) => setUserPwValue(e.target.value)}
+                    />
+                </div>
+                <div className={styles.userName_div}>
+                    <label
+                        className={nameFocused || userNameValue !== '' ? `${styles.focusedLabel_user_name}` : `${styles.normalLabel_user_name}`}
+                        onClick={() => userNameRef.current?.focus()}
+                    >닉네임
+                    </label>
+                    <input type="text"
+                        name='user_name'
+                        id='user_name'
+                        onBlur={() => setNameFocused(false)}
+                        onFocus={() => setNameFocused(true)}
+                        className={nameFocused || userNameValue !== '' ? `${styles.focusedInput_user_name}` : `${styles.normalInput_user_name}`}
+                        ref={userNameRef}
+                        value={userNameValue}
+                        onChange={(e) => setUserNameValue(e.target.value)}
+                    />
+                </div>
+                <button className={styles.signup_button}
+                    onClick={() => signUp()}
+                >회원가입
+                </button>
+                <div className={styles.signin_div}>
+                    <p>아이디가 있으신가요?</p>
+                    <button
+                        className={styles.signin_button}
+                        onClick={() => dispatch(toggleIsSign())}
+                    >로그인
+                    </button>
+                </div>
+            </div >
+        </>
+    )
 }

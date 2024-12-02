@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import styles from '../../../../styles/main/asmr.module.css';
+import styles from '../../../../../styles/main/asmr.module.css';
 import { ASMRProps, Asmr } from '../../_interface/ModalInterface';
 import Headers from '../Header';
 import ImageItem from '../ImageItem';

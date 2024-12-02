@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../../../styles/main/background.module.css';
+import styles from '../../../../styles/main/background.module.css';
 import { ImageItemProps } from '../_interface/ModalInterface';
 
 
