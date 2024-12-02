@@ -18,9 +18,11 @@ const Calendar: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     return (
         <>
             {isViewingSchedule ? <CheckSchedule /> : null}
-            <div className=''>
-                <p className='main_page_todolist_template_schedule_onf' onClick={() => { setIsViewingSchedule(!isViewingSchedule) }}>일정</p>
-                <FontAwesomeIcon icon={faX} color='white' className='main_page_todolist_template_title_out' onClick={closeModal} />
+            <div className={style.main_div} onClick={(e) => e.stopPropagation()}>
+                <div className={style.header}>
+                    <p className={style.react_calendar_check_schedule} onClick={() => { setIsViewingSchedule(!isViewingSchedule) }}>일정</p>
+                    <FontAwesomeIcon icon={faX} color='white' className={style.modal_out} onClick={closeModal} />
+                </div>
                 <React_Calendar
                     onChange={(date: any) => setSelectedDate(date)}
                     value={selectedDate}
@@ -31,8 +33,9 @@ const Calendar: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                     showNeighboringMonth={true}
                 />
                 <p className='react_calendar_plus_schedule' onClick={() => setIsAddingSchedule(true)}>일정 추가</p>
-            </div>
-            {isAddingSchedule ? <AddSchedule setIsAddingSchedule={setIsAddingSchedule} /> : null}
+            </div >
+            {isAddingSchedule ? <AddSchedule setIsAddingSchedule={setIsAddingSchedule} /> : null
+            }
         </>
     )
 }
