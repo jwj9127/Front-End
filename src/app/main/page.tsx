@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import styles from '../../../styles/main/main.module.css';
 import ASMR from './_components/asmr/ASMR';
 import Background from './_components/background/Background';
-import Calendar from './_components/Calendar';
-import TodoList from './_components/TodoList';
+import Calendar from './_components/calendar/Calendar';
+import TodoList from './_components/todolist/TodoList';
 import { backgroundGetCurrentAPI } from '../../../store/main/backgrounAPI';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
@@ -49,7 +49,6 @@ export default function Main() {
 
     const closeModalHandler = () => {
         setOpenModal(null);
-        console.log('꺼짐')
     };
 
     const playAudio = (src: string, asmr: Asmr | null): void => {
