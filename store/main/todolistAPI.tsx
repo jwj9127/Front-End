@@ -8,7 +8,7 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
-axios.defaults.baseURL = 'http://localhost:8080/todo';
+axios.defaults.baseURL = 'http://localhost:8080';
 
 const todolistAPI = createSlice({
     name: 'todolistAPI',
