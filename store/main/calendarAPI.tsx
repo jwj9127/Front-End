@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-    asmrs: [],
-    asmr: null,
+    schedulers: [],
+    scheduler: null,
     loading: false,
     error: null as string | null | undefined,
 };
@@ -22,7 +22,7 @@ const calendarAPI = createSlice({
                 state.error = null;
             })
             .addCase(makeCalendarAPI.fulfilled, (state, action) => {
-                state.asmrs = action.payload;
+                state.scheduler = action.payload;
                 state.loading = false;
             })
             .addCase(makeCalendarAPI.rejected, (state, action) => {
@@ -37,7 +37,7 @@ const calendarAPI = createSlice({
                 state.error = null;
             })
             .addCase(getCalendarAPI.fulfilled, (state, action) => {
-                state.asmrs = action.payload;
+                state.schedulers = action.payload;
                 state.loading = false;
             })
             .addCase(getCalendarAPI.rejected, (state, action) => {
@@ -52,7 +52,7 @@ const calendarAPI = createSlice({
                 state.error = null;
             })
             .addCase(putCalendarAPI.fulfilled, (state, action) => {
-                state.asmr = action.payload;
+                state.scheduler = action.payload;
                 state.loading = false;
             })
             .addCase(putCalendarAPI.rejected, (state, action) => {
@@ -67,7 +67,7 @@ const calendarAPI = createSlice({
                 state.error = null;
             })
             .addCase(deleteCalendarAPI.fulfilled, (state, action) => {
-                state.asmr = action.payload;
+                state.scheduler = action.payload;
                 state.loading = false;
             })
             .addCase(deleteCalendarAPI.rejected, (state, action) => {
@@ -108,7 +108,7 @@ export const putCalendarAPI = createAsyncThunk(
 export const deleteCalendarAPI = createAsyncThunk(
     '/calendar/deleteCalendar',
     async (calendar_id: string) => {
-        const response = await axios.get(`/calendar/${calendar_id}`);
+        const response = await axios.delete(`/calendar/${calendar_id}`);
         return response.data;
     }
 );
