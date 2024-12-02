@@ -65,7 +65,7 @@ const signAPI = createSlice({
 export const idCheckAPI = createAsyncThunk(
     'sign/idCheckAPI',
     async (userId: string) => {
-        const response = await axios.post(`/user/idCheck/?userId=${userId}`);
+        const response = await axios.post(`/user/idCheck?userId=${userId}`);
         return response.data;
     }
 );
