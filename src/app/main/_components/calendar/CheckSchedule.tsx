@@ -48,7 +48,7 @@ export default function CheckSchedule() {
 
     return (
         <>
-            <div className={style.check_schedule_div}>
+            <div className={style.check_schedule_div} onClick={(e) => e.stopPropagation()}>
                 <p className={style.check_schedule_top}>일정</p>
                 <div className={style.check_schedule_main_div}>
                     {myDate.map((schedule: Schedule) => (
