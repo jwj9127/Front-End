@@ -8,6 +8,8 @@ const initialState = {
     idCheckStatus: null
 };
 
+axios.defaults.baseURL = 'http://localhost:8080';
+
 const signAPI = createSlice({
     name: 'signAPI',
     initialState,
