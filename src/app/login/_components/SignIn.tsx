@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../store/store';
 import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signIn.module.css';
 import { signInAPI } from '../../../../store/sign/signAPI';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
 
-    const navigate = useNavigate();
+    const router = useRouter();
     const dispatch = useDispatch<AppDispatch>();
     const [idValue, setIdValue] = useState<string>('');
     const [pwValue, setPwValue] = useState<string>('');
@@ -27,7 +27,7 @@ export default function SignIn() {
             .then((response) => {
                 console.log(response);
                 window.localStorage.setItem('userId', response.data.userId);
-                navigate('/main');
+                router.push('/main');
             })
             .catch((error) => {
                 console.log(error);
