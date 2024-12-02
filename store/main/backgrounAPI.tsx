@@ -8,6 +8,8 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
+axios.defaults.baseURL = 'http://localhost:8080';
+
 const backgroundAPI = createSlice({
     name: 'backgroundAPI',
     initialState,

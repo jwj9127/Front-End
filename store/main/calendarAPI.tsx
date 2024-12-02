@@ -8,6 +8,8 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
+axios.defaults.baseURL = 'http://localhost:8080';
+
 const calendarAPI = createSlice({
     name: 'calendarAPI',
     initialState,
@@ -104,7 +106,7 @@ export const putCalendarAPI = createAsyncThunk(
 );
 
 export const deleteCalendarAPI = createAsyncThunk(
-    '/calendar/{calendar_id}',
+    '/calendar/deleteCalendar',
     async (calendar_id: string) => {
         const response = await axios.get(`/calendar/${calendar_id}`);
         return response.data;
