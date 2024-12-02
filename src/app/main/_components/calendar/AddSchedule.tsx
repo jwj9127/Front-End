@@ -6,6 +6,7 @@ import { makeCalendarAPI } from '../../../../../store/main/calendarAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 
 interface AddScheduleProps {
@@ -68,7 +69,7 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
 
     return (
         <>
-            <div className={style.add_schedule_div}>
+            <div className={style.add_schedule_div} onClick={(e) => e.stopPropagation()}>
                 <div className={style.add_schedule_top_div}>
                     <p>새로운 일정</p>
                     <FontAwesomeIcon icon={faX} color='white' className={style.add_schedule_close} onClick={() => setIsAddingSchedule(false)} />
@@ -88,7 +89,7 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
                             dateFormat="yyyy. M. d"
                         />
                     </div>
-                    <div className='add_schedule_date_end_div'>
+                    <div className={style.add_schedule_date_end_div}>
                         <p>종료</p>
                         <DatePicker
                             selected={endDate}
@@ -100,7 +101,7 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
                     </div>
                 </div>
                 <p className={style.add_schedule_save} onClick={saveSchedule}>저장</p>
-            </div>
+            </div >
         </>
     )
 
