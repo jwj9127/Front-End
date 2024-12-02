@@ -24,21 +24,23 @@ export default function Main() {
     const [openModal, setOpenModal] = useState<ModalType>(null);
 
     const dispatch = useDispatch<AppDispatch>();
-    // const userId = window.localStorage.getItem('userId');
+    const userId = window.localStorage.getItem('userId');
     const [backgroundImage, setBackgroundImage] = useState(null);
     const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
     const [currentAsmr, setCurrentAsmr] = useState<Asmr | null>(null);
 
+    console.log(userId);
+
     useEffect(() => {
-        // dispatch(backgroundGetCurrentAPI(userId!))
-        //     .unwrap()
-        //     .then((response) => {
-        //         console.log(response);
-        //         setBackgroundImage(response.url);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     })
+        dispatch(backgroundGetCurrentAPI(userId!))
+            .unwrap()
+            .then((response) => {
+                console.log(response);
+                setBackgroundImage(response.url);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     })
 
     const openModalHandler = (modalType: ModalType) => {
