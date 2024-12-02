@@ -10,22 +10,17 @@ export const useBackgroundData = (isModalOpen: boolean) => {
     const [backgroundImgs, setBackgroundImgs] = useState<BackGround[]>([]);
     const [userBackgroundImgs, setUserBackgroundImgs] = useState<BackGround[]>([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [allBackgrounds, ownedBackgrounds] = await Promise.all([
-                    dispatch(backgroundAllAPI()).unwrap(),
-                    dispatch(backgroundOwnedAPI(userId!)).unwrap(),
-                ]);
-                setBackgroundImgs(allBackgrounds);
-                setUserBackgroundImgs(ownedBackgrounds);
-            } catch (error) {
-                console.error("Error fetching background data:", error);
-            }
-        };
+    if (isModalOpen === true) {
+        dispatch(backgroundAllAPI())
+            .unwrap()
+            .then((response) => setBackgroundImgs(response))
+            .catch(console.error);
 
-        fetchData();
-    }, [isModalOpen, dispatch]);
+        dispatch(backgroundOwnedAPI(userId!))
+            .unwrap()
+            .then((response) => setUserBackgroundImgs(response))
+            .catch(console.error);
+    };
 
     return { backgroundImgs, userBackgroundImgs };
-};
+}

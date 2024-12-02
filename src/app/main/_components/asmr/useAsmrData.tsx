@@ -10,7 +10,7 @@ export const useBackgroundData = (isModalOpen: boolean) => {
     const [asmrAudios, setAsmrAudios] = useState<Asmr[]>([]);
     const [userAsmrAudios, setUserAsmrAudios] = useState<Asmr[]>([]);
 
-    useEffect(() => {
+    if (isModalOpen === true) {
         dispatch(asmrAllAPI())
             .unwrap()
             .then((response) => setAsmrAudios(response))
@@ -20,7 +20,7 @@ export const useBackgroundData = (isModalOpen: boolean) => {
             .unwrap()
             .then((response) => setUserAsmrAudios(response))
             .catch(console.error);
-    }, [isModalOpen, dispatch]);
+    }
 
     return { asmrAudios, userAsmrAudios };
 };
