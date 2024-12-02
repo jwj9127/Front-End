@@ -44,3 +44,11 @@ export interface ImageItemProps {
     lockIcon?: React.ReactNode;
     actionIcon?: React.ReactNode;
 }
+
+export interface Schedule {
+    id: string;
+    title: string;
+    content: string;
+    startDay: Date;
+    endDay: Date;
+}
