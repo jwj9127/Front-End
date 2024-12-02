@@ -17,7 +17,7 @@ const Calendar: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
     return (
         <>
-            {isViewingSchedule ? <CheckSchedule /> : null}
+            {isViewingSchedule ? <CheckSchedule isViewingSchedule={isViewingSchedule} /> : null}
             <div className={style.main_div} onClick={(e) => e.stopPropagation()}>
                 <div className={style.header}>
                     <p className={style.react_calendar_check_schedule} onClick={() => { setIsViewingSchedule(!isViewingSchedule) }}>일정</p>

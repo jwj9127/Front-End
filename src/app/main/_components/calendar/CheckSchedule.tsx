@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '../../../../../styles/main/calendar.module.css';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
@@ -8,18 +8,24 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Schedule } from '../../_interface/ModalInterface';
 import Swal from 'sweetalert2';
 
-export default function CheckSchedule() {
+interface CheckScheduleProps {
+    isViewingSchedule: boolean;
+}
+
+const CheckSchedule: React.FC<CheckScheduleProps> = ({ isViewingSchedule }) => {
 
     const dispatch = useDispatch<AppDispatch>();
     const userId = window.localStorage.getItem('userId');
     const [myDate, setMyDate] = useState([]);
 
-    dispatch(getCalendarAPI(userId!))
-        .unwrap()
-        .then((response) => {
-            setMyDate(response.data)
-        })
-        .catch(console.error);
+    if (isViewingSchedule === true) {
+        dispatch(getCalendarAPI(userId!))
+            .unwrap()
+            .then((response) => {
+                setMyDate(response.data)
+            })
+            .catch(console.error);
+    }
 
     const formatDateToString = (dateArray: any) => {
         if (!dateArray || dateArray.length < 3) return '';
@@ -68,3 +74,5 @@ export default function CheckSchedule() {
     )
 
 }
+
+export default CheckSchedule;
