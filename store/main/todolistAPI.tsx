@@ -45,17 +45,17 @@ const todolistAPI = createSlice({
                 state.loading = false;
             });
 
-        // stateChangeTodoAPI
+        // completedTodoAPI
         builder
-            .addCase(stateChangeTodoAPI.pending, (state) => {
+            .addCase(completedTodoAPI.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(stateChangeTodoAPI.fulfilled, (state, action) => {
+            .addCase(completedTodoAPI.fulfilled, (state, action) => {
                 state.todo = action.payload;
                 state.loading = false;
             })
-            .addCase(stateChangeTodoAPI.rejected, (state, action) => {
+            .addCase(completedTodoAPI.rejected, (state, action) => {
                 state.error = action.error.message;
                 state.loading = false;
             });
@@ -123,8 +123,8 @@ export const addTodoAPI = createAsyncThunk(
     }
 );
 
-export const stateChangeTodoAPI = createAsyncThunk(
-    'stateChangeTodoAPI',
+export const completedTodoAPI = createAsyncThunk(
+    'completedTodoAPI',
     async (todoDTO: { id: string; completed: boolean; }) => {
         const response = await axios.post('/todo/status', todoDTO, {
             headers: {
