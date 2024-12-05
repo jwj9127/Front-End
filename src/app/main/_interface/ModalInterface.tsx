@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface ModalProps {
     isModalOpen: boolean;
     closeModal: () => void;
@@ -51,4 +53,24 @@ export interface Schedule {
     content: string;
     startDay: Date;
     endDay: Date;
+}
+
+export interface Todo {
+    id: string;
+    title: string;
+    completed: boolean;
+    checked: boolean;
+}
+
+export interface TodoTemplateProps {
+    children: ReactNode;
+    closeModal: () => void;
+}
+
+export interface TodoListProps {
+    todos: Todo[];
+    onRemove: (id: string) => void;
+    onToggle: (todo: { id: string; completed: boolean }) => void;
+    onChangeSelectedTodo: (todo: Todo) => void;
+    onInsertToggle: () => void;
 }
