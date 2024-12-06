@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import style from '../../../../../styles/main/todolist.module.css';
 import { ModalProps } from '../../_interface/ModalInterface';
-import TodoTemplate from './TodoTemplate';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import List from './List';
 import Insert from './Insert';
 import Edit from './Edit';
@@ -76,7 +77,11 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     return (
         <>
             <div className={style.main_div} onClick={(e) => e.stopPropagation()}>
-                <TodoTemplate closeModal={closeModal}>
+                <div className={style.title}>
+                    <p>Todo List</p>
+                    <FontAwesomeIcon icon={faX} className={style.modal_out} onClick={closeModal} />
+                </div>
+                <div className={style.content}>
                     <Insert onInsert={onInsert} />
                     <List
                         todos={todos}
@@ -91,7 +96,7 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                             onUpdate={onUpdate}
                         />
                     )}
-                </TodoTemplate>
+                </div>
             </div>
         </>
     )
