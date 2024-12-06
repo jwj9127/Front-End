@@ -29,7 +29,6 @@ export default function Main() {
     const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
     const [currentAsmr, setCurrentAsmr] = useState<Asmr | null>(null);
 
-    console.log(userId);
 
     useEffect(() => {
         dispatch(backgroundGetCurrentAPI(userId!))
@@ -84,7 +83,7 @@ export default function Main() {
                 className={styles.backgroundImage}
             // style={{ backgroundImage: `url(${backgroundImage})` }}
             ></div >
-            <div className={styles.mypage}></div>,
+            <div className={styles.mypage}></div>
             <div className={styles.nav}>
                 <div
                     className={styles.asmr}
