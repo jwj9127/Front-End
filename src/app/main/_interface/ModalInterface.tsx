@@ -62,11 +62,6 @@ export interface Todo {
     checked: boolean;
 }
 
-export interface TodoTemplateProps {
-    children: ReactNode;
-    closeModal: () => void;
-}
-
 export interface TodoListProps {
     todos: Todo[];
     onRemove: (id: string) => void;
