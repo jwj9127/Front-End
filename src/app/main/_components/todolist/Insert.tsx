@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
+import style from '../../../../../styles/main/todolist.module.css';
 
 interface ToDoInsertProps {
-    onInsert:  (todoDTO: { userId: string; title: string }) => void;
+    onInsert: (todoDTO: { userId: string; title: string }) => void;
 }
 
 const ToDoInsert: React.FC<ToDoInsertProps> = ({ onInsert }) => {
@@ -24,13 +25,15 @@ const ToDoInsert: React.FC<ToDoInsertProps> = ({ onInsert }) => {
     );
 
     return (
-        <form className="TodoInsert" onSubmit={onSubmit}>
+        <form className={style.insertForm} onSubmit={onSubmit}>
             <input
+                className={style.insert_input}
                 onChange={onChange}
                 value={value}
                 placeholder="할 일을 입력하세요"
             />
-            <button type="submit">
+            <button type="submit" className={style.insert_button}>
+                추가
             </button>
         </form>
     );
