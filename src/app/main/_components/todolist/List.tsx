@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import ToDoListItem from './Item';
 import { TodoListProps } from '../../_interface/ModalInterface';
+import style from '../../../../../styles/main/todolist.module.css';
 
 const TodoList: React.FC<TodoListProps> = ({
     todos,
@@ -12,14 +13,13 @@ const TodoList: React.FC<TodoListProps> = ({
 
     return (
         <div
-            className="main_page_todolist_list"
-            style={{ width: 530, height: 490 }} // 스타일로 너비와 높이 지정
+            className={style.list}
         >
             {todos.map((todo) => (
                 <ToDoListItem
                     key={todo.id}
                     todo={todo}
-                    onToggle={() => onToggle({ id: todo.id, completed: true})}
+                    onToggle={() => onToggle({ id: todo.id, completed: true })}
                     onRemove={onRemove}
                     onInsertToggle={onInsertToggle}
                     onChangeSelectedTodo={onChangeSelectedTodo}
