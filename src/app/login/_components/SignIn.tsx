@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../store/store';
 import { toggleIsSign } from '../../../../store/sign/signSwitch';
@@ -31,7 +31,7 @@ export default function SignIn() {
                     title: "로그인 성공"
                 });
                 window.localStorage.setItem('userId', response.userId);
-                window.localStorage.setItem('token', response.headers.authorization);
+                window.localStorage.setItem('token', response.header.Authorization);
                 router.push('/main');
             })
             .catch((error) => {
