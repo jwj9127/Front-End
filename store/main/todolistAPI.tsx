@@ -8,6 +8,7 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
+const token = window.localStorage.getItem('token');
 axios.defaults.baseURL = 'http://localhost:8080';
 
 const todolistAPI = createSlice({
@@ -110,58 +111,87 @@ const todolistAPI = createSlice({
 export const getTodoAPI = createAsyncThunk(
     'getTodoAPI',
     async (userId: string) => {
-        const response = await axios.get(`/todo/${userId}`);
-        return response.data;
+        if (token) {
+            const response = await axios.get(`/todo/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const addTodoAPI = createAsyncThunk(
     'addTodoAPI',
     async (todoDTO: { userId: string; title: string; }) => {
-        const response = await axios.post('/todo', todoDTO);
-        return response.data;
+        if (token) {
+            const response = await axios.post('/todo', todoDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const completedTodoAPI = createAsyncThunk(
     'completedTodoAPI',
     async (todoDTO: { id: string; completed: boolean; }) => {
-        const response = await axios.post('/todo/status', todoDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        return response.data;
+        if (token) {
+            const response = await axios.post('/todo/status', todoDTO, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const putTodoAPI = createAsyncThunk(
     'putTodoAPI',
     async (todoDTO: { id: string; title: string; }) => {
-        const response = await axios.put('/todo', todoDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        return response.data;
+        if (token) {
+            const response = await axios.put('/todo', todoDTO, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const deleteTodoAPI = createAsyncThunk(
     'deleteTodoAPI',
     async (id: string) => {
-        const response = await axios.delete(`/todo/${id}`);
-        return response.data;
+        if (token) {
+            const response = await axios.delete(`/todo/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const deleteAllTodoAPI = createAsyncThunk(
     'deleteAllTodoAPI',
     async (ids: string[]) => {
-        const response = await axios.delete('/todo/del_list', {
-            data: ids
-        });
-        return response.data;
+        if (token) {
+            const response = await axios.delete('/todo/del_list', {
+                data: ids,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
