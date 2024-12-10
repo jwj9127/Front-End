@@ -81,7 +81,7 @@ const calendarAPI = createSlice({
 
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
-    async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }) => {
+    async (calendarDTO: { userId: string; title: string; startDay: string; endDay: string; }) => {
         if (token) {
             const response = await axios.post('/calendar', calendarDTO, {
                 headers: {
@@ -109,7 +109,7 @@ export const getCalendarAPI = createAsyncThunk(
 
 export const putCalendarAPI = createAsyncThunk(
     '/calendar/{calendar_id}',
-    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: Date; endDay: Date; } }) => {
+    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: string; endDay: string; } }) => {
         if (token) {
             const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
                 headers: {

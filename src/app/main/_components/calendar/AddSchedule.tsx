@@ -20,6 +20,17 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
 
+    const formatDate = (date: Date): string => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+    };
+
     const saveSchedule = (e: any) => {
         e.preventDefault();
 
@@ -46,8 +57,8 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
         const calendarDTO = {
             userId: userId!,
             title: title,
-            startDay: startDate,
-            endDay: endDate
+            startDay: formatDate(startDate),
+            endDay: formatDate(endDate)
         };
         dispatch(makeCalendarAPI(calendarDTO))
             .unwrap()

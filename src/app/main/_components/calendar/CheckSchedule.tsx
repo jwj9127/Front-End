@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import style from '../../../../../styles/main/calendar.module.css';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
