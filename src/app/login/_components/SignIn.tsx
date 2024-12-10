@@ -31,7 +31,7 @@ export default function SignIn() {
                     title: "로그인 성공"
                 });
                 window.localStorage.setItem('userId', response.userId);
-                window.localStorage.setItem('token', response?.headers?.authorization);
+                window.localStorage.setItem('token', response.token);
                 router.push('/main');
             })
             .catch((error) => {
