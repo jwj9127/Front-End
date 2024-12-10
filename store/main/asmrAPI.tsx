@@ -81,7 +81,7 @@ export const asmrOwnedAPI = createAsyncThunk(
     '/asmr/{userId}/owned',
     async (userId: string) => {
         if (token) {
-            const response = await axios.get(`/asmr/?userId=${userId}/owned`, {
+            const response = await axios.get(`/asmr/${userId}/owned`, {
                 headers: {
                     Authorization: `${token}`
                 }
