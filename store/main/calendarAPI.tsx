@@ -94,58 +94,58 @@ export const useToken = () => {
 
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
-    async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }, { getState }) => {
-        const state = getState() as any;
-        const token = state.calendarAPI.token;
-        const response = await axios.post('/calendar', calendarDTO, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        return response.data;
+    async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }) => {
+        if (token) {
+            const response = await axios.post('/calendar', calendarDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const getCalendarAPI = createAsyncThunk(
     '/calendar/{userId}',
-    async (userId: string, { getState }) => {
-        const state = getState() as any;
-        const token = state.calendarAPI.token;
-        const response = await axios.get(`/calendar/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        return response.data;
+    async (userId: string) => {
+        if (token) {
+            const response = await axios.get(`/calendar/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const putCalendarAPI = createAsyncThunk(
     '/calendar/{calendar_id}',
-    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: Date; endDay: Date; } }, { getState }) => {
-        const state = getState() as any;
-        const token = state.calendarAPI.token;
-        const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            }
-        });
-        return response.data;
+    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: Date; endDay: Date; } }) => {
+        if (token) {
+            const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const deleteCalendarAPI = createAsyncThunk(
     '/calendar/deleteCalendar',
-    async (calendar_id: string, { getState }) => {
-        const state = getState() as any;
-        const token = state.calendarAPI.token;
-        const response = await axios.delete(`/calendar/${calendar_id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        return response.data;
+    async (calendar_id: string) => {
+        if (token) {
+            const response = await axios.delete(`/calendar/${calendar_id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
