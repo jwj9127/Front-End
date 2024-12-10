@@ -60,6 +60,7 @@ export default function SignUp() {
                 title: "아이디 체크를 진행하세요"
             });
         } else if (userPwValue !== null && userPwValue !== undefined && userPwValue !== '') {
+            console.log(userPwValue);
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             });
