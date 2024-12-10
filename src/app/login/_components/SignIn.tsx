@@ -34,8 +34,10 @@ export default function SignIn() {
                 window.localStorage.setItem('token', response.authorization);
                 router.push('/main');
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
+                Swal.fire({
+                    title: "아이디나 비밀번호가 틀립니다."
+                });
             })
     }
 
