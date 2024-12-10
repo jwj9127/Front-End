@@ -10,8 +10,8 @@ export const useBackgroundData = (isModalOpen: boolean) => {
     const [backgroundImgs, setBackgroundImgs] = useState<BackGround[]>([]);
     const [userBackgroundImgs, setUserBackgroundImgs] = useState<BackGround[]>([]);
 
-    if (isModalOpen === true) {
-        useEffect(() => {
+    useEffect(() => {
+        if (isModalOpen === true) {
             dispatch(backgroundAllAPI())
                 .unwrap()
                 .then((response) => setBackgroundImgs(response))
@@ -21,8 +21,8 @@ export const useBackgroundData = (isModalOpen: boolean) => {
                 .unwrap()
                 .then((response) => setUserBackgroundImgs(response))
                 .catch(console.error);
-        }, [])
-    };
+        };
+    }, [isModalOpen])
 
     return { backgroundImgs, userBackgroundImgs };
 }
