@@ -8,6 +8,7 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
+const token = window.localStorage.getItem('token');
 axios.defaults.baseURL = 'http://localhost:8080';
 
 const asmrAPI = createSlice({
@@ -65,16 +66,28 @@ const asmrAPI = createSlice({
 export const asmrAllAPI = createAsyncThunk(
     '/asmr/all',
     async () => {
-        const response = await axios.get('/asmr/all');
-        return response.data;
+        if (token) {
+            const response = await axios.get('/asmr/all', {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const asmrOwnedAPI = createAsyncThunk(
     '/asmr/{userId}/owned',
     async (userId: string) => {
-        const response = await axios.get(`/asmr/?userId=${userId}/owned`);
-        return response.data;
+        if (token) {
+            const response = await axios.get(`/asmr/?userId=${userId}/owned`, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
@@ -84,6 +97,7 @@ export const asmrPurchaseAPI = createAsyncThunk(
         const response = await axios.post(`/asmr/purchase`, purchaseDTO, {
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `${token}`
             }
         });
         return response.data;

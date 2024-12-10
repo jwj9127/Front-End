@@ -8,6 +8,7 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
+const token = window.localStorage.getItem('token');
 axios.defaults.baseURL = 'http://localhost:8080';
 
 const backgroundAPI = createSlice({
@@ -95,44 +96,73 @@ const backgroundAPI = createSlice({
 export const backgroundAllAPI = createAsyncThunk(
     '/background/all',
     async () => {
-        const response = await axios.get('/background/all');
-        return response.data;
+        if (token) {
+            const response = await axios.get('/background/all', {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const backgroundOwnedAPI = createAsyncThunk(
     '/background/{userId}/owned',
     async (userId: string) => {
-        const response = await axios.get(`/background/?userId=${userId}/owned`);
-        return response.data;
+        if (token) {
+            const response = await axios.get(`/background/${userId}/owned`, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            }
+
+            );
+            return response.data;
+        }
     }
 );
 
 export const backgroundSetCurrentAPI = createAsyncThunk(
     '/background/set-current/{backgroundId}',
     async (backgroundId: string) => {
-        const response = await axios.post(`/background/set-current/?backgroundId=${backgroundId}`);
-        return response.data;
+        if (token) {
+            const response = await axios.post(`/background/set-current/${backgroundId}`, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const backgroundGetCurrentAPI = createAsyncThunk(
     '/background/{userId}/current',
     async (userId: string) => {
-        const response = await axios.get(`/background/?userId=${userId}/current`);
-        return response.data;
+        if (token) {
+            const response = await axios.get(`/background/${userId}/current`, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
 export const backgroundPurchaseAPI = createAsyncThunk(
     '/background/purchase',
     async (purchaseDTO: { userId: string; backgroundId: string; }) => {
-        const response = await axios.post(`/background/purchase`, purchaseDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        return response.data;
+        if(token){
+            const response = await axios.post(`/background/purchase`, purchaseDTO, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `${token}`
+                }
+            });
+            return response.data;
+        }
     }
 );
 
