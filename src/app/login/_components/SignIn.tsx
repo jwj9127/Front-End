@@ -28,7 +28,7 @@ export default function SignIn() {
             .then((response) => {
                 console.log(response);
                 Swal.fire({
-                    title: response
+                    title: "로그인 성공"
                 });
                 window.localStorage.setItem('userId', response.data.userId);
                 router.push('/main');
