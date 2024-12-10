@@ -57,22 +57,25 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ isViewingSchedule }) => {
             <div className={style.check_schedule_div} onClick={(e) => e.stopPropagation()}>
                 <p className={style.check_schedule_top}>일정</p>
                 <div className={style.check_schedule_main_div}>
-                    {myDate.map((schedule: Schedule) => (
-                        <div key={schedule.id} className={style.check_schedule_content_div}>
-                            <div className={style.check_schedule_top_div}>
-                                <div className={style.check_schedule_date_div}>
-                                    <p>{formatDateToString(schedule.startDay)} ~ {formatDateToString(schedule.endDay)}</p>
+                    {myDate && myDate.length > 0 ? (
+                        myDate.map((schedule: Schedule) => (
+                            <div key={schedule.id} className={style.check_schedule_content_div}>
+                                <div className={style.check_schedule_top_div}>
+                                    <div className={style.check_schedule_date_div}>
+                                        <p>{formatDateToString(schedule.startDay)} ~ {formatDateToString(schedule.endDay)}</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrashCan} size='2x' onClick={() => deleteCalendar(schedule.id)} className={style.check_schedule_close} />
                                 </div>
-                                <FontAwesomeIcon icon={faTrashCan} size='2x' onClick={() => deleteCalendar(schedule.id)} className={style.check_schedule_close} />
+                                <p className={style.check_schedule_content}>{schedule.title}</p>
                             </div>
-                            <p className={style.check_schedule_content}>{schedule.title}</p>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <p>일정이 없습니다.</p>
+                    )}
                 </div>
             </div>
         </>
     )
-
 }
 
 export default CheckSchedule;
