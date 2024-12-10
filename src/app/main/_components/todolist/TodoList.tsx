@@ -21,8 +21,6 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     const [insertToggle, setInsertToggle] = useState(false);
 
     useEffect(() => {
-        console.log('왜 안되?')
-        console.log(isModalOpen)
         if (isModalOpen === true) {
             dispatch(getTodoAPI(userId!))
                 .unwrap()
