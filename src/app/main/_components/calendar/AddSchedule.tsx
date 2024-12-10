@@ -62,12 +62,11 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
         };
         dispatch(makeCalendarAPI(calendarDTO))
             .unwrap()
-            .then((response) => {
-                if (response.status == 200) {
-                    Swal.fire({
-                        title: "일정을 저장했습니다"
-                    });
-                }
+            .then(() => {
+                Swal.fire({
+                    title: "일정을 저장했습니다"
+                })
+                setIsAddingSchedule(false);
             })
             .catch(error => {
                 if (error.response && error.response.status === 400) {
