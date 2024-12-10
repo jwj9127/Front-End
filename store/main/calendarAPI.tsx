@@ -85,7 +85,7 @@ export const makeCalendarAPI = createAsyncThunk(
         if (token) {
             const response = await axios.post('/calendar', calendarDTO, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -99,7 +99,7 @@ export const getCalendarAPI = createAsyncThunk(
         if (token) {
             const response = await axios.get(`/calendar/${userId}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -114,7 +114,7 @@ export const putCalendarAPI = createAsyncThunk(
             const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -128,7 +128,7 @@ export const deleteCalendarAPI = createAsyncThunk(
         if (token) {
             const response = await axios.delete(`/calendar/${calendar_id}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;

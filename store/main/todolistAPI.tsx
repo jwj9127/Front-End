@@ -114,7 +114,7 @@ export const getTodoAPI = createAsyncThunk(
         if (token) {
             const response = await axios.get(`/todo/${userId}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -128,7 +128,7 @@ export const addTodoAPI = createAsyncThunk(
         if (token) {
             const response = await axios.post('/todo', todoDTO, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -143,7 +143,7 @@ export const completedTodoAPI = createAsyncThunk(
             const response = await axios.post('/todo/status', todoDTO, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -158,7 +158,7 @@ export const putTodoAPI = createAsyncThunk(
             const response = await axios.put('/todo', todoDTO, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -172,7 +172,7 @@ export const deleteTodoAPI = createAsyncThunk(
         if (token) {
             const response = await axios.delete(`/todo/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
@@ -187,7 +187,7 @@ export const deleteAllTodoAPI = createAsyncThunk(
             const response = await axios.delete('/todo/del_list', {
                 data: ids,
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `${token}`
                 }
             });
             return response.data;
