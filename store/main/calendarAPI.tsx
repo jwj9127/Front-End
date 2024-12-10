@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const initialState = {
     schedulers: [],
@@ -78,9 +79,24 @@ const calendarAPI = createSlice({
     }
 });
 
+export const useToken = () => {
+    const [token, setToken] = useState<string | null>(null);
+
+    useEffect(() => {
+        const tokenFromLocalStorage = window.localStorage.getItem('token');
+        if (tokenFromLocalStorage) {
+            setToken(tokenFromLocalStorage);
+        }
+    }, []);
+
+    return token;
+};
+
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
-    async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }) => {
+    async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }, { getState }) => {
+        const state = getState() as any;
+        const token = state.calendarAPI.token;
         const response = await axios.post('/calendar', calendarDTO, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -92,7 +108,9 @@ export const makeCalendarAPI = createAsyncThunk(
 
 export const getCalendarAPI = createAsyncThunk(
     '/calendar/{userId}',
-    async (userId: string) => {
+    async (userId: string, { getState }) => {
+        const state = getState() as any;
+        const token = state.calendarAPI.token;
         const response = await axios.get(`/calendar/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -104,7 +122,9 @@ export const getCalendarAPI = createAsyncThunk(
 
 export const putCalendarAPI = createAsyncThunk(
     '/calendar/{calendar_id}',
-    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: Date; endDay: Date; } }) => {
+    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: Date; endDay: Date; } }, { getState }) => {
+        const state = getState() as any;
+        const token = state.calendarAPI.token;
         const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
             headers: {
                 'Content-Type': 'application/json',
@@ -117,7 +137,9 @@ export const putCalendarAPI = createAsyncThunk(
 
 export const deleteCalendarAPI = createAsyncThunk(
     '/calendar/deleteCalendar',
-    async (calendar_id: string) => {
+    async (calendar_id: string, { getState }) => {
+        const state = getState() as any;
+        const token = state.calendarAPI.token;
         const response = await axios.delete(`/calendar/${calendar_id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
