@@ -30,7 +30,7 @@ export default function SignIn() {
                 Swal.fire({
                     title: "로그인 성공"
                 });
-                window.localStorage.setItem('userId', response.data.userId);
+                window.localStorage.setItem('userId', response.userId);
                 router.push('/main');
             })
             .catch((error) => {
