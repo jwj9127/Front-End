@@ -29,7 +29,7 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                 .then((response) => setTodos(response))
                 .catch(console.error);
         }
-    }, [todos]);
+    }, [isModalOpen]);
 
     const onInsertToggle = useCallback(() => {
         if (selectedTodo) {
