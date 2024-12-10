@@ -7,6 +7,7 @@ import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signIn.module.css';
 import { signInAPI } from '../../../../store/sign/signAPI';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 export default function SignIn() {
 
@@ -26,6 +27,9 @@ export default function SignIn() {
             .unwrap()
             .then((response) => {
                 console.log(response);
+                Swal.fire({
+                    title: response
+                });
                 window.localStorage.setItem('userId', response.data.userId);
                 router.push('/main');
             })
