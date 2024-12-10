@@ -59,7 +59,8 @@
     cursor: default;
 }
 
-.add_schedule_top_div {
+.add_schedule_top_div,
+.check_schedule_header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,7 +119,7 @@
 }
 
 .date_selector {
-    width: 40%;
+    width: 45%;
     background-color: #ACBDF9;
     border: none;
     outline: none;
@@ -128,7 +129,7 @@
 }
 
 .add_schedule_save,
-.check_schedule_close {
+.schedule_delete {
     cursor: pointer;
 }
 
@@ -153,6 +154,12 @@
     border-radius: 5px;
     padding: 3px;
     font-size: x-large;
+}
+
+.check_schedule_close {
+    position: relative;
+    left: 200%;
+    cursor: pointer;
 }
 
 .check_schedule_main_div {
