@@ -17,10 +17,10 @@ const Calendar: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
     return (
         <>
-            {isViewingSchedule ? <CheckSchedule isViewingSchedule={isViewingSchedule} /> : null}
+            {isViewingSchedule ? <CheckSchedule setIsViewingSchedule={setIsViewingSchedule} /> : null}
             <div className={style.main_div} onClick={(e) => e.stopPropagation()}>
                 <div className={style.header}>
-                    <p className={style.react_calendar_check_schedule} onClick={() => { setIsViewingSchedule(!isViewingSchedule) }}>일정</p>
+                    <p className={style.react_calendar_check_schedule} onClick={() => { setIsViewingSchedule(true) }}>일정</p>
                     <FontAwesomeIcon icon={faX} color='white' className={style.modal_out} onClick={closeModal} />
                 </div>
                 <React_Calendar
