@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import style from '../../../../../styles/main/todolist.module.css';
+import Swal from "sweetalert2";
 
 interface ToDoInsertProps {
     onInsert: (todoDTO: { userId: string; title: string }) => void;
@@ -17,9 +18,16 @@ const ToDoInsert: React.FC<ToDoInsertProps> = ({ onInsert }) => {
 
     const onSubmit = useCallback(
         (e: any) => {
-            onInsert(todoDTO);
-            setValue('');
             e.preventDefault();
+            if (value.trim() !== '') {
+                onInsert(todoDTO);
+                setValue('');
+            }
+            else {
+                Swal.fire({
+                    title: "빈 칸은 작성이 안됩니다.",
+                });
+            }
         },
         [onInsert, value]
     );
