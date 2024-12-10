@@ -19,6 +19,7 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
     const [insertToggle, setInsertToggle] = useState(false);
+    const [todosState, setTodosState] = useState<Todo[]>(todos);
 
     useEffect(() => {
         if (isModalOpen === true) {
@@ -42,43 +43,66 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
     const onInsert = useCallback((todoDTO: { userId: string; title: string; }) => {
         dispatch(addTodoAPI(todoDTO))
-            .unwrap();
-        Swal.fire({
-            title: "작성 완료",
-        });
+            .unwrap()
+            .then(() => {
+                Swal.fire({
+                    title: "작성 완료"
+                });
+                closeModal();
+            });
     }, []);
 
     const onRemove = useCallback((id: string) => {
         dispatch(deleteTodoAPI(id))
-            .unwrap();
-        Swal.fire({
-            title: "삭제 완료!",
-        });
+            .unwrap()
+            .then(() => {
+                Swal.fire({
+                    title: "삭제 완료"
+                });
+                closeModal();
+            });
     }, []);
 
     const onUpdate = useCallback((todoDTO: { id: string; title: string; }) => {
         dispatch(putTodoAPI(todoDTO))
-            .unwrap();
+            .unwrap()
+            .then(() => {
+                Swal.fire({
+                    title: "수정 완료"
+                });
+                closeModal();
+            });
         Swal.fire({
-            title: "수정 완료!",
+            title: "빈 칸은 수정이 안됩니다.",
         });
     }, []);
 
     const onToggle = useCallback((todoDTO: { id: string; completed: boolean; }) => {
-        dispatch(completedTodoAPI(todoDTO))
-            .unwrap();
-        Swal.fire({
-            title: "목표 완료!",
-        });
-    }, []);
+        setTodosState((prevTodos) =>
+            prevTodos.map((todo) =>
+                todo.id === todoDTO.id ? { ...todo, checked: !todo.checked } : todo
+            )
+        );
+        const todoToUpdate = todosState.find(todo => todo.id === todoDTO.id);
+
+        if (todoToUpdate) {
+            dispatch(completedTodoAPI(todoDTO))
+                .unwrap()
+                .then(() => {
+                    Swal.fire({
+                        title: "목표 완료"
+                    });
+                });
+        }
+    }, [todosState]);
 
     if (!isModalOpen) return null;
 
     return (
         <>
             <div className={style.main_div} onClick={(e) => e.stopPropagation()}>
-                <div className={style.title}>
-                    <p>Todo List</p>
+                <div className={style.header}>
+                    <p className={style.title}>Todo List</p>
                     <FontAwesomeIcon icon={faX} className={style.modal_out} onClick={closeModal} />
                 </div>
                 <div className={style.content}>
