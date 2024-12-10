@@ -8,6 +8,7 @@ const initialState = {
     error: null as string | null | undefined,
 };
 
+const token = window.localStorage.getItem('token');
 axios.defaults.baseURL = 'http://localhost:8080';
 
 const calendarAPI = createSlice({
@@ -80,7 +81,11 @@ const calendarAPI = createSlice({
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
     async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }) => {
-        const response = await axios.post('/calendar', calendarDTO);
+        const response = await axios.post('/calendar', calendarDTO, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data;
     }
 );
@@ -88,7 +93,11 @@ export const makeCalendarAPI = createAsyncThunk(
 export const getCalendarAPI = createAsyncThunk(
     '/calendar/{userId}',
     async (userId: string) => {
-        const response = await axios.get(`/calendar/${userId}`);
+        const response = await axios.get(`/calendar/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data;
     }
 );
@@ -99,6 +108,7 @@ export const putCalendarAPI = createAsyncThunk(
         const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
             }
         });
         return response.data;
@@ -108,7 +118,11 @@ export const putCalendarAPI = createAsyncThunk(
 export const deleteCalendarAPI = createAsyncThunk(
     '/calendar/deleteCalendar',
     async (calendar_id: string) => {
-        const response = await axios.delete(`/calendar/${calendar_id}`);
+        const response = await axios.delete(`/calendar/${calendar_id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data;
     }
 );
