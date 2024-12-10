@@ -32,7 +32,7 @@ export default function SignUp() {
 
     const idCheck = () => {
         console.log(userIdValue)
-        if (userIdValue.trim() === '') {
+        if (userIdValue.trim() !== '') {
             dispatch(idCheckAPI(userIdValue))
                 .unwrap()
                 .then((response) => {
@@ -60,7 +60,6 @@ export default function SignUp() {
                 title: "아이디 체크를 진행하세요"
             });
         } else if (userPwValue.trim() === '') {
-            console.log(userPwValue);
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             });
