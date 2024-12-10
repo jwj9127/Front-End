@@ -32,7 +32,7 @@ export default function SignUp() {
 
     const idCheck = () => {
         console.log(userIdValue)
-        if (userIdValue !== null && userIdValue !== undefined && userIdValue !== '') {
+        if (!userIdValue || userIdValue.trim() === '') {
             dispatch(idCheckAPI(userIdValue))
                 .unwrap()
                 .then((response) => {
@@ -59,12 +59,12 @@ export default function SignUp() {
             Swal.fire({
                 title: "아이디 체크를 진행하세요"
             });
-        } else if (userPwValue !== null && userPwValue !== undefined && userPwValue !== '') {
+        } else if (!userPwValue || userPwValue.trim() === '') {
             console.log(userPwValue);
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             });
-        } else if (userNameValue !== null && userNameValue !== undefined && userNameValue !== '') {
+        } else if (!userNameValue || userNameValue.trim() === '') {
             Swal.fire({
                 title: "닉네임을 입력해주세요"
             });
