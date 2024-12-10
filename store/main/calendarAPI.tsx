@@ -79,19 +79,6 @@ const calendarAPI = createSlice({
     }
 });
 
-export const useToken = () => {
-    const [token, setToken] = useState<string | null>(null);
-
-    useEffect(() => {
-        const tokenFromLocalStorage = window.localStorage.getItem('token');
-        if (tokenFromLocalStorage) {
-            setToken(tokenFromLocalStorage);
-        }
-    }, []);
-
-    return token;
-};
-
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
     async (calendarDTO: { userId: string; title: string; startDay: Date; endDay: Date; }) => {
