@@ -1,14 +1,17 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../../store/store';
 import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signUp.module.css';
 import { idCheckAPI, signUpAPI } from '../../../../store/sign/signAPI';
+import Swal from 'sweetalert2';
 
 export default function SignUp() {
 
+    const router = useRouter();
     const dispatch = useDispatch<AppDispatch>();
     const isSign = useSelector(
         (state: RootState) => state.signSwitch
@@ -18,6 +21,7 @@ export default function SignUp() {
     const [userPwValue, setUserPwValue] = useState<string>('');
     const [userNameValue, setUserNameValue] = useState<string>('');
 
+    const [clearId, setClearId] = useState(false);
     const [idFocused, setIdFocused] = useState(false);
     const [pwFocused, setPwFocused] = useState(false);
     const [nameFocused, setNameFocused] = useState(false);
@@ -27,25 +31,59 @@ export default function SignUp() {
     const userNameRef = useRef<HTMLInputElement | null>(null);
 
     const idCheck = () => {
-        dispatch(idCheckAPI(userIdValue))
-            .unwrap()
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        console.log(userIdValue)
+        if (userIdValue !== null && userIdValue !== undefined && userIdValue !== '') {
+            dispatch(idCheckAPI(userIdValue))
+                .unwrap()
+                .then((response) => {
+                    Swal.fire({
+                        title: response
+                    });
+                    setClearId(true);
+                })
+                .catch((error) => {
+                    Swal.fire({
+                        title: "오류가 발생하였습니다."
+                    });
+                    console.log(error);
+                })
+        } else {
+            Swal.fire({
+                title: "아이디를 입력해주세요"
+            });
+        }
     }
 
     const signUp = () => {
-        dispatch(signUpAPI({ userId: userIdValue, userPw: userPwValue, userName: userNameValue }))
-            .unwrap()
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        if (!clearId) {
+            Swal.fire({
+                title: "아이디 체크를 진행하세요"
+            });
+        } else if (userPwValue !== null && userPwValue !== undefined && userPwValue !== '') {
+            Swal.fire({
+                title: "비밀번호를 입력해주세요"
+            });
+        } else if (userNameValue !== null && userNameValue !== undefined && userNameValue !== '') {
+            Swal.fire({
+                title: "닉네임을 입력해주세요"
+            });
+        } else {
+            dispatch(signUpAPI({ userId: userIdValue, userPw: userPwValue, userName: userNameValue }))
+                .unwrap()
+                .then((response) => {
+                    Swal.fire({
+                        title: response
+                    });
+                    router.push('/login');
+                    console.log(response);
+                })
+                .catch((error) => {
+                    Swal.fire({
+                        title: "오류가 발생하였습니다."
+                    });
+                    console.log(error);
+                })
+        }
     }
 
     if (isSign.isSign === false) return null;
