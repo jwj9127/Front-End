@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Todo } from '../../_interface/ModalInterface';
+import style from '../../../../../styles/main/todolist.module.css';
 
 interface ToDoEditProps {
     selectedTodo: Todo | null;
@@ -32,8 +33,8 @@ const ToDoEdit: React.FC<ToDoEditProps> = ({ selectedTodo, onUpdate }) => {
     }, [selectedTodo]);
 
     return (
-        <div className="background">
-            <form onSubmit={onSubmit} className="todoedit__insert">
+        <div className={style.background}>
+            <form onSubmit={onSubmit} className={style.todoedit__insert}>
                 <h2>수정하기</h2>
                 <input
                     onChange={onChange}
