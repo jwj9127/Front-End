@@ -12,15 +12,19 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) =
 
     const dispatch = useDispatch<AppDispatch>();
     const userId = window.localStorage.getItem('userId');
-    const [myDate, setMyDate] = useState([]);
+    const [myDate, setMyDate] = useState<Schedule[]>([]);
 
-    useEffect(() => {
+    const selectSchedule = () => {
         dispatch(getCalendarAPI(userId!))
             .unwrap()
             .then((response) => {
                 setMyDate(response);
             })
             .catch(console.error);
+    }
+
+    useEffect(() => {
+        selectSchedule();
     }, [setIsViewingSchedule])
 
     const formatDateToString = (dateString: string) => {
@@ -38,7 +42,7 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) =
                 Swal.fire({
                     title: "일정을 삭제했습니다"
                 });
-                setIsViewingSchedule(false);
+                setMyDate((prev) => prev.filter(schedule => schedule.id !== id));
             })
             .catch(() => {
                 Swal.fire({

@@ -63,7 +63,9 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
                 Swal.fire({
                     title: "일정을 저장했습니다"
                 })
-                setIsAddingSchedule(false);
+                if (titleElement) titleElement.value = '';
+                setStartDate(null);
+                setEndDate(null);
             })
             .catch(error => {
                 if (error.response && error.response.status === 400) {
