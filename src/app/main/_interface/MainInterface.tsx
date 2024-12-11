@@ -74,6 +74,10 @@ export interface Todo {
     completed: boolean;
 }
 
+export interface ToDoInsertProps {
+    onInsert: (todoDTO: { userId: string; title: string }) => void;
+}
+
 export interface TodoListProps {
     todos: Todo[];
     onRemove: (id: string) => void;

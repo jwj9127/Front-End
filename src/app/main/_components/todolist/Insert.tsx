@@ -1,10 +1,7 @@
 import { useCallback, useState } from "react";
 import style from '../../../../../styles/main/todolist.module.css';
 import Swal from "sweetalert2";
-
-interface ToDoInsertProps {
-    onInsert: (todoDTO: { userId: string; title: string }) => void;
-}
+import { ToDoInsertProps } from "../../_interface/MainInterface";
 
 const ToDoInsert: React.FC<ToDoInsertProps> = ({ onInsert }) => {
 
