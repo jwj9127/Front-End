@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axiosInstance } from '../../util/axiosInstance';
 
 const initialState = {
     backgrounds: [],
@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const token = window.localStorage.getItem('token');
-axios.defaults.baseURL = 'http://localhost:8080';
 
 const backgroundAPI = createSlice({
     name: 'backgroundAPI',
@@ -96,73 +95,40 @@ const backgroundAPI = createSlice({
 export const backgroundAllAPI = createAsyncThunk(
     '/background/all',
     async () => {
-        if (token) {
-            const response = await axios.get('/background/all', {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).get('/background/all');
+        return response.data;
     }
 );
 
 export const backgroundOwnedAPI = createAsyncThunk(
     '/background/{userId}/owned',
     async (userId: string) => {
-        if (token) {
-            const response = await axios.get(`/background/${userId}/owned`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            }
-
-            );
-            return response.data;
-        }
+        const response = await axiosInstance(token!).get(`/background/${userId}/owned`);
+        return response.data;
     }
 );
 
 export const backgroundSetCurrentAPI = createAsyncThunk(
     '/background/set-current/{backgroundId}',
     async (backgroundId: string) => {
-        if (token) {
-            const response = await axios.post(`/background/set-current/${backgroundId}`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).post(`/background/set-current/${backgroundId}`);
+        return response.data;
     }
 );
 
 export const backgroundGetCurrentAPI = createAsyncThunk(
     '/background/{userId}/current',
     async (userId: string) => {
-        if (token) {
-            const response = await axios.get(`/background/${userId}/current`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).get(`/background/${userId}/current`);
+        return response.data;
     }
 );
 
 export const backgroundPurchaseAPI = createAsyncThunk(
     '/background/purchase',
     async (purchaseDTO: { userId: string; backgroundId: string; }) => {
-        if(token){
-            const response = await axios.post(`/background/purchase`, purchaseDTO, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).post(`/background/purchase`, purchaseDTO);
+        return response.data;
     }
 );
 

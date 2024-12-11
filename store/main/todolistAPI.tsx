@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axiosInstance } from '../../util/axiosInstance';
 
 const initialState = {
     todos: [],
@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const token = window.localStorage.getItem('token');
-axios.defaults.baseURL = 'http://localhost:8080';
 
 const todolistAPI = createSlice({
     name: 'todolistAPI',
@@ -111,87 +110,50 @@ const todolistAPI = createSlice({
 export const getTodoAPI = createAsyncThunk(
     'getTodoAPI',
     async (userId: string) => {
-        if (token) {
-            const response = await axios.get(`/todo/${userId}`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).get(`/todo/${userId}`);
+        return response.data;
     }
 );
 
 export const addTodoAPI = createAsyncThunk(
     'addTodoAPI',
     async (todoDTO: { userId: string; title: string; }) => {
-        if (token) {
-            const response = await axios.post('/todo', todoDTO, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).post('/todo', todoDTO);
+        return response.data;
     }
 );
 
 export const completedTodoAPI = createAsyncThunk(
     'completedTodoAPI',
     async (todoDTO: { id: string; completed: boolean; }) => {
-        if (token) {
-            const response = await axios.post('/todo/status', todoDTO, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).post('/todo/status', todoDTO);
+        return response.data;
     }
 );
 
 export const putTodoAPI = createAsyncThunk(
     'putTodoAPI',
     async (todoDTO: { id: string; title: string; }) => {
-        if (token) {
-            const response = await axios.put('/todo', todoDTO, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).put('/todo', todoDTO);
+        return response.data;
     }
 );
 
 export const deleteTodoAPI = createAsyncThunk(
     'deleteTodoAPI',
     async (id: string) => {
-        if (token) {
-            const response = await axios.delete(`/todo/${id}`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).delete(`/todo/${id}`);
+        return response.data;
     }
 );
 
 export const deleteAllTodoAPI = createAsyncThunk(
     'deleteAllTodoAPI',
     async (ids: string[]) => {
-        if (token) {
-            const response = await axios.delete('/todo/del_list', {
-                data: ids,
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).delete('/todo/del_list', {
+            data: ids
+        });
+        return response.data;
     }
 );
 

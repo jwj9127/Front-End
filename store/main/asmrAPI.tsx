@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axiosInstance } from '../../util/axiosInstance';
 
 const initialState = {
     asmrs: [],
@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const token = window.localStorage.getItem('token');
-axios.defaults.baseURL = 'http://localhost:8080';
 
 const asmrAPI = createSlice({
     name: 'asmrAPI',
@@ -66,40 +65,23 @@ const asmrAPI = createSlice({
 export const asmrAllAPI = createAsyncThunk(
     '/asmr/all',
     async () => {
-        if (token) {
-            const response = await axios.get('/asmr/all', {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).get('/asmr/all');
+        return response.data;
     }
 );
 
 export const asmrOwnedAPI = createAsyncThunk(
     '/asmr/{userId}/owned',
     async (userId: string) => {
-        if (token) {
-            const response = await axios.get(`/asmr/${userId}/owned`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).get(`/asmr/${userId}/owned`);
+        return response.data;
     }
 );
 
 export const asmrPurchaseAPI = createAsyncThunk(
     '/asmr/purchase',
     async (purchaseDTO: { userId: string; asmrFileName: string; }) => {
-        const response = await axios.post(`/asmr/purchase`, purchaseDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `${token}`
-            }
-        });
+        const response = await axiosInstance(token!).post(`/asmr/purchase`, purchaseDTO);
         return response.data;
     }
 );

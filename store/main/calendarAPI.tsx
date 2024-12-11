@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { axiosInstance } from '../../util/axiosInstance';
 
 const initialState = {
     schedulers: [],
@@ -10,7 +9,6 @@ const initialState = {
 };
 
 const token = window.localStorage.getItem('token');
-axios.defaults.baseURL = 'http://localhost:8080';
 
 const calendarAPI = createSlice({
     name: 'calendarAPI',
@@ -82,14 +80,8 @@ const calendarAPI = createSlice({
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
     async (calendarDTO: { userId: string; title: string; startDay: string; endDay: string; }) => {
-        if (token) {
-            const response = await axios.post('/calendar', calendarDTO, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).post('/calendar', calendarDTO);
+        return response.data;
     }
 );
 
@@ -97,11 +89,7 @@ export const getCalendarAPI = createAsyncThunk(
     '/calendar/{userId}',
     async (userId: string) => {
         if (token) {
-            const response = await axios.get(`/calendar/${userId}`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
+            const response = await axiosInstance(token!).get(`/calendar/${userId}`);
             return response.data;
         }
     }
@@ -110,29 +98,16 @@ export const getCalendarAPI = createAsyncThunk(
 export const putCalendarAPI = createAsyncThunk(
     '/calendar/{calendar_id}',
     async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: string; endDay: string; } }) => {
-        if (token) {
-            const response = await axios.put(`/calendar/${calendar_id}`, calendarDTO, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).put(`/calendar/${calendar_id}`, calendarDTO);
+        return response.data;
     }
 );
 
 export const deleteCalendarAPI = createAsyncThunk(
     '/calendar/deleteCalendar',
     async (calendar_id: string) => {
-        if (token) {
-            const response = await axios.delete(`/calendar/${calendar_id}`, {
-                headers: {
-                    Authorization: `${token}`
-                }
-            });
-            return response.data;
-        }
+        const response = await axiosInstance(token!).delete(`/calendar/${calendar_id}`);
+        return response.data;
     }
 );
 
