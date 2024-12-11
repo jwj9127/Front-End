@@ -8,10 +8,7 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
-
-interface AddScheduleProps {
-    setIsAddingSchedule: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { AddScheduleProps } from '../../_interface/MainInterface';
 
 const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
 

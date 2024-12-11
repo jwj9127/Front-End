@@ -5,12 +5,8 @@ import { AppDispatch } from '../../../../../store/store';
 import { deleteCalendarAPI, getCalendarAPI } from '../../../../../store/main/calendarAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faX } from '@fortawesome/free-solid-svg-icons';
-import { Schedule } from '../../_interface/ModalInterface';
+import { CheckScheduleProps, Schedule } from '../../_interface/MainInterface';
 import Swal from 'sweetalert2';
-
-interface CheckScheduleProps {
-    setIsViewingSchedule: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) => {
 

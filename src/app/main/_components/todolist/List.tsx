@@ -1,6 +1,6 @@
 import React from 'react';
 import ToDoListItem from './Item';
-import { TodoListProps } from '../../_interface/ModalInterface';
+import { TodoListProps } from '../../_interface/MainInterface';
 import style from '../../../../../styles/main/todolist.module.css';
 
 const TodoList: React.FC<TodoListProps> = ({

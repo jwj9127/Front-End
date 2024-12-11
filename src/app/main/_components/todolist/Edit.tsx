@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Todo } from '../../_interface/ModalInterface';
+import { ToDoEditProps } from '../../_interface/MainInterface';
 import style from '../../../../../styles/main/todolist.module.css';
 import Swal from 'sweetalert2';
-
-interface ToDoEditProps {
-    selectedTodo: Todo | null;
-    onUpdate: (todoDTO: { id: string; title: string }) => void;
-}
 
 const ToDoEdit: React.FC<ToDoEditProps> = ({ selectedTodo, onUpdate }) => {
     const [value, setValue] = useState('');
