@@ -19,23 +19,23 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
     const [insertToggle, setInsertToggle] = useState(false);
-    const [todosState, setTodosState] = useState<Todo[]>(todos);
+
+    const selectTodo = () => {
+        dispatch(getTodoAPI(userId!))
+            .unwrap()
+            .then((response) => setTodos(response))
+            .catch(console.error);
+    }
 
     useEffect(() => {
         if (isModalOpen === true) {
-            dispatch(getTodoAPI(userId!))
-                .unwrap()
-                .then((response) => setTodos(response))
-                .catch(console.error);
+            selectTodo();
         }
     }, [isModalOpen]);
 
     const onInsertToggle = useCallback(() => {
-        if (selectedTodo) {
-            setSelectedTodo(null);
-        }
         setInsertToggle((prev) => !prev);
-    }, [selectedTodo]);
+    }, []);
 
     const onChangeSelectedTodo = (todo: Todo) => {
         setSelectedTodo(todo);
@@ -44,11 +44,11 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     const onInsert = useCallback((todoDTO: { userId: string; title: string; }) => {
         dispatch(addTodoAPI(todoDTO))
             .unwrap()
-            .then(() => {
+            .then((response) => {
                 Swal.fire({
                     title: "작성 완료"
                 });
-                closeModal();
+                selectTodo();
             });
     }, []);
 
@@ -59,7 +59,7 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                 Swal.fire({
                     title: "삭제 완료"
                 });
-                closeModal();
+                setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
             });
     }, []);
 
@@ -70,31 +70,20 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                 Swal.fire({
                     title: "수정 완료"
                 });
-                closeModal();
+                setInsertToggle(false);
+                selectTodo();
             });
-        Swal.fire({
-            title: "빈 칸은 수정이 안됩니다.",
-        });
     }, []);
 
     const onToggle = useCallback((todoDTO: { id: string; completed: boolean; }) => {
-        setTodosState((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === todoDTO.id ? { ...todo, checked: !todo.checked } : todo
-            )
-        );
-        const todoToUpdate = todosState.find(todo => todo.id === todoDTO.id);
-
-        if (todoToUpdate) {
-            dispatch(completedTodoAPI(todoDTO))
-                .unwrap()
-                .then(() => {
-                    Swal.fire({
-                        title: "목표 완료"
-                    });
-                });
-        }
-    }, [todosState]);
+        console.log(todoDTO);
+        dispatch(completedTodoAPI(todoDTO))
+            .unwrap()
+            .then(() => {
+                Swal.fire({ title: "목표 완료" });
+                selectTodo();
+            });
+    }, []);
 
     if (!isModalOpen) return null;
 
