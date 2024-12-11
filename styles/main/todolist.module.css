@@ -110,6 +110,7 @@
     cursor: default;
     width: 100%;
     height: 100%;
+    text-decoration: line-through;
 }
 
 .checkbox_off {
@@ -134,21 +135,13 @@
     padding: 0px 10px 0px 10px;
 }
 
-.checkbox.checked svg {
-    color: #9c88ff;
-}
-
-.checkbox.checked .text {
-    color: #adb5bd;
-    text-decoration: line-through;
-}
-
 .remove {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
     cursor: pointer;
     margin-right: 1rem;
+    transition: all 0.2s ease;
 }
 
 .edit {
@@ -157,44 +150,13 @@
     font-size: 1.5rem;
     cursor: pointer;
     margin-right: 1rem;
+    transition: all 0.2s ease;
 }
 
-.TodoInsert {
-    display: flex;
-    background: #495057;
-}
-
-.TodoInsert input {
-    width: 100%;
-    background: none;
-    outline: none;
-    border: none;
-    padding: 0.5rem;
-    font-size: 1.125rem;
-    line-height: 1.5;
-    color: white;
-}
-
-.TodoInsert input::placeholder {
-    color: #dee2e6;
-}
-
-.TodoInsert button {
-    background: none;
-    outline: none;
-    border: none;
-    background: #868e96;
-    color: white;
-    padding: 0 1rem;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.1s background ease-in;
-}
-
-.TodoInsert button:hover {
-    background: #adb5bd;
+.edit:hover,
+.remove:hover {
+    transition: all 0.2s ease;
+    color: #9c88ff;
 }
 
 .background {
@@ -245,14 +207,6 @@
     color: white;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
-}
-
-.main_page_todolist_null_p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 450px;
 }
 
 .text {
