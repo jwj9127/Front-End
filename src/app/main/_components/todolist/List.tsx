@@ -19,7 +19,7 @@ const TodoList: React.FC<TodoListProps> = ({
                 <ToDoListItem
                     key={todo.id}
                     todo={todo}
-                    onToggle={() => onToggle({ id: todo.id, completed: true })}
+                    onToggle={(completed: boolean) => onToggle({ id: todo.id, completed: completed })}
                     onRemove={onRemove}
                     onInsertToggle={onInsertToggle}
                     onChangeSelectedTodo={onChangeSelectedTodo}

@@ -7,7 +7,7 @@ import { faPenToSquare, faSquare, faSquareCheck, faTrash } from "@fortawesome/fr
 interface ToDoListItemProps {
   todo: Todo;
   onRemove: (id: string) => void;
-  onToggle: (id: string) => void;
+  onToggle: (completed: boolean) => void;
   onChangeSelectedTodo: (todo: Todo) => void;
   onInsertToggle: () => void;
 }
@@ -25,7 +25,7 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
     <div className={style.item_li}>
       <div
         className={checked ? style.checkbox_on : style.checkbox_off}
-        onClick={() => !checked && onToggle(id)}
+        onClick={() => checked === false && onToggle(true)}
       >
         {checked ?
           <FontAwesomeIcon icon={faSquareCheck} className={style.check} />
