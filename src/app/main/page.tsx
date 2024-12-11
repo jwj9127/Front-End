@@ -9,8 +9,6 @@ import TodoList from './_components/todolist/TodoList';
 import { backgroundGetCurrentAPI } from '../../../store/main/backgrounAPI';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Mypage from './_components/mypage/Mypage';
 
 interface Asmr {
@@ -20,7 +18,7 @@ interface Asmr {
     contentType: string;
 }
 
-type ModalType = "asmr" | "background" | "calendar" | "todo" | null;
+type ModalType = "asmr" | "background" | "calendar" | "todo" | "mypage" | null;
 
 export default function Main() {
 
@@ -86,8 +84,14 @@ export default function Main() {
                 className={styles.backgroundImage}
             // style={{ backgroundImage: `url(${backgroundImage})` }}
             ></div >
-            <div className={styles.mypage}>
-                <Mypage />
+            <div
+                className={styles.mypage}
+                onClick={() => openModalHandler("mypage")}
+            >
+                <Mypage
+                    isModalOpen={openModal === "mypage"}
+                    closeModal={closeModalHandler}
+                />
             </div>
             <div className={styles.nav}>
                 <div
