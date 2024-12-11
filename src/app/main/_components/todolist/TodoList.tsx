@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import style from '../../../../../styles/main/todolist.module.css';
-import { ModalProps } from '../../_interface/ModalInterface';
+import { ModalProps } from '../../_interface/MainInterface';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import List from './List';
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
 import { addTodoAPI, completedTodoAPI, deleteTodoAPI, getTodoAPI, putTodoAPI } from '../../../../../store/main/todolistAPI';
-import { Todo } from '../../_interface/ModalInterface';
+import { Todo } from '../../_interface/MainInterface';
 
 const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
@@ -76,7 +76,6 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     }, []);
 
     const onToggle = useCallback((todoDTO: { id: string; completed: boolean; }) => {
-        console.log(todoDTO);
         dispatch(completedTodoAPI(todoDTO))
             .unwrap()
             .then(() => {
