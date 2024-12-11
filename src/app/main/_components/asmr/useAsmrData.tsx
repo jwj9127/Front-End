@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
 import { asmrAllAPI, asmrOwnedAPI } from '../../../../../store/main/asmrAPI';
-import { Asmr } from '../../_interface/ModalInterface';
+import { Asmr } from '../../_interface/MainInterface';
 
 export const useBackgroundData = (isModalOpen: boolean) => {
     const userId = window.localStorage.getItem('userId');

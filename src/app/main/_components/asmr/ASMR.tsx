@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from '../../../../../styles/main/asmr.module.css';
-import { ASMRProps, Asmr } from '../../_interface/ModalInterface';
+import { ASMRProps, Asmr } from '../../_interface/MainInterface';
 import Headers from '../Header';
 import ImageItem from '../ImageItem';
 import { useBackgroundData } from './useAsmrData';
