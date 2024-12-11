@@ -1,16 +1,8 @@
 import React from 'react';
 import style from '../../../../../styles/main/todolist.module.css';
-import { Todo } from '../../_interface/ModalInterface';
+import { ToDoListItemProps } from '../../_interface/MainInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faSquare, faSquareCheck, faTrash } from "@fortawesome/free-solid-svg-icons";
-
-interface ToDoListItemProps {
-  todo: Todo;
-  onRemove: (id: string) => void;
-  onToggle: (completed: boolean) => void;
-  onChangeSelectedTodo: (todo: Todo) => void;
-  onInsertToggle: () => void;
-}
 
 const ToDoListItem: React.FC<ToDoListItemProps> = ({
   todo,
@@ -19,21 +11,20 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
   onChangeSelectedTodo,
   onInsertToggle,
 }) => {
-  const { id, title, checked } = todo;
 
   return (
     <div className={style.item_li}>
       <div
-        className={checked ? style.checkbox_on : style.checkbox_off}
-        onClick={() => checked === false && onToggle(true)}
+        className={todo.completed ? style.checkbox_on : style.checkbox_off}
+        onClick={() => todo.completed === false && onToggle(true)}
       >
-        {checked ?
+        {todo.completed ?
           <FontAwesomeIcon icon={faSquareCheck} className={style.check} />
           :
           <FontAwesomeIcon icon={faSquare} className={style.noncheck} />}
-        <div className={style.text}>{title}</div>
+        <div className={style.text}>{todo.title}</div>
       </div>
-      {!checked && (
+      {!todo.completed && (
         <FontAwesomeIcon
           icon={faPenToSquare}
           className={style.edit}
@@ -46,7 +37,7 @@ const ToDoListItem: React.FC<ToDoListItemProps> = ({
       <FontAwesomeIcon
         icon={faTrash}
         className={style.remove}
-        onClick={() => onRemove(id)}
+        onClick={() => onRemove(todo.id)}
       />
     </div >
   );
