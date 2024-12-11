@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from '../../../../../styles/main/calendar.module.css';
-import { ModalProps } from '../../_interface/ModalInterface';
+import { ModalProps } from '../../_interface/MainInterface';
 import CheckSchedule from './CheckSchedule';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
