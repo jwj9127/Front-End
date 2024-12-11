@@ -21,6 +21,10 @@
     background-color: #9DC4FF;
     font-weight: bold;
     cursor: pointer;
+    background-image: url('../../public/imgs/icons/유저.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
 }
 
 .nav {
