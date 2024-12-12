@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../../store/store';
 import { toggleIsSign } from '../../../../store/sign/signSwitch';
@@ -11,7 +10,6 @@ import Swal from 'sweetalert2';
 
 export default function SignUp() {
 
-    const router = useRouter();
     const dispatch = useDispatch<AppDispatch>();
     const isSign = useSelector(
         (state: RootState) => state.signSwitch
