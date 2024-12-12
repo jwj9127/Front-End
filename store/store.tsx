@@ -6,6 +6,7 @@ import backgrounAPI from './main/backgrounAPI';
 import asmrAPI from './main/asmrAPI';
 import calendarAPI from './main/calendarAPI';
 import todolistAPI from './main/todolistAPI';
+import musicAPI from './music/musicAPI';
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
         backgroundAPI: backgrounAPI,
         asmrAPI: asmrAPI,
         calendarAPI: calendarAPI,
-        todolistAPI: todolistAPI
+        todolistAPI: todolistAPI,
+        musicAPI: musicAPI
     }
 });
 
