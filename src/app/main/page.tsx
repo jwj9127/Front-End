@@ -31,13 +31,12 @@ export default function Main() {
         dispatch(backgroundGetCurrentAPI(userId!))
             .unwrap()
             .then((response) => {
-                console.log(response);
                 setBackgroundImage(response.url);
             })
             .catch((error) => {
                 console.log(error);
             })
-    })
+    }, [])
 
     const openModalHandler = (modalType: ModalType) => {
         if (openModal === modalType) {
@@ -78,7 +77,7 @@ export default function Main() {
         <>
             <div
                 className={styles.backgroundImage}
-            // style={{ backgroundImage: `url(${backgroundImage})` }}
+                style={{ backgroundImage: `url(${backgroundImage})` }}
             ></div >
             <div
                 className={styles.mypage}
@@ -91,7 +90,7 @@ export default function Main() {
             </div>
             <div
                 className={styles.music_bar}
-                onClick={() => {router.push('/music');}}
+                onClick={() => { router.push('/music'); }}
             ></div>
             <div className={styles.nav}>
                 <div
