@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { signAxiosInstance } from '../../util/signAxiosInstance';
 
 const initialState = {
     user: null,
@@ -7,8 +7,6 @@ const initialState = {
     error: null as string | null | undefined,
     idCheckStatus: null
 };
-
-axios.defaults.baseURL = 'http://localhost:8080';
 
 const signAPI = createSlice({
     name: 'signAPI',
@@ -65,7 +63,7 @@ const signAPI = createSlice({
 export const idCheckAPI = createAsyncThunk(
     'sign/idCheckAPI',
     async (userId: string) => {
-        const response = await axios.post(`/user/idCheck?userId=${userId}`);
+        const response = await signAxiosInstance().post(`/user/idCheck?userId=${userId}`);
         return response.data;
     }
 );
@@ -73,11 +71,7 @@ export const idCheckAPI = createAsyncThunk(
 export const signUpAPI = createAsyncThunk(
     'sign/signUpAPI',
     async (userDTO: { userId: string; userPw: string; userName: string; }) => {
-        const response = await axios.post('/user/Signup', userDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
+        const response = await signAxiosInstance().post('/user/Signup', userDTO);
         return response.data;
     }
 );
@@ -85,11 +79,7 @@ export const signUpAPI = createAsyncThunk(
 export const signInAPI = createAsyncThunk(
     'sign/signInAPI',
     async (userDTO: { userId: string; userPw: string; }) => {
-        const response = await axios.post('/login', userDTO, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
+        const response = await signAxiosInstance().post('/login', userDTO);
         return response.data;
     }
 );
