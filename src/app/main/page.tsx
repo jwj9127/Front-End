@@ -10,6 +10,7 @@ import { backgroundGetCurrentAPI } from '../../../store/main/backgrounAPI';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import Mypage from './_components/mypage/Mypage';
+import { useRouter } from 'next/navigation';
 
 interface Asmr {
     id: string;
@@ -22,6 +23,7 @@ type ModalType = "asmr" | "background" | "calendar" | "todo" | "mypage" | null;
 
 export default function Main() {
 
+    const router = useRouter();
     const [openModal, setOpenModal] = useState<ModalType>(null);
 
     const dispatch = useDispatch<AppDispatch>();
@@ -93,7 +95,10 @@ export default function Main() {
                     closeModal={closeModalHandler}
                 />
             </div>
-            <div className={styles.music_bar}></div>
+            <div
+                className={styles.music_bar}
+                onClick={() => {router.push('/music');}}
+            ></div>
             <div className={styles.nav}>
                 <div
                     className={styles.asmr}
