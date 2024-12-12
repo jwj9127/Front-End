@@ -22,6 +22,8 @@ const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalO
 
     if (!isModalOpen) return null;
 
+    console.log(asmrAudios);
+
     return (
         <>
             <div
