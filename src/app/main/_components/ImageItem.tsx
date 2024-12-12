@@ -13,6 +13,8 @@ const ImageItem: React.FC<ImageItemProps> = ({
     lockIcon,
     actionIcon
 }) => {
+
+    console.log(imageUrl)
     return (
         <div
             className={`${styles.img} ${isLocked ? styles.locked : ''}`}
