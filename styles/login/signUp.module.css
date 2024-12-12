@@ -33,15 +33,16 @@
     top: 170px;
     left: 600px;
     cursor: pointer;
-    color: black;
+    color: white;
     transition: all 0.3s ease;
     font-size: medium;
     border: none;
     background-color: #8EBBFF;
+    font-weight: bold;
 }
 
 .userId_check:hover {
-    color: #6C33E5;
+    color: #9c88ff;
     transition: all 0.3s ease;
 }
 
@@ -62,7 +63,7 @@
     display: flex;
     align-items: center;
     font-size: x-large;
-    color: #575757;
+    color: white;
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -72,7 +73,7 @@
 .focusedLabel_user_name {
     position: absolute;
     font-size: large;
-    color: #747474;
+    color: #eeeeee;
     transition: all 0.3s ease;
 }
 
@@ -94,7 +95,7 @@
     height: 50px;
     outline: none;
     border: none;
-    border-bottom: solid 1px #6C33E5;
+    border-bottom: solid 1px #9c88ff;
 }
 
 .focusedInput_user_id,
@@ -105,7 +106,7 @@
     padding: 15px 0px 15px 0px;
     outline: none;
     border: none;
-    border-bottom: solid 1px #6C33E5;
+    border-bottom: solid 1px #9c88ff;
     transition: all 0.3s ease;
 }
 
@@ -124,9 +125,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 1px #6C33E5;
+    border: solid 1px #9c88ff;
     border-radius: 1rem;
-    color: #6C33E5;
+    color: #9c88ff;
     background-color: white;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -145,9 +146,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 1px #6C33E5;
+    border: solid 1px #9c88ff;
     border-radius: 0.5rem;
-    color: #6C33E5;
+    color: #9c88ff;
     background-color: white;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -156,6 +157,6 @@
 .signup_button:hover,
 .signin_button:hover {
     color: white;
-    background-color: #6C33E5;
+    background-color: #9c88ff;
     transition: all 0.3s ease;
 }
