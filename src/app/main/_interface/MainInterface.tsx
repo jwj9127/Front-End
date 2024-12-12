@@ -20,6 +20,7 @@ export interface Asmr {
     imageUrl: string;
     imageContentType: string;
     audioUrl: string;
+    name: string;
 }
 
 export interface BackGround {

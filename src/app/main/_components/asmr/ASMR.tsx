@@ -41,7 +41,7 @@ const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalO
                                     <ImageItem
                                         key={asmr.id}
                                         id={asmr.id}
-                                        fileName={asmr.imageFileName}
+                                        fileName={asmr.name}
                                         imageUrl={asmr.imageUrl}
                                         isLocked={isLocked}
                                         onSave={() => handleAudioPlay(asmr)}
