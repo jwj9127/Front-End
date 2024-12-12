@@ -11,13 +11,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import Mypage from './_components/mypage/Mypage';
 import { useRouter } from 'next/navigation';
-
-interface Asmr {
-    id: string;
-    fileName: string;
-    url: string;
-    contentType: string;
-}
+import { Asmr } from './_interface/MainInterface';
 
 type ModalType = "asmr" | "background" | "calendar" | "todo" | "mypage" | null;
 

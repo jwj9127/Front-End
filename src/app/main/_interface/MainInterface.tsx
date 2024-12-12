@@ -16,9 +16,10 @@ export interface ASMRProps extends ModalProps {
 
 export interface Asmr {
     id: string;
-    fileName: string;
-    url: string;
-    contentType: string;
+    imageFileName: string;
+    imageUrl: string;
+    imageContentType: string;
+    audioUrl: string;
 }
 
 export interface BackGround {

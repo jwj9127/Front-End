@@ -16,7 +16,7 @@ const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalO
         if (currentAsmr && currentAsmr.id === asmr.id) {
             stopAudio(); // 동일한 ASMR이면 정지
         } else {
-            playAudio(asmr.url, asmr); // 다른 ASMR이면 재생
+            playAudio(asmr.audioUrl, asmr); // 다른 ASMR이면 재생
         }
     };
 
@@ -41,8 +41,8 @@ const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalO
                                     <ImageItem
                                         key={asmr.id}
                                         id={asmr.id}
-                                        fileName={asmr.fileName}
-                                        imageUrl={asmr.url}
+                                        fileName={asmr.imageFileName}
+                                        imageUrl={asmr.imageUrl}
                                         isLocked={isLocked}
                                         onSave={() => handleAudioPlay(asmr)}
                                         isActive={isActive}
