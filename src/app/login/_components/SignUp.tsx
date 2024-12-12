@@ -74,8 +74,6 @@ export default function SignUp() {
                     Swal.fire({
                         title: response
                     });
-                    router.push('/login');
-                    console.log(response);
                 })
                 .catch((error) => {
                     Swal.fire({
