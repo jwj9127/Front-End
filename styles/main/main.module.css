@@ -27,6 +27,20 @@
     background-size: 30%;
 }
 
+.music_bar {
+    width: 25%;
+    height: 15%;
+    position: fixed;
+    left: 38%;
+    bottom: 80px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url('../../public/imgs/Logo.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    cursor: pointer;
+}
+
 .nav {
     position: fixed;
     bottom: 60px;

@@ -93,6 +93,7 @@ export default function Main() {
                     closeModal={closeModalHandler}
                 />
             </div>
+            <div className={styles.music_bar}></div>
             <div className={styles.nav}>
                 <div
                     className={styles.asmr}
