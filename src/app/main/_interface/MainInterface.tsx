@@ -25,7 +25,7 @@ export interface Asmr {
 
 export interface BackGround {
     id: string;
-    fileName: string;
+    name: string;
     url: string;
 }
 
@@ -51,6 +51,7 @@ export interface ImageItemProps {
     isActive?: boolean | null;
     lockIcon?: React.ReactNode;
     actionIcon?: React.ReactNode;
+    closeModal: () => void;
 }
 
 export interface Schedule {

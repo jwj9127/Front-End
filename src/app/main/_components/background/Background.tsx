@@ -45,11 +45,12 @@ const Background: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                                     <ImageItem
                                         key={background.id}
                                         id={background.id}
-                                        name={background.fileName}
+                                        name={background.name}
                                         imageUrl={background.url}
                                         isLocked={isLocked}
                                         isWho="BACKGROUND"
                                         onPlay={saveBackground}
+                                        closeModal={closeModal}
                                     />
                                 )
                             })}

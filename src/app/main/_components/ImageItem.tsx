@@ -19,7 +19,8 @@ const ImageItem: React.FC<ImageItemProps> = ({
     onPlay,
     isActive,
     lockIcon,
-    actionIcon
+    actionIcon,
+    closeModal
 }) => {
 
     const dispatch = useDispatch<AppDispatch>();
@@ -49,6 +50,7 @@ const ImageItem: React.FC<ImageItemProps> = ({
                             .unwrap()
                             .then((result) => {
                                 response(result);
+                                closeModal();
                             })
                             .catch((err) => {
                                 error(err);
@@ -58,6 +60,7 @@ const ImageItem: React.FC<ImageItemProps> = ({
                             .unwrap()
                             .then((result) => {
                                 response(result);
+                                closeModal();
                             })
                             .catch((err) => {
                                 error(err);

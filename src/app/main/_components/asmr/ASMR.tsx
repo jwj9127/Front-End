@@ -47,6 +47,7 @@ const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalO
                                         isActive={isActive}
                                         lockIcon={<span>🔒</span>}
                                         actionIcon={isActive ? <span>▶</span> : <span>⏸</span>}
+                                        closeModal={closeModal}
                                     />
                                 )
                             })}
