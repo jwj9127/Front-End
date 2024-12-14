@@ -30,7 +30,7 @@ export default function SignIn() {
                 setTimeout(() => response(reslut), 500);
                 setTimeout(() => window.localStorage.setItem('userId', reslut.userId), 500);
                 setTimeout(() => window.localStorage.setItem('token', reslut.authorization), 500);
-                router.push('/main');
+                setTimeout(() => router.push('/main'), 500);
             })
             .catch((err) => {
                 error(err);
