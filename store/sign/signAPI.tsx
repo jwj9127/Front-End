@@ -62,25 +62,37 @@ const signAPI = createSlice({
 
 export const idCheckAPI = createAsyncThunk(
     'sign/idCheckAPI',
-    async (userId: string) => {
-        const response = await signAxiosInstance().post(`/user/idCheck?userId=${userId}`);
-        return response.data;
+    async (userId: string, { rejectWithValue }) => {
+        try {
+            const response = await signAxiosInstance().post(`/user/idCheck?userId=${userId}`);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
 export const signUpAPI = createAsyncThunk(
     'sign/signUpAPI',
-    async (userDTO: { userId: string; userPw: string; userName: string; }) => {
-        const response = await signAxiosInstance().post('/user/Signup', userDTO);
-        return response.data;
+    async (userDTO: { userId: string; userPw: string; userName: string; }, { rejectWithValue }) => {
+        try {
+            const response = await signAxiosInstance().post('/user/Signup', userDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
 export const signInAPI = createAsyncThunk(
     'sign/signInAPI',
-    async (userDTO: { userId: string; userPw: string; }) => {
-        const response = await signAxiosInstance().post('/login', userDTO);
-        return response.data;
+    async (userDTO: { userId: string; userPw: string; }, { rejectWithValue }) => {
+        try {
+            const response = await signAxiosInstance().post('/login', userDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
