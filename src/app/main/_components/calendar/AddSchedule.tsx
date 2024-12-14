@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Swal from 'sweetalert2';
 import { AddScheduleProps } from '../../_interface/MainInterface';
 import { alertTitle } from '../../../../../util/alert';
 import { response } from '../../../../../util/response';
