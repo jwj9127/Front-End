@@ -27,12 +27,9 @@ export default function SignIn() {
         dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
             .unwrap()
             .then((result) => {
-                if (result?.userId && result?.authorization) {
-                    window.localStorage.setItem('userId', result.userId)
-                    window.localStorage.setItem('token', result.authorization)
-                    setTimeout(() => response(result), 2000)
-                    setTimeout(() => router.push('/main'), 2000)
-                }
+                window.localStorage.setItem('userId', result.userId)
+                window.localStorage.setItem('token', result.authorization)
+                setTimeout(() => router.push('/main'), 2000)
             })
             .catch((err) => {
                 error(err);
