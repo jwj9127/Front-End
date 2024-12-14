@@ -36,7 +36,16 @@ export default function SignUp() {
                 .unwrap()
                 .then((reslut) => {
                     response(reslut);
-                    setClearId(true);
+                    Swal.fire({
+                        text: "해당 아이디를 사용하시겠어요?",
+                        showCancelButton: true,
+                        confirmButtonText: "네",
+                        cancelButtonText: "아뇨"
+                    }).then(click => {
+                        if (click.isConfirmed) {
+                            setClearId(true);
+                        }
+                    })
                 })
                 .catch((err) => {
                     error(err);
@@ -99,6 +108,7 @@ export default function SignUp() {
                         ref={userIdRef}
                         value={userIdValue}
                         onChange={(e) => setUserIdValue(e.target.value)}
+                        disabled={clearId}
                     ></input>
                 </div>
                 <div className={styles.userPw_div}>
