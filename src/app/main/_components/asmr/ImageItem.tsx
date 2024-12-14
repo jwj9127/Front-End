@@ -56,7 +56,7 @@ const ImageItem: React.FC<ASMRItemProps> = ({
 
     return (
         <div
-            className={`${styles.img} ${isLocked ? styles.lock : ''}`}
+            className={styles.img}
             title={isLocked ? '' : name}
             style={{ backgroundImage: `url(${imageUrl})` }}
             onClick={() => purchaseOrPlay(id)}
