@@ -9,6 +9,7 @@ import { idCheckAPI, signUpAPI } from '../../../../store/sign/signAPI';
 import Swal from 'sweetalert2';
 import { response } from '../../../../util/response';
 import { error } from '../../../../util/error';
+import { alertTitle } from '../../../../util/alert';
 
 export default function SignUp() {
 
@@ -52,25 +53,17 @@ export default function SignUp() {
                     setClearId(false);
                 })
         } else {
-            Swal.fire({
-                title: "아이디를 입력해주세요"
-            });
+            alertTitle("아이디를 입력해주세요");
         }
     }
 
     const signUp = () => {
         if (!clearId) {
-            Swal.fire({
-                title: "아이디 체크를 진행하세요"
-            });
+            alertTitle("아이디 체크를 진행하세요")
         } else if (!userPwValue) {
-            Swal.fire({
-                title: "비밀번호를 입력해주세요"
-            });
+            alertTitle("비밀번호를 입력해주세요")
         } else if (!userNameValue) {
-            Swal.fire({
-                title: "닉네임을 입력해주세요"
-            });
+            alertTitle("닉네임을 입력해주세요")
         } else {
             dispatch(signUpAPI({ userId: userIdValue, userPw: userPwValue, userName: userNameValue }))
                 .unwrap()
