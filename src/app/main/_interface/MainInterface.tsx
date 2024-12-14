@@ -62,10 +62,12 @@ export interface Schedule {
 
 export interface AddScheduleProps {
     setIsAddingSchedule: React.Dispatch<React.SetStateAction<boolean>>;
+    setViewRerender: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface CheckScheduleProps {
     setIsViewingSchedule: React.Dispatch<React.SetStateAction<boolean>>;
+    setViewRerender: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface Todo {

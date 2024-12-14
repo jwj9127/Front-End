@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { response } from '../../../../../util/response';
 import { error } from '../../../../../util/error';
 
-const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) => {
+const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule, setViewRerender }) => {
 
     const dispatch = useDispatch<AppDispatch>();
     const userId = window.localStorage.getItem('userId');
@@ -27,7 +27,7 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) =
 
     useEffect(() => {
         selectSchedule();
-    }, [setIsViewingSchedule])
+    }, [setIsViewingSchedule, setViewRerender])
 
     const formatDateToString = (dateString: string) => {
         const date = new Date(dateString);
@@ -48,8 +48,8 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) =
                 dispatch(deleteCalendarAPI(id))
                     .unwrap()
                     .then((result) => {
-                        response(result);
                         setMyDate((prev) => prev.filter(schedule => schedule.id !== id));
+                        response(result);
                     })
                     .catch((err) => {
                         error(err);
