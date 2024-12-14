@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ToDoEditProps } from '../../_interface/MainInterface';
 import style from '../../../../../styles/main/todolist.module.css';
-import Swal from 'sweetalert2';
+import { alertTitle } from '../../../../../util/alert';
 
 const ToDoEdit: React.FC<ToDoEditProps> = ({ selectedTodo, onUpdate }) => {
     const [value, setValue] = useState('');
@@ -13,10 +13,8 @@ const ToDoEdit: React.FC<ToDoEditProps> = ({ selectedTodo, onUpdate }) => {
 
     const onSubmit = useCallback(
         (e: any) => {
-            if (value.trim() === '') {
-                Swal.fire({
-                    title: "빈 칸은 수정이 안됩니다.",
-                });
+            if (!value) {
+                alertTitle("빈 칸은 수정이 안됩니다.");
             } else {
                 onUpdate(todoDTO);
                 setValue('');
