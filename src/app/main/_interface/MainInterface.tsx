@@ -64,10 +64,14 @@ export interface Schedule {
 
 export interface AddScheduleProps {
     setIsAddingSchedule: React.Dispatch<React.SetStateAction<boolean>>;
+    myDate: Schedule[];
+    setMyDate: React.Dispatch<React.SetStateAction<Schedule[]>>;
 }
 
 export interface CheckScheduleProps {
     setIsViewingSchedule: React.Dispatch<React.SetStateAction<boolean>>;
+    myDate: Schedule[];
+    setMyDate: React.Dispatch<React.SetStateAction<Schedule[]>>;
 }
 
 export interface Todo {
