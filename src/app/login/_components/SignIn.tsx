@@ -9,6 +9,7 @@ import { signInAPI } from '../../../../store/sign/signAPI';
 import { useRouter } from 'next/navigation';
 import { response } from '../../../../util/response';
 import { error } from '../../../../util/error';
+import { alertTitle } from '../../../../util/alert';
 
 export default function SignIn() {
 
@@ -23,16 +24,22 @@ export default function SignIn() {
     const pwInputRef = useRef<HTMLInputElement | null>(null);
 
 
-    const signIn = () => {
-        dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
-            .unwrap()
-            .then((result) => {
-                window.localStorage.setItem('userId', result.userId)
-                window.localStorage.setItem('token', result.authorization)
-            })
-            .catch((err) => {
+    const signIn = async () => {
+        if (!idValue) {
+            alertTitle("아이디를 입력하세요");
+        } else if (!pwValue) {
+            alertTitle("비밀번호를 입력하세요");
+        } else {
+            try {
+                const result = await dispatch(signInAPI({ userId: idValue, userPw: pwValue })).unwrap();
+                window.localStorage.setItem('userId', result.userId);
+                window.localStorage.setItem('token', result.authorization);
+                await response(result);
+                router.push('/main');
+            } catch (err) {
                 error(err);
-            })
+            }
+        }
     }
 
     return (
