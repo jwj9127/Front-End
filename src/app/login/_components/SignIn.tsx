@@ -28,9 +28,10 @@ export default function SignIn() {
             .unwrap()
             .then((result) => {
                 if (result?.userId && result?.authorization) {
-                    setTimeout(() => window.localStorage.setItem('userId', result.userId), 1000)
-                    setTimeout(() => window.localStorage.setItem('token', result.authorization), 1000)
-                    setTimeout(() => router.push('/main'), 1000)
+                    window.localStorage.setItem('userId', result.userId)
+                    window.localStorage.setItem('token', result.authorization)
+                    setTimeout(() => response(result), 2000)
+                    setTimeout(() => router.push('/main'), 2000)
                 }
             })
             .catch((err) => {
