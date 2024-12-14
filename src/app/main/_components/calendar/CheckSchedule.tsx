@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faX } from '@fortawesome/free-solid-svg-icons';
 import { CheckScheduleProps, Schedule } from '../../_interface/MainInterface';
 import Swal from 'sweetalert2';
+import { response } from '../../../../../util/response';
+import { error } from '../../../../../util/error';
 
 const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) => {
 
@@ -36,19 +38,24 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) =
 
 
     const deleteCalendar = (id: any) => {
-        dispatch(deleteCalendarAPI(id))
-            .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "일정을 삭제했습니다"
-                });
-                setMyDate((prev) => prev.filter(schedule => schedule.id !== id));
-            })
-            .catch(() => {
-                Swal.fire({
-                    title: "일정이 삭제 되지 않았습니다."
-                })
-            });
+        Swal.fire({
+            text: "일정을 삭제하시겠습니까?",
+            showCancelButton: true,
+            confirmButtonText: "네",
+            cancelButtonText: "아뇨"
+        }).then(click => {
+            if (click.isConfirmed) {
+                dispatch(deleteCalendarAPI(id))
+                    .unwrap()
+                    .then((result) => {
+                        response(result);
+                        setMyDate((prev) => prev.filter(schedule => schedule.id !== id));
+                    })
+                    .catch((err) => {
+                        error(err);
+                    });
+            }
+        });
     }
 
     return (
