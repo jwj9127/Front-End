@@ -150,9 +150,13 @@ export const addListByUrlAPI = createAsyncThunk(
 
 export const addListByAiAPI = createAsyncThunk(
     'addListByAiAPI',
-    async (addAIDTO: { userId: string; keywordOrGenre: string; }) => {
-        const response = await axiosInstance(token!).post(`/playlist/add-ai`, addAIDTO);
-        return response.data;
+    async (addAIDTO: { userId: string; keywordOrGenre: string; }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).post(`/playlist/add-ai`, addAIDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
