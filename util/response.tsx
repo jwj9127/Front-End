@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 
 export const response = (response: any) => {
     if (response && response.status === 200) {
+        console.log(response);
         return Swal.fire({
             text: response.message
         });
