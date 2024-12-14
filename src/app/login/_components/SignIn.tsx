@@ -26,11 +26,11 @@ export default function SignIn() {
     const signIn = () => {
         dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
             .unwrap()
-            .then((reslut) => {
-                setTimeout(() => response(reslut), 500);
-                setTimeout(() => window.localStorage.setItem('userId', reslut.userId), 500);
-                setTimeout(() => window.localStorage.setItem('token', reslut.authorization), 500);
-                setTimeout(() => router.push('/main'), 500);
+            .then((result) => {
+                response(result);
+                window.localStorage.setItem('userId', result.userId);
+                window.localStorage.setItem('token', result.authorization);
+                router.push('/main');
             })
             .catch((err) => {
                 error(err);
