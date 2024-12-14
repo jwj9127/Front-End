@@ -188,8 +188,12 @@
 }
 
 .list_url {
-    width: 30%;
-    height: 30%;
+    min-width: 15%;
+    min-height: 15%;
+    width: auto;
+    height: auto;
+    max-width: 30%;
+    max-height: 30%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -197,6 +201,8 @@
 }
 
 .title_div {
+    min-width: 50%;
+    width: 50%;
     max-width: 50%;
 }
 
