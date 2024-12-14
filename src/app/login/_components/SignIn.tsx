@@ -7,7 +7,8 @@ import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signIn.module.css';
 import { signInAPI } from '../../../../store/sign/signAPI';
 import { useRouter } from 'next/navigation';
-import Swal from 'sweetalert2';
+import { response } from '../../../../util/response';
+import { error } from '../../../../util/error';
 
 export default function SignIn() {
 
@@ -25,19 +26,14 @@ export default function SignIn() {
     const signIn = () => {
         dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
             .unwrap()
-            .then((response) => {
-                console.log(response);
-                Swal.fire({
-                    title: "로그인 성공"
-                });
-                window.localStorage.setItem('userId', response.userId);
-                window.localStorage.setItem('token', response.authorization);
+            .then((reslut) => {
+                response(reslut);
+                window.localStorage.setItem('userId', reslut.userId);
+                window.localStorage.setItem('token', reslut.authorization);
                 router.push('/main');
             })
-            .catch(() => {
-                Swal.fire({
-                    title: "아이디나 비밀번호가 틀립니다."
-                });
+            .catch((err) => {
+                error(err);
             })
     }
 
