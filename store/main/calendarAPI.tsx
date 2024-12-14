@@ -45,21 +45,6 @@ const calendarAPI = createSlice({
                 state.loading = false;
             });
 
-        // putCalendarAPI
-        builder
-            .addCase(putCalendarAPI.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(putCalendarAPI.fulfilled, (state, action) => {
-                state.scheduler = action.payload;
-                state.loading = false;
-            })
-            .addCase(putCalendarAPI.rejected, (state, action) => {
-                state.error = action.error.message;
-                state.loading = false;
-            });
-
         // deleteCalendarAPI
         builder
             .addCase(deleteCalendarAPI.pending, (state) => {
@@ -79,9 +64,13 @@ const calendarAPI = createSlice({
 
 export const makeCalendarAPI = createAsyncThunk(
     '/calendar',
-    async (calendarDTO: { userId: string; title: string; startDay: string; endDay: string; }) => {
-        const response = await axiosInstance(token!).post('/calendar', calendarDTO);
-        return response.data;
+    async (calendarDTO: { userId: string; title: string; startDay: string; endDay: string; }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).post('/calendar', calendarDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
@@ -95,19 +84,15 @@ export const getCalendarAPI = createAsyncThunk(
     }
 );
 
-export const putCalendarAPI = createAsyncThunk(
-    '/calendar/{calendar_id}',
-    async ({ calendar_id, calendarDTO }: { calendar_id: string; calendarDTO: { title: string; content: string; startDay: string; endDay: string; } }) => {
-        const response = await axiosInstance(token!).put(`/calendar/${calendar_id}`, calendarDTO);
-        return response.data;
-    }
-);
-
 export const deleteCalendarAPI = createAsyncThunk(
     '/calendar/deleteCalendar',
-    async (calendar_id: string) => {
-        const response = await axiosInstance(token!).delete(`/calendar/${calendar_id}`);
-        return response.data;
+    async (calendar_id: string, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).delete(`/calendar/${calendar_id}`);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
