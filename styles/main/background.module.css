@@ -79,9 +79,11 @@
 
 .img::after {
     content: attr(title);
-    color: tomato;
+    color: white;
+    font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s ease;
+    filter: blur(5px);
 }
 
 .img:hover::after {

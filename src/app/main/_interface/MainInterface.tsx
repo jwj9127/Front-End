@@ -46,12 +46,18 @@ export interface ImageItemProps {
     name: string;
     imageUrl: string;
     isLocked: boolean;
-    isWho: string;
-    onPlay: (id: string) => void;
     isActive?: boolean | null;
     lockIcon?: React.ReactNode;
     actionIcon?: React.ReactNode;
     closeModal: () => void;
+}
+
+export interface BackgroundItemProps extends ImageItemProps{
+    onSave: (saveDTO: { userId: string, backgroundName: string }) => void;
+}
+
+export interface ASMRItemProps extends ImageItemProps{
+    onPlay: (id: string) => void;
 }
 
 export interface Schedule {
