@@ -29,7 +29,6 @@ export default function SignIn() {
             .then((result) => {
                 window.localStorage.setItem('userId', result.userId)
                 window.localStorage.setItem('token', result.authorization)
-                setTimeout(() => response(result), 2000)
             })
             .catch((err) => {
                 error(err);
