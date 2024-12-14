@@ -30,8 +30,6 @@ export default function SignIn() {
                 if (result?.userId && result?.authorization) {
                     window.localStorage.setItem('userId', result.userId);
                     window.localStorage.setItem('token', result.authorization);
-                    await response(result);
-                    router.push('/main');
                 }
             })
             .catch((err) => {
