@@ -9,6 +9,7 @@ import { signInAPI } from '../../../../store/sign/signAPI';
 import { useRouter } from 'next/navigation';
 import { response } from '../../../../util/response';
 import { error } from '../../../../util/error';
+import Swal from 'sweetalert2';
 
 export default function SignIn() {
 
@@ -27,10 +28,14 @@ export default function SignIn() {
         dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
             .unwrap()
             .then((result) => {
-                response(result);
-                window.localStorage.setItem('userId', result.userId);
-                window.localStorage.setItem('token', result.authorization);
-                router.push('/main');
+                if (result && result.status === 200) {
+                    Swal.fire({
+                        text: result.message
+                    });
+                    window.localStorage.setItem('userId', result.userId);
+                    window.localStorage.setItem('token', result.authorization);
+                    router.push('/main');
+                }
             })
             .catch((err) => {
                 error(err);
