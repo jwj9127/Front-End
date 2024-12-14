@@ -24,21 +24,21 @@ export default function SignIn() {
     const pwInputRef = useRef<HTMLInputElement | null>(null);
 
 
-    const signIn = async () => {
+    const signIn = () => {
         if (!idValue) {
             alertTitle("아이디를 입력하세요");
         } else if (!pwValue) {
             alertTitle("비밀번호를 입력하세요");
         } else {
-            try {
-                const result = await dispatch(signInAPI({ userId: idValue, userPw: pwValue })).unwrap();
-                window.localStorage.setItem('userId', result.userId);
-                window.localStorage.setItem('token', result.authorization);
-                await response(result);
-                router.push('/main');
-            } catch (err) {
-                error(err);
-            }
+            dispatch(signInAPI({ userId: idValue, userPw: pwValue }))
+                .unwrap()
+                .then((result) => {
+                    window.localStorage.setItem('userId', result.userId);
+                    window.localStorage.setItem('token', result.authorization);
+                })
+                .catch((err) => {
+                    error(err);
+                })
         }
     }
 
