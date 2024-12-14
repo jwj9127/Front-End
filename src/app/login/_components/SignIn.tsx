@@ -30,7 +30,6 @@ export default function SignIn() {
                 if (result?.userId && result?.authorization) {
                     setTimeout(() => window.localStorage.setItem('userId', result.userId), 1000)
                     setTimeout(() => window.localStorage.setItem('token', result.authorization), 1000)
-                    setTimeout(() => response(result), 1000)
                     setTimeout(() => router.push('/main'), 1000)
                 }
             })
