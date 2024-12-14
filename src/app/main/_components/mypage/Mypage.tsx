@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { AppDispatch } from '../../../../../store/store';
 import { deleteUserAPI } from '../../../../../store/main/userAPI';
 import Swal from 'sweetalert2';
+import { response } from '../../../../../util/response';
+import { error } from '../../../../../util/error';
 
 const Mypage: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
@@ -44,23 +46,26 @@ const Mypage: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
     const deleteUser = (e: any) => {
         e.preventDefault();
-        dispatch(deleteUserAPI(userId!))
-            .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "회원 탈퇴가 진행되었습니다."
-                })
-                window.localStorage.removeItem('token');
-                window.localStorage.removeItem('userId');
-                router.push('/login');
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 400) {
-                    Swal.fire({
-                        title: "오류가 발생하였습니다."
+        Swal.fire({
+            text: "일정을 삭제하시겠습니까?",
+            showCancelButton: true,
+            confirmButtonText: "네",
+            cancelButtonText: "아뇨"
+        }).then(click => {
+            if (click.isConfirmed) {
+                dispatch(deleteUserAPI(userId!))
+                    .unwrap()
+                    .then((result) => {
+                        response(result);
+                        setTimeout(() => window.localStorage.removeItem('token'), 2000)
+                        window.localStorage.removeItem('userId');
+                        router.push('/login');
                     })
-                }
-            });
+                    .catch(err => {
+                        error(err);
+                    });
+            }
+        })
     }
 
     const logout = (e: any) => {

@@ -3,7 +3,9 @@ import styles from '../../../../../styles/main/mypage.module.css';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
 import { putUserAPI } from '../../../../../store/main/userAPI';
-import Swal from 'sweetalert2';
+import { alertTitle } from '../../../../../util/alert';
+import { response } from '../../../../../util/response';
+import { error } from '../../../../../util/error';
 
 export default function ModifyUser() {
 
@@ -29,28 +31,18 @@ export default function ModifyUser() {
             userName: userNameValue!
         }
 
-        if (userPwValue?.trim() === '' || userPwValue === undefined) {
-            Swal.fire({
-                title: "비밀번호를 입력해주세요"
-            })
-        } else if (userNameValue?.trim() === '' || userNameValue === undefined) {
-            Swal.fire({
-                title: "닉네임을 입력해주세요"
-            })
+        if (!userPwValue) {
+            alertTitle("비밀번호를 입력해주세요");
+        } else if (!userNameValue) {
+            alertTitle("닉네임을 입력해주세요");
         } else {
             dispatch(putUserAPI(userDTO))
                 .unwrap()
-                .then(() => {
-                    Swal.fire({
-                        title: "수정 완료"
-                    })
+                .then((result) => {
+                    response(result);
                 })
-                .catch(error => {
-                    if (error.response && error.response.status === 400) {
-                        Swal.fire({
-                            title: "오류가 발생하였습니다."
-                        })
-                    }
+                .catch(err => {
+                    error(err);
                 });
         }
     }
