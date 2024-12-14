@@ -28,8 +28,8 @@ export default function SignIn() {
             .unwrap()
             .then((reslut) => {
                 response(reslut);
-                window.localStorage.setItem('userId', reslut.userId);
-                window.localStorage.setItem('token', reslut.authorization);
+                setTimeout(() => window.localStorage.setItem('userId', reslut.userId), 500);
+                setTimeout(() => window.localStorage.setItem('token', reslut.authorization), 500);
                 router.push('/main');
             })
             .catch((err) => {
