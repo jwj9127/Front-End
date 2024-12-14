@@ -48,17 +48,25 @@ const userAPI = createSlice({
 
 export const putUserAPI = createAsyncThunk(
     'putUserAPI',
-    async (userDTO: { userId: string; userPw: string; userName: string; }) => {
-        const response = await axiosInstance(token!).put('/user', userDTO);
-        return response.data;
+    async (userDTO: { userId: string; userPw: string; userName: string; }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).put('/user', userDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
 export const deleteUserAPI = createAsyncThunk(
     'deleteUserAPI',
-    async (userId: string) => {
-        const response = await axiosInstance(token!).delete(`/user/${userId}`);
-        return response.data;
+    async (userId: string, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).delete(`/user/${userId}`);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
