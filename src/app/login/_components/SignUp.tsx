@@ -35,13 +35,12 @@ export default function SignUp() {
             dispatch(idCheckAPI(userIdValue))
                 .unwrap()
                 .then((reslut) => {
-                    if (response(reslut)) {
-                        response(reslut)
-                        setClearId(true);
-                    }
+                    response(reslut);
+                    setClearId(true);
                 })
                 .catch((err) => {
                     error(err);
+                    setClearId(false);
                 })
         } else {
             Swal.fire({
@@ -55,11 +54,11 @@ export default function SignUp() {
             Swal.fire({
                 title: "아이디 체크를 진행하세요"
             });
-        } else if (userPwValue) {
+        } else if (!userPwValue) {
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             });
-        } else if (userNameValue) {
+        } else if (!userNameValue) {
             Swal.fire({
                 title: "닉네임을 입력해주세요"
             });
