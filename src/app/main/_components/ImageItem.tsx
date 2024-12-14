@@ -27,12 +27,12 @@ const ImageItem: React.FC<ImageItemProps> = ({
 
     const purchaseASMRDTO = {
         userId: userId!,
-        asmrFileName: name
+        asmrName: name
     }
 
     const purchaseBackgroundDTO = {
         userId: userId!,
-        backgroundId: id
+        backgroundName: name
     }
 
     const purchaseOrPlay = (id: string) => {

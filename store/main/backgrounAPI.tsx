@@ -126,7 +126,7 @@ export const backgroundGetCurrentAPI = createAsyncThunk(
 
 export const backgroundPurchaseAPI = createAsyncThunk(
     '/background/purchase',
-    async (purchaseDTO: { userId: string; backgroundId: string; }, { rejectWithValue }) => {
+    async (purchaseDTO: { userId: string; backgroundName: string; }, { rejectWithValue }) => {
         try {
             const response = await axiosInstance(token!).post(`/background/purchase`, purchaseDTO);
             return response.data;
