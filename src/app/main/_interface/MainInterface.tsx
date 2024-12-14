@@ -44,7 +44,6 @@ export interface AsmrImageItemProps {
 export interface ImageItemProps {
     id: string;
     name: string;
-    fileName: string;
     imageUrl: string;
     isLocked: boolean;
     isWho: string;

@@ -40,7 +40,6 @@ const ASMR: React.FC<ASMRProps> = ({ playAudio, stopAudio, currentAsmr, isModalO
                                         key={asmr.id}
                                         id={asmr.id}
                                         name={asmr.name}
-                                        fileName={asmr.imageFileName}
                                         imageUrl={asmr.imageUrl}
                                         isLocked={isLocked}
                                         isWho="ASMR"

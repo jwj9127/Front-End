@@ -13,7 +13,6 @@ import { backgroundPurchaseAPI } from '../../../../store/main/backgrounAPI';
 const ImageItem: React.FC<ImageItemProps> = ({
     id,
     name,
-    fileName,
     imageUrl,
     isLocked,
     isWho,
@@ -28,7 +27,7 @@ const ImageItem: React.FC<ImageItemProps> = ({
 
     const purchaseASMRDTO = {
         userId: userId!,
-        asmrFileName: fileName
+        asmrFileName: name
     }
 
     const purchaseBackgroundDTO = {
