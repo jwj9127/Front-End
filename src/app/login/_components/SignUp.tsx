@@ -7,6 +7,8 @@ import { toggleIsSign } from '../../../../store/sign/signSwitch';
 import styles from '../../../../styles/login/signUp.module.css';
 import { idCheckAPI, signUpAPI } from '../../../../store/sign/signAPI';
 import Swal from 'sweetalert2';
+import { response } from '../../../../util/response';
+import { error } from '../../../../util/error';
 
 export default function SignUp() {
 
@@ -29,21 +31,17 @@ export default function SignUp() {
     const userNameRef = useRef<HTMLInputElement | null>(null);
 
     const idCheck = () => {
-        console.log(userIdValue)
-        if (userIdValue.trim() !== '') {
+        if (userIdValue) {
             dispatch(idCheckAPI(userIdValue))
                 .unwrap()
-                .then((response) => {
-                    Swal.fire({
-                        title: response
-                    });
-                    setClearId(true);
+                .then((reslut) => {
+                    if (response(reslut)) {
+                        response(reslut)
+                        setClearId(true);
+                    }
                 })
-                .catch((error) => {
-                    Swal.fire({
-                        title: "오류가 발생하였습니다."
-                    });
-                    console.log(error);
+                .catch((err) => {
+                    error(err);
                 })
         } else {
             Swal.fire({
@@ -57,27 +55,22 @@ export default function SignUp() {
             Swal.fire({
                 title: "아이디 체크를 진행하세요"
             });
-        } else if (userPwValue.trim() === '') {
+        } else if (userPwValue) {
             Swal.fire({
                 title: "비밀번호를 입력해주세요"
             });
-        } else if (userNameValue.trim() === '') {
+        } else if (userNameValue) {
             Swal.fire({
                 title: "닉네임을 입력해주세요"
             });
         } else {
             dispatch(signUpAPI({ userId: userIdValue, userPw: userPwValue, userName: userNameValue }))
                 .unwrap()
-                .then((response) => {
-                    Swal.fire({
-                        title: response
-                    });
+                .then((reslut) => {
+                    response(reslut);
                 })
-                .catch((error) => {
-                    Swal.fire({
-                        title: "오류가 발생하였습니다."
-                    });
-                    console.log(error);
+                .catch((err) => {
+                    error(err);
                 })
         }
     }
