@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../../styles/main/background.module.css';
+import styles from '../../../../../styles/main/background.module.css';
 import { BackgroundItemProps } from '../../_interface/MainInterface';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
