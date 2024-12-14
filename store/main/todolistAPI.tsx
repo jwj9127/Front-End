@@ -89,21 +89,6 @@ const todolistAPI = createSlice({
                 state.error = action.error.message;
                 state.loading = false;
             });
-
-        // deleteAllTodoAPI
-        builder
-            .addCase(deleteAllTodoAPI.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(deleteAllTodoAPI.fulfilled, (state, action) => {
-                state.todo = action.payload;
-                state.loading = false;
-            })
-            .addCase(deleteAllTodoAPI.rejected, (state, action) => {
-                state.error = action.error.message;
-                state.loading = false;
-            });
     }
 });
 
@@ -117,43 +102,49 @@ export const getTodoAPI = createAsyncThunk(
 
 export const addTodoAPI = createAsyncThunk(
     'addTodoAPI',
-    async (todoDTO: { userId: string; title: string; }) => {
-        const response = await axiosInstance(token!).post('/todo', todoDTO);
-        return response.data;
+    async (todoDTO: { userId: string; title: string; }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).post('/todo', todoDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
 export const completedTodoAPI = createAsyncThunk(
     'completedTodoAPI',
-    async (todoDTO: { id: string; completed: boolean; }) => {
-        const response = await axiosInstance(token!).post('/todo/status', todoDTO);
-        return response.data;
+    async (todoDTO: { id: string; completed: boolean; }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).post('/todo/status', todoDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
 export const putTodoAPI = createAsyncThunk(
     'putTodoAPI',
-    async (todoDTO: { id: string; title: string; }) => {
-        const response = await axiosInstance(token!).put('/todo', todoDTO);
-        return response.data;
+    async (todoDTO: { id: string; title: string; }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).put('/todo', todoDTO);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 
 export const deleteTodoAPI = createAsyncThunk(
     'deleteTodoAPI',
-    async (id: string) => {
-        const response = await axiosInstance(token!).delete(`/todo/${id}`);
-        return response.data;
-    }
-);
-
-export const deleteAllTodoAPI = createAsyncThunk(
-    'deleteAllTodoAPI',
-    async (ids: string[]) => {
-        const response = await axiosInstance(token!).delete('/todo/del_list', {
-            data: ids
-        });
-        return response.data;
+    async (id: string, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance(token!).delete(`/todo/${id}`);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || { message: "알 수 없는 오류가 발생했습니다.", status: 500 });
+        }
     }
 );
 

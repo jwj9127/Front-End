@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
 import { addTodoAPI, completedTodoAPI, deleteTodoAPI, getTodoAPI, putTodoAPI } from '../../../../../store/main/todolistAPI';
 import { Todo } from '../../_interface/MainInterface';
+import { response } from '../../../../../util/response';
+import { error } from '../../../../../util/error';
 
 const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
@@ -44,43 +46,55 @@ const TodoList: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     const onInsert = useCallback((todoDTO: { userId: string; title: string; }) => {
         dispatch(addTodoAPI(todoDTO))
             .unwrap()
-            .then((response) => {
-                Swal.fire({
-                    title: "작성 완료"
-                });
+            .then((result) => {
+                response(result);
                 selectTodo();
+            })
+            .catch((err) => {
+                error(err);
             });
     }, []);
 
     const onRemove = useCallback((id: string) => {
-        dispatch(deleteTodoAPI(id))
-            .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "삭제 완료"
-                });
-                setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
-            });
+        Swal.fire({
+            text: "일정을 삭제하시겠습니까?",
+            showCancelButton: true,
+            confirmButtonText: "네",
+            cancelButtonText: "아뇨"
+        }).then(click => {
+            if (click.isConfirmed) {
+                dispatch(deleteTodoAPI(id))
+                    .unwrap()
+                    .then((result) => {
+                        setTodos((prevTodos) => prevTodos.filter(todo => todo.id !== id));
+                        response(result);
+                    }).catch((err) => {
+                        error(err);
+                    });
+            }
+        })
     }, []);
 
     const onUpdate = useCallback((todoDTO: { id: string; title: string; }) => {
         dispatch(putTodoAPI(todoDTO))
             .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "수정 완료"
-                });
+            .then((result) => {
+                response(result);
                 setInsertToggle(false);
                 selectTodo();
+            }).catch((err) => {
+                error(err);
             });
     }, []);
 
     const onToggle = useCallback((todoDTO: { id: string; completed: boolean; }) => {
         dispatch(completedTodoAPI(todoDTO))
             .unwrap()
-            .then(() => {
-                Swal.fire({ title: "목표 완료" });
+            .then((result) => {
+                response(result);
                 selectTodo();
+            }).catch((err) => {
+                error(err);
             });
     }, []);
 
