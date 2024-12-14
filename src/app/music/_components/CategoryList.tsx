@@ -6,7 +6,8 @@ import styles from '../../../../styles/music/music.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { addListByUrlAPI, getUserListAPI } from "../../../../store/music/musicAPI";
-import Swal from "sweetalert2";
+import { response } from '../../../../util/response';
+import { error } from '../../../../util/error';
 
 export default function CategoryList() {
 
@@ -21,18 +22,12 @@ export default function CategoryList() {
         }
         dispatch(addListByUrlAPI(addUrlDTO))
             .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "추가 완료"
-                })
+            .then((result) => {
+                response(result);
                 dispatch(getUserListAPI(userId!));
             })
-            .catch((error) => {
-                if (error && error.status === 400) {
-                    Swal.fire({
-                        text: error.message
-                    })
-                }
+            .catch((err) => {
+                error(err)
             });
     }
 

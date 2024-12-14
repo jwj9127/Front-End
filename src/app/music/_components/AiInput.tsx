@@ -3,7 +3,9 @@ import styles from '../../../../styles/music/music.module.css';
 import { AppDispatch } from '../../../../store/store';
 import { useState } from 'react';
 import { addListByAiAPI } from '../../../../store/music/musicAPI';
-import Swal from 'sweetalert2';
+import { response } from '../../../../util/response';
+import { error } from '../../../../util/error';
+import { alertTitle } from '../../../../util/alert';
 
 export default function AiInput() {
 
@@ -24,22 +26,14 @@ export default function AiInput() {
         if (keywordOrGenre) {
             dispatch(addListByAiAPI(addAIDTO))
                 .unwrap()
-                .then(() => {
-                    Swal.fire({
-                        title: "추가 완료"
-                    })
+                .then((result) => {
+                    response(result);
                 })
-                .catch(error => {
-                    if (error.response && error.response.status === 400) {
-                        Swal.fire({
-                            title: "오류가 발생하였습니다."
-                        })
-                    }
+                .catch(err => {
+                    error(err);
                 });
         } else {
-            Swal.fire({
-                title: "빈 칸은 작성이 안됩니다.",
-            });
+            alertTitle("빈 칸은 작성이 안됩니다.");
         }
     }
 

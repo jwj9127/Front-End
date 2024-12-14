@@ -3,7 +3,7 @@ import styles from '../../../../styles/music/music.module.css';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../store/store';
 import { getCategoryAPI } from '../../../../store/music/musicAPI';
-import Swal from 'sweetalert2';
+import { alertTitle } from '../../../../util/alert';
 
 export default function Category() {
 
@@ -13,18 +13,14 @@ export default function Category() {
     const selectLofi = () => {
         dispatch(getCategoryAPI("lofi"))
             .then(() => {
-                Swal.fire({
-                    title: "추가 완료"
-                });
+                alertTitle("추가 완료");
             })
     }
 
     const selectPiano = () => {
         dispatch(getCategoryAPI("piano"))
             .then(() => {
-                Swal.fire({
-                    title: "추가 완료"
-                });
+                alertTitle("추가 완료");
             })
     }
 

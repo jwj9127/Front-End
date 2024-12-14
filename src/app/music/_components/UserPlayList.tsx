@@ -7,6 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from '../../../../styles/music/music.module.css';
 import { addListByUrlAPI, deleteListAPI, getUserListAPI } from "../../../../store/music/musicAPI";
 import Swal from "sweetalert2";
+import { response } from "../../../../util/response";
+import { error } from "../../../../util/error";
+import { alertTitle } from "../../../../util/alert";
 
 export default function UserPlayList({ handleTitleClick }: { handleTitleClick: (url: string) => void }) {
 
@@ -32,24 +35,16 @@ export default function UserPlayList({ handleTitleClick }: { handleTitleClick: (
         if (videoUrl) {
             dispatch(addListByUrlAPI(addUrlDTO))
                 .unwrap()
-                .then(() => {
-                    Swal.fire({
-                        title: "추가 완료"
-                    })
+                .then((result) => {
+                    response(result);
                     setVideoUrl('');
                     dispatch(getUserListAPI(userId!))
                 })
-                .catch((error) => {
-                    if (error && error.status === 400) {
-                        Swal.fire({
-                            text: error.message
-                        })
-                    }
+                .catch((err) => {
+                    error(err)
                 });
         } else {
-            Swal.fire({
-                title: "빈 칸은 작성이 안됩니다.",
-            });
+            alertTitle("빈 칸은 작성이 안됩니다.");
         }
     }
 
@@ -58,21 +53,24 @@ export default function UserPlayList({ handleTitleClick }: { handleTitleClick: (
             userId: userId!,
             videoId: id
         }
-        dispatch(deleteListAPI(deleteListDTO))
-            .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "삭제 완료"
-                })
-                dispatch(getUserListAPI(userId!))
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 400) {
-                    Swal.fire({
-                        title: "오류가 발생하였습니다."
+        Swal.fire({
+            text: "일정을 삭제하시겠습니까?",
+            showCancelButton: true,
+            confirmButtonText: "네",
+            cancelButtonText: "아뇨"
+        }).then(click => {
+            if (click.isConfirmed) {
+                dispatch(deleteListAPI(deleteListDTO))
+                    .unwrap()
+                    .then((result) => {
+                        setTimeout(() => response(result), 2000);
+                        dispatch(getUserListAPI(userId!))
                     })
-                }
-            });
+                    .catch(err => {
+                        error(err)
+                    });
+            }
+        })
     }
 
     return (
