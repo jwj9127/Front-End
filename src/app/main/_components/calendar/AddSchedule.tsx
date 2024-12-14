@@ -9,6 +9,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import { AddScheduleProps } from '../../_interface/MainInterface';
+import { alertTitle } from '../../../../../util/alert';
+import { response } from '../../../../../util/response';
+import { error } from '../../../../../util/error';
 
 const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
 
@@ -34,20 +37,14 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
         const titleElement = document.getElementById("schedule_title") as HTMLInputElement | null;
         const title = titleElement?.value.trim();
 
-        if (!title || title === "") {
-            Swal.fire({
-                title: "제목을 입력해주세요"
-            })
+        if (!title) {
+            alertTitle("제목을 입력해주세요");
             return false;
-        } else if (startDate === null) {
-            Swal.fire({
-                title: "시작 날짜를 입력해주세요"
-            })
+        } else if (!startDate) {
+            alertTitle("시작 날짜를 입력해주세요");
             return false;
-        } else if (endDate === null) {
-            Swal.fire({
-                title: "종료 날짜를 입력해주세요"
-            })
+        } else if (!endDate) {
+            alertTitle("종료 날짜를 입력해주세요");
             return false;
         }
 
@@ -59,20 +56,14 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
         };
         dispatch(makeCalendarAPI(calendarDTO))
             .unwrap()
-            .then(() => {
-                Swal.fire({
-                    title: "일정을 저장했습니다"
-                })
+            .then((result) => {
+                response(result);
                 if (titleElement) titleElement.value = '';
                 setStartDate(null);
                 setEndDate(null);
             })
-            .catch(error => {
-                if (error.response && error.response.status === 400) {
-                    Swal.fire({
-                        title: "일정이 저장되지 않았습니다."
-                    })
-                }
+            .catch(err => {
+                error(err)
             });
     }
 
