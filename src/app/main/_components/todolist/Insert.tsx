@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import style from '../../../../../styles/main/todolist.module.css';
 import Swal from "sweetalert2";
 import { ToDoInsertProps } from "../../_interface/MainInterface";
+import { alertTitle } from "../../../../../util/alert";
 
 const ToDoInsert: React.FC<ToDoInsertProps> = ({ onInsert }) => {
 
@@ -16,14 +17,12 @@ const ToDoInsert: React.FC<ToDoInsertProps> = ({ onInsert }) => {
     const onSubmit = useCallback(
         (e: any) => {
             e.preventDefault();
-            if (value.trim() !== '') {
+            if (value) {
                 onInsert(todoDTO);
                 setValue('');
             }
             else {
-                Swal.fire({
-                    title: "빈 칸은 작성이 안됩니다.",
-                });
+                alertTitle("빈 칸은 작성이 안됩니다.");
             }
         },
         [onInsert, value]
