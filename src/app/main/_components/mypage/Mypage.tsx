@@ -47,7 +47,7 @@ const Mypage: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
     const deleteUser = (e: any) => {
         e.preventDefault();
         Swal.fire({
-            text: "일정을 삭제하시겠습니까?",
+            text: "회원 탈퇴를 진행하시겠습니까?",
             showCancelButton: true,
             confirmButtonText: "네",
             cancelButtonText: "아뇨"

@@ -54,7 +54,7 @@ export default function UserPlayList({ handleTitleClick }: { handleTitleClick: (
             videoId: id
         }
         Swal.fire({
-            text: "일정을 삭제하시겠습니까?",
+            text: "재생 목록에서 삭제하시겠습니까?",
             showCancelButton: true,
             confirmButtonText: "네",
             cancelButtonText: "아뇨"
