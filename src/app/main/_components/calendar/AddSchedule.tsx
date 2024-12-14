@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from '../../../../../styles/main/calendar.module.css';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../../store/store';
-import { makeCalendarAPI } from '../../../../../store/main/calendarAPI';
+import { getCalendarAPI, makeCalendarAPI } from '../../../../../store/main/calendarAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
@@ -12,7 +12,7 @@ import { alertTitle } from '../../../../../util/alert';
 import { response } from '../../../../../util/response';
 import { error } from '../../../../../util/error';
 
-const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule, setViewRerender }) => {
+const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule }) => {
 
     const dispatch = useDispatch<AppDispatch>();
     const userId = window.localStorage.getItem('userId');
@@ -57,7 +57,7 @@ const AddSchedule: React.FC<AddScheduleProps> = ({ setIsAddingSchedule, setViewR
             .unwrap()
             .then((result) => {
                 response(result);
-                setViewRerender(true);
+                dispatch(getCalendarAPI(userId!))
                 if (titleElement) titleElement.value = '';
                 setStartDate(null);
                 setEndDate(null);

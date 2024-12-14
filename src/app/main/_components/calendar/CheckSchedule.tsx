@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { response } from '../../../../../util/response';
 import { error } from '../../../../../util/error';
 
-const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule, setViewRerender }) => {
+const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule }) => {
 
     const dispatch = useDispatch<AppDispatch>();
     const userId = window.localStorage.getItem('userId');
@@ -27,7 +27,7 @@ const CheckSchedule: React.FC<CheckScheduleProps> = ({ setIsViewingSchedule, set
 
     useEffect(() => {
         selectSchedule();
-    }, [setIsViewingSchedule, setViewRerender])
+    }, [setIsViewingSchedule, dispatch(getCalendarAPI(userId!))])
 
     const formatDateToString = (dateString: string) => {
         const date = new Date(dateString);

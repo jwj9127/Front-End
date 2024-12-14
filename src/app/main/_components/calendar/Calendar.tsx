@@ -18,7 +18,7 @@ const Calendar: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
 
     return (
         <>
-            {isViewingSchedule ? <CheckSchedule setIsViewingSchedule={setIsViewingSchedule} setViewRerender={setViewRerender} /> : null}
+            {isViewingSchedule ? <CheckSchedule setIsViewingSchedule={setIsViewingSchedule} /> : null}
             <div className={style.main_div} onClick={(e) => e.stopPropagation()}>
                 <div className={style.header}>
                     <p className={style.react_calendar_check_schedule} onClick={() => { setIsViewingSchedule(true) }}>일정</p>
@@ -35,7 +35,7 @@ const Calendar: React.FC<ModalProps> = ({ isModalOpen, closeModal }) => {
                 />
                 <p className='react_calendar_plus_schedule' onClick={() => setIsAddingSchedule(true)}>일정 추가</p>
             </div >
-            {isAddingSchedule ? <AddSchedule setIsAddingSchedule={setIsAddingSchedule} setViewRerender={setViewRerender} /> : null
+            {isAddingSchedule ? <AddSchedule setIsAddingSchedule={setIsAddingSchedule} /> : null
             }
         </>
     )
