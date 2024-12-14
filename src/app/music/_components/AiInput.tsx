@@ -28,6 +28,7 @@ export default function AiInput() {
                 .unwrap()
                 .then((result) => {
                     response(result);
+                    setKeywordOrGenre('');
                 })
                 .catch(err => {
                     error(err);
