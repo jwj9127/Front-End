@@ -18,13 +18,13 @@ Heal의 치유하다는 뜻과 Realax의 휴식을 취하다는 뜻을 합친 �
 #### Frontend
 | <center> 정원준</center> | <center> 양병현 </center> | <center> 이승현 </center> |
 | --- | --- | --- |
-| <div align="center">메인 페이지, 게시글 페이지, 정부24 사용방법 페이지</div> | <div align="center">키오스크 사용방법 페이지, 이커머스 사용방법 페이지,</br> 마이페이지, 게시글에 따른 답글 관리 컴포넌트</div> | <div align="center">로그인 / 회원가입 페이지, 디자인</div> |
+| <div align="center">회원가입 / 로그인 페이지 <br/> 메인 페이지 <br/> 뮤직 플레이어 페이지</div> | <div align="center">마이 페이지<br/> 스티커 디자인</div> | <div align="center">전체 디자인</div> |
 | <div align="center">[jwj9127](https://github.com/jwj9127)</div> | <div align="center">[sheepbotttle1119](https://github.com/sheepbotttle1119)</div> | <div align="center">[lsh04](https://github.com/lsh04)</div>
 
 #### Backend
 | <center> 이예찬 </center> | <center> 안민영 </center> | <center> 정원준 </center> |
 | --- | --- | --- |
-| <div align="center">메인 페이지, 게시글 페이지, 정부24 사용방법 페이지</div> | <div align="center">키오스크 사용방법 페이지, 이커머스 사용방법 페이지,</br> 마이페이지, 게시글에 따른 답글 관리 컴포넌트</div> | <div align="center">로그인 / 회원가입 페이지, 디자인</div> |
+| <div align="center">배경화면관련기능 <br/> ASMR관련기능 <br/> TODOLIST관련기능 <br/> Youtube API관련기능</div> | <div align="center">회원관련기능 <br/>  캘린더관련기능 </div> | <div align="center">캐릭터 관련 기능 <br/> 배경화면 유저 권한 기능</div> |
 | <div align="center">[yeboong99](https://github.com/yeboong99)</div> | <div align="center">[ANMNYG](https://github.com/ANMNYG)</div> | <div align="center">[jwj9127](https://github.com/jwj9127)</div> |
 
 ## ✨ 기술 스택
@@ -40,6 +40,11 @@ Heal의 치유하다는 뜻과 Realax의 휴식을 취하다는 뜻을 합친 �
 
 **`회원가입 / 로그인 페이지`**
   - 회원가입 / 아이디 중복 확인 / 로그인이 가능합니다.
+
+**`마이 페이지`**
+
+  - 캐릭터를 선택할 수 있습니다.
+  - 레벨을 확인할 수 있습니다.
 
 **`메인 페이지`**
   - 배경화면을 취향에 맞게 선택할 수 있습니다.
@@ -77,13 +82,11 @@ Heal의 치유하다는 뜻과 Realax의 휴식을 취하다는 뜻을 합친 �
 #### Frontend
 | <center> 정원준</center> |
 | --- |
-| <div align="center">메인 페이지, 게시글 페이지, 정부24 사용방법 페이지</div> | <div align="center">키오스크 사용방법 페이지, 이커머스 사용방법 페이지,</br> 마이페이지, 게시글에 따른 답글 관리 컴포넌트</div> | <div align="center">로그인 / 회원가입 페이지, 디자인</div> |
 | <div align="center">[jwj9127](https://github.com/jwj9127)</div> | <div align="center">[sheepbotttle1119](https://github.com/sheepbotttle1119)</div> | <div align="center">[lsh04](https://github.com/lsh04)</div>
 
 #### Backend
 | <center> 이예찬 </center> | <center> 안민영 </center> |
 | --- | --- |
-| <div align="center">메인 페이지, 게시글 페이지, 정부24 사용방법 페이지</div> | <div align="center">키오스크 사용방법 페이지, 이커머스 사용방법 페이지,</br> 마이페이지, 게시글에 따른 답글 관리 컴포넌트</div> |
 | <div align="center">[yeboong99](https://github.com/yeboong99)</div> | <div align="center">[ANMNYG](https://github.com/ANMNYG)</div> |
 
 ## ✨ 기술 스택
