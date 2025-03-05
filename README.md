@@ -11,7 +11,7 @@ IT 기술을 활용하여 현대인의 건강 (wellness) 문제를 해결할 수
 Heal의 치유하다는 뜻과 Realax의 휴식을 취하다는 뜻을 합친 합성어 healax
 <br/>
 컴퓨터 관련 업무를 하며 스트레스나 압박을 받는 사람을 위해 백색소음, 편안한 음악으로 <br/>
-마음의 안정을 얻게 해준다. 자세한 설명은 [여기](file:///C:/Users/jwj/Documents/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1%20%EB%B0%9B%EC%9D%80%20%ED%8C%8C%EC%9D%BC/healax.pdf)를 참고하시면 됩니다.
+마음의 안정을 얻게 해준다. 자세한 설명은 [여기](https://github.com/user-attachments/files/19094776/healax.pdf)를 참고하시면 됩니다.
 
 ## 👩🏻‍💻 프로젝트 참여 인원
 
